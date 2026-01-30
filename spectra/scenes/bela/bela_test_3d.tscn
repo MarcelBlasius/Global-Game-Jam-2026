@@ -1,0 +1,37 @@
+[gd_scene format=3 uid="uid://bul3tkn4jojku"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_phnpx"]
+albedo_color = Color(1, 0, 0, 1)
+
+[sub_resource type="QuadMesh" id="QuadMesh_phnpx"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_dw6q7"]
+diffuse_mode = 3
+albedo_color = Color(0, 0, 1, 1)
+
+[node name="Node3D" type="Node3D" unique_id=1976902003]
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=171859453]
+transform = Transform3D(-0.61977893, 0.78477645, 0, -0.78477645, -0.61977893, 0, 0, 0, 1, 0, 11.104023, 0)
+layers = 0
+
+[node name="Camera3D" type="Camera3D" parent="." unique_id=1179964476]
+cull_mask = 3
+
+[node name="Node3D" type="Node3D" parent="." unique_id=577951153]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -85.78096)
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="Node3D" unique_id=1798303572]
+transform = Transform3D(61.51141, 0, 0, 0, 61.51141, 0, 0, 0, 61.51141, 0, 0, -3.4852448)
+layers = 2
+material_override = SubResource("StandardMaterial3D_phnpx")
+mesh = SubResource("QuadMesh_phnpx")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Node3D" unique_id=1732389544]
+transform = Transform3D(61.51141, 0, 0, 0, 61.51141, 0, 0, 0, 61.51141, 0, 0, -3.4852457)
+visible = false
+material_override = SubResource("StandardMaterial3D_dw6q7")
+mesh = SubResource("QuadMesh_phnpx")
+
+[node name="Node3D2" type="Node3D" parent="." unique_id=2051716387]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -85.78096)
