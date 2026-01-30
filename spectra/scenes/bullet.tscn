@@ -1,0 +1,17 @@
+[gd_scene format=3 uid="uid://b1c7qq5v6oah7"]
+
+[ext_resource type="Script" uid="uid://b7w23iqs82lm8" path="res://scripts/bullet.gd" id="1_l5glv"]
+[ext_resource type="Texture2D" uid="uid://bursdnrr6dso4" path="res://icon.svg" id="1_y25gk"]
+
+[node name="Bullet" type="Area2D" unique_id=2130175322]
+script = ExtResource("1_l5glv")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=916785560]
+modulate = Color(0, 0, 0, 1)
+position = Vector2(-1, 0)
+texture = ExtResource("1_y25gk")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="." unique_id=107018591]
+polygon = PackedVector2Array(59.1, -64, -59, -64, -63.8, -59, -64, 61, -60.3, 64, 59.6, 64, 63.9, 59, 64, -61.1)
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
