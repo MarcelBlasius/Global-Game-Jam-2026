@@ -2,16 +2,20 @@
 
 [ext_resource type="Script" uid="uid://bub6p8m3dxcfn" path="res://scripts/player.gd" id="1_qhqgy"]
 [ext_resource type="PackedScene" uid="uid://b1c7qq5v6oah7" path="res://scenes/bullet.tscn" id="2_dqkch"]
-[ext_resource type="Texture2D" uid="uid://bursdnrr6dso4" path="res://icon.svg" id="3_qlg0r"]
+[ext_resource type="Texture2D" uid="uid://b06ewonenu7hk" path="res://ressources/spritesheet.png" id="3_qhqgy"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qhqgy"]
+size = Vector2(26, 28)
 
 [node name="player" type="CharacterBody2D" unique_id=472819889]
 script = ExtResource("1_qhqgy")
 bullet_scene = ExtResource("2_dqkch")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=204285705]
-texture = ExtResource("3_qlg0r")
+texture_filter = 1
+texture = ExtResource("3_qhqgy")
+region_enabled = true
+region_rect = Rect2(1308, 285, 25, 29)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=766425432]
 shape = SubResource("RectangleShape2D_qhqgy")
