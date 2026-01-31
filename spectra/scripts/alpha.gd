@@ -5,11 +5,12 @@ var mat : ShaderMaterial
 func _ready() -> void:
 	mat = material as ShaderMaterial
 	
-	mat.set_shader_parameter("radius", 100.0)
+	
 	pass # Replace with function body.
 
 var mouse_pos: Vector2
 var mouse_pressed: bool = false
+var mouse_scroll: float = 1
 
 #func _unhandled_input(input_event: InputEvent) -> void:
 func _input(input_event: InputEvent) -> void:
@@ -25,8 +26,19 @@ func _input(input_event: InputEvent) -> void:
 	if input_event is InputEventMouseButton and input_event.button_index == MouseButton.MOUSE_BUTTON_LEFT:
 		mouse_pressed = input_event.pressed
 		
+	if input_event is InputEventMouseButton:
+		if input_event.button_index == MouseButton.MOUSE_BUTTON_WHEEL_UP:
+			mouse_scroll *=1.1
+			print("Mausrad hoch")
+			# Aktion: z.B. Zoom In
+		elif input_event.button_index == MouseButton.MOUSE_BUTTON_WHEEL_DOWN:
+			mouse_scroll *=0.9
+			print("Mausrad runter")
+			# Aktion: z.B. Zoom Out
+		
 	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	mat.set_shader_parameter("point", mouse_pos)
+	mat.set_shader_parameter("radius", mouse_scroll * 100)
 	pass

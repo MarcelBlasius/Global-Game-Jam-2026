@@ -14,13 +14,7 @@ void fragment() {
 	vec2 uv = UV;
 	vec4 alpha = texture(tex_alpha, uv);
 	
-	if (alpha.x < 0.5) {
-        // Left half → texture 1
-        COLOR = texture(tex_left, uv);
-    } else {
-        // Right half → texture 2
-        COLOR = texture(tex_right, uv);
-    }
+	 COLOR = (1.0 - alpha.x) * texture(tex_left, uv) + alpha.x * texture(tex_right, uv);
 }
 
 //void light() {
