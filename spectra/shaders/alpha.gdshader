@@ -68,38 +68,6 @@ float smoothDifference(float d1, float d2, float k)
     return mix(d2, -d1, h) + k * h * (1.0 - h);
 }
 
-bool getWorldBit(float posBit, bool world_invert)
-{
-	if (world_invert)
-	{
-		return posBit != 1.0;
-	}
-	
-	return posBit == 1.0;
-}
-
-//float calcDistResult(vec2 uv, vec2, point, float radius, float distResult)
-//{
-	//for(int i = 0; i< value_count; i++)
-	//{
-		//int index = i * 4;
-		//bool worldBit = getWorldBit(posValues[index + 3], invert_world);
-		//if (worldBit)
-		//{
-			//continue;
-		//}
-		//
-		//vec2 point = vec2(posValues[index], posValues[index +1]);
-		//float radius = posValues[index + 2];
-		//
-		//float dist = calcDist(uv, point, radius);
-//
-		//distResult = smoothUnion(distResult, dist, 50);
-		////distResult = unionSDF(distResult, dist);
-	//}
-	//
-//}
-
 void fragment() {
 	// Called for every pixel the material is visible on.
 	vec2 uv = UV * vec2(640, 360);
@@ -112,63 +80,38 @@ void fragment() {
 		if (worldBit)
 		{
 			continue;
-			vec2 point = vec2(posValues[index], posValues[index +1]);
-			float radius = posValues[index + 2];
-			
-			float dist = calcDist(uv, point, radius);
-
-			dist *= 1.0;
-			float union = smoothUnion(distResult, dist, 50);
-			//float union = unionSDF(distResult, dist);
-			//float intersection = intersectionSDF(distResult, dist);
-			//distResult = differenceSDF(union, intersection);
-			float intersection = smoothIntersection(distResult, dist, 20);
-			distResult = differenceSDF(union, intersection);
 		}
-		else
-		{
-			vec2 point = vec2(posValues[index], posValues[index +1]);
-			float radius = posValues[index + 2];
-			
-			float dist = calcDist(uv, point, radius);
 
-			distResult = smoothUnion(distResult, dist, 50);
-			//distResult = unionSDF(distResult, dist);
-		}
+		vec2 point = vec2(posValues[index], posValues[index +1]);
+		float radius = posValues[index + 2];
 		
-		
+		float dist = calcDist(uv, point, radius);
+
+		distResult = smoothUnion(distResult, dist, 50);
+		//distResult = unionSDF(distResult, dist);
 	}
 	
 	for(int i = 0; i< value_count; i++)
 	{
 		int index = i * 4;
 		bool worldBit = posValues[index + 3] == 1.0; //getWorldBit(posValues[index + 3], invert_world);
-		if (worldBit)
-		{
-			vec2 point = vec2(posValues[index], posValues[index +1]);
-			float radius = posValues[index + 2];
-			
-			float dist = calcDist(uv, point, radius);
-
-			dist *= 1.0;
-			float union = smoothUnion(distResult, dist, 50);
-			//float union = unionSDF(distResult, dist);
-			//float intersection = intersectionSDF(distResult, dist);
-			//distResult = differenceSDF(union, intersection);
-			float intersection = smoothIntersection(distResult, dist, 20);
-			distResult = differenceSDF(union, intersection);
-		}
-		else
+		if (!worldBit)
 		{
 			continue;
-			vec2 point = vec2(posValues[index], posValues[index +1]);
-			float radius = posValues[index + 2];
-			
-			float dist = calcDist(uv, point, radius);
-
-			distResult = smoothUnion(distResult, dist, 50);
-			//distResult = unionSDF(distResult, dist);
 		}
+		
+		vec2 point = vec2(posValues[index], posValues[index +1]);
+		float radius = posValues[index + 2];
+		
+		float dist = calcDist(uv, point, radius);
+
+		dist *= 1.0;
+		float union = smoothUnion(distResult, dist, 50);
+		//float union = unionSDF(distResult, dist);
+		//float intersection = intersectionSDF(distResult, dist);
+		//distResult = differenceSDF(union, intersection);
+		float intersection = smoothIntersection(distResult, dist, 20);
+		distResult = differenceSDF(union, intersection);
 	}
 
     float a = calcAlpha(distResult);
