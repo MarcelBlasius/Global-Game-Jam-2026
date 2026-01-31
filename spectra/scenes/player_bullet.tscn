@@ -1,0 +1,94 @@
+[gd_scene format=3 uid="uid://crann8giao7wm"]
+
+[ext_resource type="Script" uid="uid://yiuofvc3qxaw" path="res://scripts/player_bullet.gd" id="1_opn7j"]
+[ext_resource type="PackedScene" uid="uid://dnhn13eqhoom" path="res://scenes/explosion.tscn" id="2_6lfmo"]
+[ext_resource type="Texture2D" uid="uid://b663llngg2mc" path="res://ressources/projectile_animation_world_2.png" id="3_rfp20"]
+[ext_resource type="Texture2D" uid="uid://be28w17k10e8s" path="res://ressources/projectile_animation_world_1.png" id="4_opn7j"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_l5glv"]
+radius = 6.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qncy5"]
+atlas = ExtResource("3_rfp20")
+region = Rect2(0, 0, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tamys"]
+atlas = ExtResource("3_rfp20")
+region = Rect2(8, 0, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_26lx3"]
+atlas = ExtResource("3_rfp20")
+region = Rect2(16, 0, 8, 8)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_1cfmv"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qncy5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tamys")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_26lx3")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k76ql"]
+atlas = ExtResource("4_opn7j")
+region = Rect2(0, 0, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_in4mv"]
+atlas = ExtResource("4_opn7j")
+region = Rect2(8, 0, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_s437g"]
+atlas = ExtResource("4_opn7j")
+region = Rect2(16, 0, 8, 8)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_6lfmo"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_k76ql")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_in4mv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_s437g")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="PlayerBullet" type="Area2D" unique_id=2130175322]
+visible = false
+collision_layer = 20
+collision_mask = 23
+script = ExtResource("1_opn7j")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=92474658]
+shape = SubResource("CircleShape2D_l5glv")
+
+[node name="Explosion" parent="." unique_id=2022078927 instance=ExtResource("2_6lfmo")]
+speed_scale = 10.0
+
+[node name="World1Bullet" type="Node2D" parent="." unique_id=2023675396]
+
+[node name="SunBullet" type="AnimatedSprite2D" parent="World1Bullet" unique_id=507211559]
+texture_filter = 1
+sprite_frames = SubResource("SpriteFrames_1cfmv")
+frame_progress = 0.9981774
+
+[node name="World2Bullet" type="Node2D" parent="." unique_id=1603151208]
+
+[node name="DarkBullet" type="AnimatedSprite2D" parent="World2Bullet" unique_id=66245734]
+texture_filter = 1
+sprite_frames = SubResource("SpriteFrames_6lfmo")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
