@@ -1,5 +1,6 @@
 extends CharacterBody2D
 
+@export var isEnemyWorld1: bool = true
 @export var health: int = 3
 @export var speed: int = 500
 @export var player: CharacterBody2D
@@ -25,7 +26,6 @@ func _ready() -> void:
 	sprite1.z_index = 10
 	sprite2.z_index = 10
 	player = get_node("/root/main_scene/player")
-	
 	
 	var old_global1 := spriteParent1.global_transform as Transform2D
 
@@ -80,6 +80,7 @@ func take_damage(amount: int):
 		die()
 
 func die():
+	get_node("/root/main_scene").remove_enemy(self)
 	queue_free()
 	spriteParent1.queue_free()
 	spriteParent2.queue_free()

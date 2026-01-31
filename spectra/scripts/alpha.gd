@@ -7,7 +7,7 @@ class MaskPos:
 
 var mat : ShaderMaterial
 var posList : Array[MaskPos]
-const arrayMaxLength := 5
+const arrayMaxLength := 10
 const arrayElementSize := 4
 var invert_world := false
 var mouse_pos: Vector2
@@ -20,10 +20,10 @@ func setPosAndRad():
 	posVals.resize(arrayMaxLength * arrayElementSize)
 	
 	for i in range(arrayMaxLength):
-		posVals[i * 4] = posList[i].pos.x
-		posVals[i * 4 + 1] = posList[i].pos.y
-		posVals[i * 4 + 2] = posList[i].radius
-		posVals[i * 4 + 3] = posList[i].worldBit
+		posVals[i * arrayElementSize] = posList[i].pos.x
+		posVals[i * arrayElementSize + 1] = posList[i].pos.y
+		posVals[i * arrayElementSize + 2] = posList[i].radius
+		posVals[i * arrayElementSize + 3] = posList[i].worldBit
 		
 	material.set_shader_parameter("posValues", posVals)
 	material.set_shader_parameter("value_count", arrayMaxLength)
@@ -41,12 +41,12 @@ func _ready() -> void:
 	#var maskPos = MaskPos.new()
 	#maskPos.pos = Vector2(100, 100)
 	#maskPos.radius = 40
-	posList[1].pos = Vector2(100, 100)
-	posList[1].radius = 40
-	posList[1].worldBit = 0.0
-	
-	posList[2].pos = Vector2(200, 200)
-	posList[2].radius = 50
+	#posList[1].pos = Vector2(100, 100)
+	#posList[1].radius = 40
+	#posList[1].worldBit = 1.0
+	#
+	#posList[2].pos = Vector2(200, 200)
+	#posList[2].radius = 50
 	setPosAndRad()
 	pass # Replace with function body.
 
@@ -80,13 +80,14 @@ func _unhandled_input(input_event: InputEvent) -> void:
 		elif input_event.button_index == MouseButton.MOUSE_BUTTON_WHEEL_DOWN:
 			mouse_scroll *=0.9
 			print("Mausrad runter")
-			# Aktion: z.B. Zoom Oout
+			# Aktion: z.B. Zoom Oout#
+
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
-	if (mouse_pressed):
-		posList[0].pos = mouse_pos
-	posList[0].radius = mouse_scroll * 100
-	posList[0].worldBit = invert_world_debug if 1 else 0
+	#if (mouse_pressed):
+		#posList[0].pos = mouse_pos
+	#posList[0].radius = mouse_scroll * 100
+	#posList[0].worldBit = invert_world_debug if 1 else 0
 	setPosAndRad()
 	material.set_shader_parameter("invert_world", invert_world)
 	

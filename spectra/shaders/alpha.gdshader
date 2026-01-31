@@ -1,6 +1,6 @@
 shader_type canvas_item;
 
-uniform float posValues[20]; // position  and radius packed together in 4 values
+uniform float posValues[40]; // position  and radius packed together in 4 values
 uniform int value_count;
 
 uniform float corona = 40;
