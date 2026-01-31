@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://bv25mwaky7njn"]
 
 [ext_resource type="Texture2D" uid="uid://b06ewonenu7hk" path="res://ressources/spritesheet.png" id="1_hky1a"]
+[ext_resource type="PackedScene" uid="uid://c8f3q1vvtl1p2" path="res://scenes/silas/flower.tscn" id="2_ci8kt"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hky1a"]
 size = Vector2(640, 36)
@@ -37,6 +38,15 @@ position = Vector2(320, 220)
 texture = ExtResource("1_hky1a")
 region_enabled = true
 region_rect = Rect2(1408, -8, 208, 88)
+
+[node name="Flower" parent="BackgroundWorld2" unique_id=196264919 instance=ExtResource("2_ci8kt")]
+position = Vector2(128, 141)
+
+[node name="Flower2" parent="BackgroundWorld2" unique_id=1228571943 instance=ExtResource("2_ci8kt")]
+position = Vector2(557, 317)
+
+[node name="Flower3" parent="BackgroundWorld2" unique_id=124609726 instance=ExtResource("2_ci8kt")]
+position = Vector2(476, 62)
 
 [node name="WallColliders" type="StaticBody2D" parent="." unique_id=51051484 groups=["environment"]]
 collision_mask = 0

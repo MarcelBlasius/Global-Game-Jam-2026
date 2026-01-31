@@ -2,15 +2,14 @@
 
 [ext_resource type="Script" uid="uid://b2pf5pmgiec63" path="res://scripts/main_menu.gd" id="1_36jji"]
 [ext_resource type="Texture2D" uid="uid://ba4a4idawf5wf" path="res://ressources/atlas_textures/main_menu/button_start.tres" id="2_2hyvm"]
-[ext_resource type="PackedScene" uid="uid://bkm6i8xqbq0eh" path="res://scenes/silas/test_proportions.tscn" id="2_evkfa"]
+[ext_resource type="PackedScene" uid="uid://cj3d4rudap4qg" path="res://scenes/main_scene.tscn" id="2_evkfa"]
 [ext_resource type="Texture2D" uid="uid://n5qhc5d4j003" path="res://ressources/atlas_textures/main_menu/background.tres" id="2_oe1it"]
-[ext_resource type="Theme" uid="uid://dvfr12sx6b08d" path="res://ressources/atlas_textures/main_menu/main_menu_theme.tres" id="3_36jji"]
 [ext_resource type="Texture2D" uid="uid://dxuca6bw6tatd" path="res://ressources/atlas_textures/main_menu/button_settings.tres" id="3_hhpil"]
-[ext_resource type="Texture2D" uid="uid://c0nd547dirnlg" path="res://ressources/atlas_textures/main_menu/button_quit.tres" id="4_36jji"]
-[ext_resource type="Texture2D" uid="uid://bnfgux2pxcmmk" path="res://ressources/atlas_textures/main_menu/button_start_hover.tres" id="5_ou2lu"]
-[ext_resource type="Script" uid="uid://qefuwcjn8fqt" path="res://scripts/main_menu_button.gd" id="6_36jji"]
-[ext_resource type="Texture2D" uid="uid://b3qbqyjrfim7m" path="res://ressources/atlas_textures/main_menu/button_settings_hover.tres" id="8_nwhpg"]
-[ext_resource type="Texture2D" uid="uid://bvfovj34ncq50" path="res://ressources/atlas_textures/main_menu/button_quit_hover.tres" id="10_evkfa"]
+[ext_resource type="PackedScene" uid="uid://c5fuyafloib7" path="res://scenes/silas/menu_button.tscn" id="4_36jji"]
+[ext_resource type="Texture2D" uid="uid://bnfgux2pxcmmk" path="res://ressources/atlas_textures/main_menu/button_start_hovered.tres" id="5_ou2lu"]
+[ext_resource type="Texture2D" uid="uid://b3qbqyjrfim7m" path="res://ressources/atlas_textures/main_menu/button_settings_hovered.tres" id="8_nwhpg"]
+[ext_resource type="Texture2D" uid="uid://c0nd547dirnlg" path="res://ressources/atlas_textures/main_menu/button_quit.tres" id="9_nwhpg"]
+[ext_resource type="Texture2D" uid="uid://bvfovj34ncq50" path="res://ressources/atlas_textures/main_menu/button_quit_hovered.tres" id="10_evkfa"]
 
 [node name="MainMenu" type="Control" unique_id=614620433]
 layout_mode = 3
@@ -44,37 +43,23 @@ offset_right = 156.0
 offset_bottom = 52.0
 grow_vertical = 2
 theme_override_constants/separation = 10
+alignment = 1
 
-[node name="ButtonStart" type="TextureButton" parent="VBoxContainer" unique_id=967530497]
-texture_filter = 1
+[node name="ButtonStart" parent="VBoxContainer" unique_id=936845202 instance=ExtResource("4_36jji")]
 layout_mode = 2
-theme = ExtResource("3_36jji")
 texture_normal = ExtResource("2_2hyvm")
 texture_hover = ExtResource("5_ou2lu")
-script = ExtResource("6_36jji")
 
-[node name="ButtonSettings" type="TextureButton" parent="VBoxContainer" unique_id=880513379]
-texture_filter = 1
+[node name="ButtonSettings" parent="VBoxContainer" unique_id=788100844 instance=ExtResource("4_36jji")]
 layout_mode = 2
-theme = ExtResource("3_36jji")
 texture_normal = ExtResource("3_hhpil")
 texture_hover = ExtResource("8_nwhpg")
-script = ExtResource("6_36jji")
 
-[node name="ButtonQuit" type="TextureButton" parent="VBoxContainer" unique_id=631083103]
-texture_filter = 1
+[node name="ButtonQuit" parent="VBoxContainer" unique_id=1228151890 instance=ExtResource("4_36jji")]
 layout_mode = 2
-theme = ExtResource("3_36jji")
-texture_normal = ExtResource("4_36jji")
+texture_normal = ExtResource("9_nwhpg")
 texture_hover = ExtResource("10_evkfa")
-script = ExtResource("6_36jji")
 
-[connection signal="button_down" from="VBoxContainer/ButtonStart" to="VBoxContainer/ButtonStart" method="_on_button_down"]
-[connection signal="button_up" from="VBoxContainer/ButtonStart" to="VBoxContainer/ButtonStart" method="_on_button_up"]
 [connection signal="pressed" from="VBoxContainer/ButtonStart" to="." method="_on_button_start_pressed"]
-[connection signal="button_down" from="VBoxContainer/ButtonSettings" to="VBoxContainer/ButtonSettings" method="_on_button_down"]
-[connection signal="button_up" from="VBoxContainer/ButtonSettings" to="VBoxContainer/ButtonSettings" method="_on_button_up"]
 [connection signal="pressed" from="VBoxContainer/ButtonSettings" to="." method="_on_button_settings_pressed"]
-[connection signal="button_down" from="VBoxContainer/ButtonQuit" to="VBoxContainer/ButtonQuit" method="_on_button_down"]
-[connection signal="button_up" from="VBoxContainer/ButtonQuit" to="VBoxContainer/ButtonQuit" method="_on_button_up"]
 [connection signal="pressed" from="VBoxContainer/ButtonQuit" to="." method="_on_button_quit_pressed"]
