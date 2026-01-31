@@ -7,6 +7,7 @@
 shader = ExtResource("1_c8xer")
 shader_parameter/point = Vector2(0, 0)
 shader_parameter/radius = 0.0
+shader_parameter/corona = 5.0
 
 [sub_resource type="QuadMesh" id="QuadMesh_ltjy5"]
 
