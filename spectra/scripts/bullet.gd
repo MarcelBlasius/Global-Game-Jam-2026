@@ -14,9 +14,10 @@ func _ready() -> void:
 	queue_free()
 
 func _on_body_entered(body: Node2D):
-	if !body.is_in_group("enemies"):
+	if !body.is_in_group("enemies") && !body.is_in_group("environment"):
 		return
 		
 	if body.has_method("take_damage"):
 		body.take_damage(damage)
-		queue_free()
+	
+	queue_free()
