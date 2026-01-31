@@ -1,12 +1,9 @@
 shader_type canvas_item;
 
+uniform float posValues[20]; // position  and radius packed together in 4 values
+uniform int value_count;
 
-uniform vec2 point1;
-uniform float radius1;
 uniform float corona = 40;
-uniform vec2 point2;
-uniform float radius2;
-uniform bool invertWorld;
 //void vertex() {
 	//// Called for every vertex the material is visible on.
 //}
@@ -58,19 +55,69 @@ float smoothUnion(float d1, float d2, float k)
     return mix(d2, d1, h) - k * h * (1.0 - h);
 }
 
+float smoothIntersection(float d1, float d2, float k)
+{
+    float h = clamp(0.5 - 0.5 * (d2 - d1) / k, 0.0, 1.0);
+    return mix(d2, d1, h) + k * h * (1.0 - h);
+}
+
+float smoothDifference(float d1, float d2, float k)
+{
+    float h = clamp(0.5 - 0.5 * (d2 + d1) / k, 0.0, 1.0);
+    return mix(d2, -d1, h) + k * h * (1.0 - h);
+}
+
 void fragment() {
 	// Called for every pixel the material is visible on.
 	vec2 uv = UV * vec2(640, 360);
-	float dist1 = calcDist(uv, point1, radius1);
-	float dist2 = calcDist(uv, point2, radius2);
-	float distResult = smoothUnion(dist1, dist2, 50);
+	float distResult = 9999999.0;
+	for(int i = 0; i< value_count; i++)
+	{
+		int index = i * 4;
+		float worldBit = posValues[index + 3];
+		if (worldBit == 1.0)
+		{
+			continue;
+		}
+		
+		vec2 point = vec2(posValues[index], posValues[index +1]);
+		float radius = posValues[index + 2];
+		
+		float dist = calcDist(uv, point, radius);
+
+		distResult = smoothUnion(distResult, dist, 50);
+		//distResult = unionSDF(distResult, dist);
+	}
 	
+	for(int i = 0; i< value_count; i++)
+	{
+		int index = i * 4;
+		float worldBit = posValues[index + 3];
+		if (worldBit == 0.0)
+		{
+			continue;
+		}
+		
+		vec2 point = vec2(posValues[index], posValues[index +1]);
+		float radius = posValues[index + 2];
+		
+		float dist = calcDist(uv, point, radius);
+
+		dist *= 1.0;
+		float union = smoothUnion(distResult, dist, 50);
+		//float union = unionSDF(distResult, dist);
+		//float intersection = intersectionSDF(distResult, dist);
+		//distResult = differenceSDF(union, intersection);
+		float intersection = smoothIntersection(distResult, dist, 20);
+		distResult = differenceSDF(union, intersection);
+	}
+
     float a = calcAlpha(distResult);
 		
-	if (invertWorld)
-	{
-		a = 1.0 - a;
-	}
+	//if (invertWorld)
+	//{
+		//a = 1.0 - a;
+	//}
 	
 	COLOR = vec4(a, a, a, 1);
 }
