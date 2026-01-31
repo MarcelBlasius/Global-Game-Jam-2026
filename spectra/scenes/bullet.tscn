@@ -77,7 +77,6 @@ sprite_frames = SubResource("SpriteFrames_1cfmv")
 frame_progress = 0.9981774
 
 [node name="SpriteWorld2" type="AnimatedSprite2D" parent="." unique_id=874891572]
-visible = false
 texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_iqq7w")
 frame_progress = 0.55731595
