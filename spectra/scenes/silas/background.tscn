@@ -1,0 +1,58 @@
+[gd_scene format=3 uid="uid://bv25mwaky7njn"]
+
+[ext_resource type="Texture2D" uid="uid://b06ewonenu7hk" path="res://ressources/spritesheet.png" id="1_hky1a"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hky1a"]
+size = Vector2(640, 36)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ci8kt"]
+size = Vector2(36, 360)
+
+[node name="Background" type="Node2D" unique_id=250843349]
+
+[node name="BackgroundWorld1" type="Node2D" parent="." unique_id=1668724930]
+
+[node name="Map" type="Sprite2D" parent="BackgroundWorld1" unique_id=1010945378]
+position = Vector2(320, 180)
+texture = ExtResource("1_hky1a")
+region_enabled = true
+region_rect = Rect2(0, 0, 640, 360)
+
+[node name="Tutorial" type="Sprite2D" parent="BackgroundWorld1" unique_id=1237919311]
+position = Vector2(320, 220)
+texture = ExtResource("1_hky1a")
+region_enabled = true
+region_rect = Rect2(1408, 88, 208, 88)
+
+[node name="BackgroundWorld2" type="Node2D" parent="." unique_id=1966780275]
+visible = false
+
+[node name="Map" type="Sprite2D" parent="BackgroundWorld2" unique_id=1849247978]
+position = Vector2(320, 180)
+texture = ExtResource("1_hky1a")
+region_enabled = true
+region_rect = Rect2(640, 0, 640, 360)
+
+[node name="Tutorial" type="Sprite2D" parent="BackgroundWorld2" unique_id=1409494047]
+position = Vector2(320, 220)
+texture = ExtResource("1_hky1a")
+region_enabled = true
+region_rect = Rect2(1408, -8, 208, 88)
+
+[node name="Colliders" type="RigidBody2D" parent="." unique_id=122341860]
+
+[node name="Top" type="CollisionShape2D" parent="Colliders" unique_id=345326928]
+position = Vector2(320, 18)
+shape = SubResource("RectangleShape2D_hky1a")
+
+[node name="Right" type="CollisionShape2D" parent="Colliders" unique_id=1607454083]
+position = Vector2(18, 180)
+shape = SubResource("RectangleShape2D_ci8kt")
+
+[node name="Bottom" type="CollisionShape2D" parent="Colliders" unique_id=1005550753]
+position = Vector2(320, 342)
+shape = SubResource("RectangleShape2D_hky1a")
+
+[node name="Left" type="CollisionShape2D" parent="Colliders" unique_id=807396060]
+position = Vector2(622, 180)
+shape = SubResource("RectangleShape2D_ci8kt")
