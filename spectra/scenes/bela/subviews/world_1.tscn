@@ -7,8 +7,10 @@
 [node name="World1" type="Node2D" unique_id=683563028]
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1347601226]
+offset = Vector2(320, 180)
 
 [node name="WorldOne" type="Node2D" parent="." unique_id=1461750959]
+position = Vector2(320, 180)
 
 [node name="MeshInstance2D" type="MeshInstance2D" parent="WorldOne" unique_id=568307948]
 rotation = 3.1415927
