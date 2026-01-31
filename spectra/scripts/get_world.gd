@@ -10,6 +10,9 @@ func _ready() -> void:
 func update_texture():
 	await RenderingServer.frame_post_draw
 	image = tex.get_image()
+	
+func _process(delta: float) -> void:
+	get_world(Vector2(0, 0))
 		
 func get_world(inputCoord: Vector2) -> int:
 	var frame_id := Engine.get_process_frames()
