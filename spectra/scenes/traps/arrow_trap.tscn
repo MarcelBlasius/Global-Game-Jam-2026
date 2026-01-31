@@ -3,10 +3,10 @@
 [ext_resource type="Script" uid="uid://b81v06w2wjjhk" path="res://scripts/arrow_trap.gd" id="1_3l0u4"]
 [ext_resource type="Texture2D" uid="uid://bursdnrr6dso4" path="res://icon.svg" id="2_gfvr7"]
 
-[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_buurg"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3l0u4"]
+size = Vector2(7.666663, 10.333332)
 
-[node name="ArrowTrap" type="StaticBody2D" unique_id=420388319]
-physics_material_override = SubResource("PhysicsMaterial_buurg")
+[node name="ArrowTrap" type="CharacterBody2D" unique_id=1298705077]
 script = ExtResource("1_3l0u4")
 fire_rate = 4.0
 
@@ -14,11 +14,16 @@ fire_rate = 4.0
 scale = Vector2(0.1875, 0.1875)
 texture = ExtResource("2_gfvr7")
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="." unique_id=2040087400]
+[node name="CollisionPolygon2D" type="CollisionShape2D" parent="." unique_id=466469136]
+position = Vector2(-12.281251, -12.03125)
 scale = Vector2(0.1875, 0.1875)
-polygon = PackedVector2Array(59.1, -64, -59, -64, -63.8, -59, -64, 61, -60.3, 64, 59.6, 64, 63.9, 59, 64, -61.1)
+shape = SubResource("RectangleShape2D_3l0u4")
 
 [node name="ShootTimer" type="Timer" parent="." unique_id=1316644018]
+one_shot = true
+
+[node name="RotationCooldown" type="Timer" parent="." unique_id=1092714016]
+wait_time = 0.5
 one_shot = true
 
 [connection signal="ready" from="." to="." method="_on_ready"]
