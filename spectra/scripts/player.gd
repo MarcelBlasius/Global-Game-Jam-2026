@@ -7,7 +7,8 @@ extends CharacterBody2D
 @onready var shoot_timer = $ShootTimer
 @onready var invincivility_Timer = $InvincibilityTimer
 
-@onready var anim_player : AnimationPlayer = $AnimationPlayer
+@onready var anim_player1 : AnimationPlayer = $World1/AnimationPlayer
+@onready var anim_player2 : AnimationPlayer = $World2/AnimationPlayer
 var knockback_velocity: Vector2 = Vector2.ZERO
 
 var view1 : Node;
@@ -44,7 +45,7 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	spriteParent1.global_transform.origin = global_transform.origin
 	spriteParent2.global_transform.origin = global_transform.origin
-	await get_tree().physics_frame
+	#await get_tree().physics_frame
 	
 	
 func get_movement_direction() -> Vector2:
@@ -62,17 +63,22 @@ func _physics_process(_delta: float):
 	var shoot_dir = Input.get_vector("shoot left", "shoot right", "shoot up", "shoot down")
 	
 	if shoot_dir.x > 0:
-		anim_player.play("walk_right")
+		anim_player1.play("walk_right")
+		anim_player2.play("walk_right")
 	elif shoot_dir.x < 0:
-		anim_player.play("walk_left")
+		anim_player1.play("walk_left")
+		anim_player2.play("walk_left")
 	
 	else:
 		if move_velocity.x > 0:
-			anim_player.play("walk_right")
+			anim_player1.play("walk_right")
+			anim_player2.play("walk_right")
 		elif move_velocity.x < 0:
-			anim_player.play("walk_left")
+			anim_player1.play("walk_left")
+			anim_player2.play("walk_left")
 		elif move_velocity == Vector2.ZERO:
-			anim_player.stop() # Or play "idle"
+			anim_player1.stop() # Or play "idle"
+			anim_player2.stop() # Or play "idle"
 			
 	if shoot_timer.is_stopped() and shoot_dir != Vector2.ZERO:
 		shoot(shoot_dir)
@@ -110,7 +116,8 @@ func play_shoot_animation(dir: Vector2):
 	spriteParent2.rotation = angle
 	sprite2.rotation = -angle
 
-	anim_player.play("shoot_animation")
+	anim_player1.play("shoot_animation")
+	anim_player2.play("shoot_animation")
 
 func spawn_bullet(dir: Vector2, offset: Vector2):
 	play_shoot_animation(dir)
