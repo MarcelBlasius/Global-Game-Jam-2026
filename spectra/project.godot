@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="Spectra"
-run/main_scene="uid://8cekys15b7o4"
+run/main_scene="uid://cj3d4rudap4qg"
 config/features=PackedStringArray("4.6", "GL Compatibility")
 config/icon="res://icon.svg"
 
