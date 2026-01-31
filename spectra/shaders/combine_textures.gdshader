@@ -2,6 +2,7 @@ shader_type canvas_item;
 
 uniform sampler2D tex_left;
 uniform sampler2D tex_right;
+uniform sampler2D tex_alpha;
 
 
 //void vertex() {
@@ -11,12 +12,14 @@ uniform sampler2D tex_right;
 void fragment() {
 	// Called for every pixel the material is visible on.
 	vec2 uv = UV;
-	if (uv.x < 0.5) {
+	vec4 alpha = texture(tex_alpha, uv);
+	
+	if (alpha.x < 0.5) {
         // Left half → texture 1
-        COLOR = texture(tex_left, vec2(uv.x * 2.0, uv.y));
+        COLOR = texture(tex_left, uv);
     } else {
         // Right half → texture 2
-        COLOR = texture(tex_right, vec2((uv.x - 0.5) * 2.0, uv.y));
+        COLOR = texture(tex_right, uv);
     }
 }
 

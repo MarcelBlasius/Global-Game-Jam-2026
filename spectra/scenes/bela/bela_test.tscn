@@ -2,14 +2,18 @@
 
 [ext_resource type="Script" uid="uid://bv22wqcqebdlm" path="res://scripts/set_textures.gd" id="1_mg1ac"]
 [ext_resource type="Shader" uid="uid://d2s8gjwxai8qe" path="res://shaders/combine_textures.gdshader" id="2_5gry2"]
+[ext_resource type="PackedScene" uid="uid://c5pj50j2i8l22" path="res://scenes/bela/subviews/world_1.tscn" id="2_7yynl"]
+[ext_resource type="PackedScene" uid="uid://hwpftxwex22" path="res://scenes/bela/subviews/world_2.tscn" id="3_xf32j"]
+[ext_resource type="PackedScene" uid="uid://cb235eerke4w2" path="res://scenes/bela/subviews/world_a.tscn" id="6_oxpa2"]
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_aeg00"]
 viewport_path = NodePath("Subview1")
 
-[sub_resource type="QuadMesh" id="QuadMesh_kh0ho"]
-
 [sub_resource type="ViewportTexture" id="ViewportTexture_y6ytb"]
 viewport_path = NodePath("Subview2")
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_5ku2r"]
+viewport_path = NodePath("AlphaView")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_aeg00"]
 shader = ExtResource("2_5gry2")
@@ -33,38 +37,32 @@ canvas_cull_mask = 4293918721
 size = Vector2i(640, 360)
 render_target_update_mode = 4
 
-[node name="Camera2D" type="Camera2D" parent="Subview1" unique_id=2096760462]
-position = Vector2(103, 41)
-
-[node name="WorldOne" type="Node2D" parent="Subview1" unique_id=268427689]
-
-[node name="MeshInstance2D" type="MeshInstance2D" parent="Subview1/WorldOne" unique_id=1213387579]
-modulate = Color(0, 0, 1, 1)
-position = Vector2(56.68756, 27.3125)
-scale = Vector2(1324.6251, 721.375)
-mesh = SubResource("QuadMesh_kh0ho")
+[node name="World1" parent="Subview1" unique_id=683563028 instance=ExtResource("2_7yynl")]
 
 [node name="Subview2" type="SubViewport" parent="." unique_id=32321506]
 disable_3d = true
+handle_input_locally = false
 vrs_mode = 1
 vrs_update_mode = 2
 vrs_texture = SubResource("ViewportTexture_y6ytb")
 size = Vector2i(640, 360)
 render_target_update_mode = 4
 
-[node name="Camera2D" type="Camera2D" parent="Subview2" unique_id=961734433]
+[node name="World2" parent="Subview2" unique_id=247149375 instance=ExtResource("3_xf32j")]
 
-[node name="WorldTwo" type="Node2D" parent="Subview2" unique_id=1982805415]
-visibility_layer = 2
+[node name="AlphaView" type="SubViewport" parent="." unique_id=1584608148]
+disable_3d = true
+handle_input_locally = false
+vrs_mode = 1
+vrs_update_mode = 2
+vrs_texture = SubResource("ViewportTexture_5ku2r")
+size = Vector2i(640, 360)
+render_target_update_mode = 4
 
-[node name="MeshInstance2D2" type="MeshInstance2D" parent="Subview2/WorldTwo" unique_id=1987214640]
-modulate = Color(1, 0, 0, 1)
-visibility_layer = 2
-position = Vector2(56.68756, 27.3125)
-scale = Vector2(1324.6251, 721.375)
-mesh = SubResource("QuadMesh_kh0ho")
+[node name="World3" parent="AlphaView" unique_id=1065720756 instance=ExtResource("6_oxpa2")]
 
 [node name="MeshInstance2D" type="MeshInstance2D" parent="." unique_id=1981513513]
 material = SubResource("ShaderMaterial_aeg00")
+rotation = 3.1415927
 scale = Vector2(640, 360)
 mesh = SubResource("QuadMesh_aeg00")

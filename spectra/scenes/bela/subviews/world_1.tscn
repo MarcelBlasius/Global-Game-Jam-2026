@@ -1,0 +1,17 @@
+[gd_scene format=3 uid="uid://c5pj50j2i8l22"]
+
+[ext_resource type="Texture2D" uid="uid://1iybatgeyk76" path="res://ressources/bela_light_background.png" id="1_47os8"]
+
+[sub_resource type="QuadMesh" id="QuadMesh_kh0ho"]
+
+[node name="World1" type="Node2D" unique_id=683563028]
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=1347601226]
+
+[node name="WorldOne" type="Node2D" parent="." unique_id=1461750959]
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="WorldOne" unique_id=568307948]
+rotation = 3.1415927
+scale = Vector2(640, 360)
+mesh = SubResource("QuadMesh_kh0ho")
+texture = ExtResource("1_47os8")

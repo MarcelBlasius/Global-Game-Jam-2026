@@ -11,9 +11,14 @@ config_version=5
 [application]
 
 config/name="Spectra"
-run/main_scene="uid://cvq60bc51xilo"
+run/main_scene="uid://8cekys15b7o4"
 config/features=PackedStringArray("4.6", "GL Compatibility")
 config/icon="res://icon.svg"
+
+[display]
+
+window/size/viewport_width=640
+window/size/viewport_height=360
 
 [input]
 
@@ -65,5 +70,3 @@ right={
 [rendering]
 
 rendering_device/driver.windows="d3d12"
-renderer/rendering_method="gl_compatibility"
-renderer/rendering_method.mobile="gl_compatibility"
