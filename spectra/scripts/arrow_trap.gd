@@ -23,7 +23,7 @@ func _ready() -> void:
 	spriteParent1 = $World1Beetle
 	spriteParent2 = $World2Beetle
 	sprite1 = $World1Beetle/GoldBeetle
-	sprite2 = $World2Beetle/DarkBeaetle
+	sprite2 = $World2Beetle/DarkBeetle
 	sprite1.z_index = 1000
 	sprite2.z_index = 1000
 	
