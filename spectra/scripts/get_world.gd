@@ -6,13 +6,21 @@ var last_frame_id : int
 #@onready var alphaMat := $MeshInstance2D.material as ShaderMaterial
 func _ready() -> void:
 	tex = self.get_texture()
+
+func update_texture():
+	await RenderingServer.frame_post_draw
+	image = tex.get_image()
 	
+func _process(delta: float) -> void:
+	get_world(Vector2(0, 0))
+		
 func get_world(inputCoord: Vector2) -> int:
 	var frame_id := Engine.get_process_frames()
 	if frame_id != last_frame_id:
-		await self.frame_post_draw
-		image = tex.get_image()
+		update_texture()
 
+	if (image == null):
+		return -1
 	last_frame_id = frame_id
 	
 	var width = image.get_width()

@@ -4,7 +4,6 @@ extends Area2D
 @export var damage: int = 1
 @export var hit_group : String
 
-
 const explosion = preload("res://scenes/explosion.tscn")
 
 var direction: Vector2 = Vector2.ZERO
@@ -47,9 +46,16 @@ func _process(delta: float) -> void:
 	spriteParent2.global_transform = global_transform
 	
 func _physics_process(delta: float) -> void:
+	
 	position += direction * speed * delta
-	spriteParent1.visible = true
-	spriteParent2.visible = true
+	
+	var world = get_node("/root/main_scene/AlphaContainer/AlphaView").get_world(self.global_position)
+	if world == 0:
+		spriteParent1.visible = true
+		spriteParent2.visible = false
+	else:
+		spriteParent1.visible = false
+		spriteParent2.visible = true
 	
 func destroy(body: Node2D):
 	
