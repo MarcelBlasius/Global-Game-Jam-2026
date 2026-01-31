@@ -1,0 +1,10 @@
+[gd_scene format=3 uid="uid://c5fuyafloib7"]
+
+[ext_resource type="Script" uid="uid://qefuwcjn8fqt" path="res://scripts/menu_button.gd" id="1_n8bpg"]
+
+[node name="MenuButton" type="TextureButton" unique_id=936845202]
+stretch_mode = 3
+script = ExtResource("1_n8bpg")
+
+[connection signal="button_down" from="." to="." method="_on_button_down"]
+[connection signal="button_up" from="." to="." method="_on_button_up"]

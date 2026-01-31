@@ -11,9 +11,15 @@
 [node name="Flower" parent="." unique_id=196264919 instance=ExtResource("3_ixgpg")]
 position = Vector2(128, 141)
 
+[node name="Flower2" parent="." unique_id=563976055 instance=ExtResource("3_ixgpg")]
+position = Vector2(557, 317)
+
+[node name="Flower3" parent="." unique_id=1777896058 instance=ExtResource("3_ixgpg")]
+position = Vector2(476, 62)
+
 [node name="player" parent="." unique_id=472819889 instance=ExtResource("2_ixgpg")]
 physics_interpolation_mode = 0
-position = Vector2(316, 171)
+position = Vector2(339, 187)
 speed = 200
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=916459579]
