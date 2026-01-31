@@ -2,10 +2,8 @@
 
 [ext_resource type="Script" uid="uid://dvtt64r7co8um" path="res://scripts/game_menu.gd" id="1_r3o0d"]
 [ext_resource type="Texture2D" uid="uid://cs7f0ur4vntf" path="res://ressources/atlas_textures/game_menu/button_continue.tres" id="2_11jwc"]
-[ext_resource type="PackedScene" uid="uid://cj3d4rudap4qg" path="res://scenes/main_scene.tscn" id="2_fp28n"]
 [ext_resource type="Texture2D" uid="uid://dc2w3fqkl8b6g" path="res://ressources/atlas_textures/game_menu/button_continue_hovered.tres" id="3_6i2d7"]
 [ext_resource type="PackedScene" uid="uid://c5fuyafloib7" path="res://scenes/silas/menu_button.tscn" id="3_11jwc"]
-[ext_resource type="PackedScene" uid="uid://owtaduiouwa3" path="res://scenes/silas/main_menu.tscn" id="3_p2c7i"]
 [ext_resource type="Texture2D" uid="uid://rib1srvk1kpe" path="res://ressources/atlas_textures/game_menu/button_restart.tres" id="4_snn1x"]
 [ext_resource type="Texture2D" uid="uid://nqn37qmeuvds" path="res://ressources/atlas_textures/game_menu/button_restart_hovered.tres" id="5_aigmv"]
 [ext_resource type="Texture2D" uid="uid://dxuca6bw6tatd" path="res://ressources/atlas_textures/main_menu/button_settings.tres" id="6_a64mi"]
@@ -24,8 +22,6 @@ grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 script = ExtResource("1_r3o0d")
-scene_to_load_on_restart = ExtResource("2_fp28n")
-scene_to_load_on_exit = ExtResource("3_p2c7i")
 
 [node name="Window" type="MarginContainer" parent="." unique_id=1644581855]
 layout_mode = 1
