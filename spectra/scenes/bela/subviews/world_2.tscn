@@ -1,0 +1,19 @@
+[gd_scene format=3 uid="uid://hwpftxwex22"]
+
+[ext_resource type="Texture2D" uid="uid://xgu6wiil1as8" path="res://ressources/bela_dark_background.png" id="1_a05yb"]
+
+[sub_resource type="QuadMesh" id="QuadMesh_kh0ho"]
+
+[node name="World2" type="Node2D" unique_id=247149375]
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=157069135]
+
+[node name="WorldTwo" type="Node2D" parent="." unique_id=309918448]
+visibility_layer = 2
+
+[node name="MeshInstance2D2" type="MeshInstance2D" parent="WorldTwo" unique_id=1196616691]
+visibility_layer = 2
+rotation = 3.1415927
+scale = Vector2(640, 360)
+mesh = SubResource("QuadMesh_kh0ho")
+texture = ExtResource("1_a05yb")

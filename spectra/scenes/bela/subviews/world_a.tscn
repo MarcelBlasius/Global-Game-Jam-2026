@@ -1,0 +1,25 @@
+[gd_scene format=3 uid="uid://cb235eerke4w2"]
+
+[sub_resource type="QuadMesh" id="QuadMesh_kh0ho"]
+
+[sub_resource type="QuadMesh" id="QuadMesh_kr133"]
+
+[node name="World3" type="Node2D" unique_id=247149375]
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=157069135]
+
+[node name="WorldTwo" type="Node2D" parent="." unique_id=309918448]
+visibility_layer = 2
+rotation = 3.1415927
+
+[node name="MeshInstance2D2" type="MeshInstance2D" parent="WorldTwo" unique_id=1196616691]
+visibility_layer = 2
+rotation = 3.1415927
+scale = Vector2(640, 360)
+mesh = SubResource("QuadMesh_kh0ho")
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="WorldTwo" unique_id=1419685309]
+modulate = Color(0, 0, 0, 1)
+position = Vector2(-8, -6)
+scale = Vector2(-48.739582, -185.40027)
+mesh = SubResource("QuadMesh_kr133")
