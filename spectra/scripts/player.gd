@@ -9,6 +9,8 @@ extends CharacterBody2D
 
 @onready var anim_player1 : AnimationPlayer = $World1/AnimationPlayer
 @onready var anim_player2 : AnimationPlayer = $World2/AnimationPlayer
+@onready var recoil_player1: AnimationPlayer = $World1/RecoilPlayer
+@onready var recoil_player2: AnimationPlayer = $World2/RecoilPlayer
 var knockback_velocity: Vector2 = Vector2.ZERO
 
 var view1 : Node;
@@ -116,8 +118,8 @@ func play_shoot_animation(dir: Vector2):
 	spriteParent2.rotation = angle
 	sprite2.rotation = -angle
 
-	anim_player1.play("shoot_animation")
-	anim_player2.play("shoot_animation")
+	recoil_player1.play("shoot_animation")
+	recoil_player2.play("shoot_animation")
 
 func spawn_bullet(dir: Vector2, offset: Vector2):
 	play_shoot_animation(dir)
