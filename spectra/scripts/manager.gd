@@ -1,6 +1,5 @@
 extends Node2D
 
-
 @onready var vp_a := $Subview1
 @onready var vp_b := $Subview2
 #@onready var vp_alpha := $AlphaTexture
@@ -51,13 +50,21 @@ func spawn_enemy():
 	#enemy.hit_group = "enemies"
 	get_tree().root.add_child.call_deferred(enemy) 
 	enemies.append(enemy)
-	
+
+func remove_enemy(enemy: Node):
+	enemies.erase(enemy)
+	if (enemies.size() == 0):
+		end_round()
+		
 #func _process(_delta: float):
 	#print_debug($AlphaContainer/AlphaView.get_world(get_viewport().get_mouse_position()))
 	#if (vp_alpha):
 		#await RenderingServer.frame_post_draw
 		#mat.set_shader_parameter("tex_alpha", vp_alpha.get_texture())
 
+func end_round():
+	print("oioioioioi")
+	pass
 ## Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta: float) -> void:
 	#pass
