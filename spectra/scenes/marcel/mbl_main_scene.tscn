@@ -1,13 +1,13 @@
 [gd_scene format=3 uid="uid://c1vt8t3juonqk"]
 
-[ext_resource type="Script" uid="uid://bv22wqcqebdlm" path="res://scripts/set_textures.gd" id="1_s0cnc"]
-[ext_resource type="Script" uid="uid://c6ao6bkdykvyk" path="res://scripts/get_world.gd" id="2_c7luf"]
-[ext_resource type="PackedScene" uid="uid://cb235eerke4w2" path="res://scenes/bela/subviews/world_a.tscn" id="3_057vo"]
-[ext_resource type="Shader" uid="uid://d2s8gjwxai8qe" path="res://shaders/combine_textures.gdshader" id="4_2tqtb"]
-[ext_resource type="PackedScene" uid="uid://bv25mwaky7njn" path="res://scenes/silas/background.tscn" id="5_osq8b"]
-[ext_resource type="PackedScene" uid="uid://cvq60bc51xilo" path="res://scenes/player.tscn" id="6_o4ffv"]
-[ext_resource type="AudioStream" uid="uid://dt0jv8scmnscu" path="res://ressources/dark_theme.mp3" id="7_p08dl"]
-[ext_resource type="PackedScene" uid="uid://cp8s52c5gtk3a" path="res://scenes/traps/arrow_trap.tscn" id="9_57b7u"]
+[ext_resource type="Script" uid="uid://bv22wqcqebdlm" path="res://scripts/manager.gd" id="1_s0cnc"]
+[ext_resource type="PackedScene" uid="uid://cq3spk0xo0so8" path="res://scenes/enemies/enemy_two_worlds.tscn" id="2_c7luf"]
+[ext_resource type="Script" uid="uid://c6ao6bkdykvyk" path="res://scripts/get_world.gd" id="3_057vo"]
+[ext_resource type="PackedScene" uid="uid://cb235eerke4w2" path="res://scenes/bela/subviews/world_a.tscn" id="4_2tqtb"]
+[ext_resource type="Shader" uid="uid://d2s8gjwxai8qe" path="res://shaders/combine_textures.gdshader" id="5_osq8b"]
+[ext_resource type="PackedScene" uid="uid://bv25mwaky7njn" path="res://scenes/silas/background.tscn" id="6_o4ffv"]
+[ext_resource type="PackedScene" uid="uid://cvq60bc51xilo" path="res://scenes/player.tscn" id="7_p08dl"]
+[ext_resource type="AudioStream" uid="uid://dt0jv8scmnscu" path="res://ressources/dark_theme.mp3" id="8_bb6jp"]
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_aeg00"]
 viewport_path = NodePath("Subview1")
@@ -19,7 +19,7 @@ viewport_path = NodePath("Subview2")
 viewport_path = NodePath("AlphaContainer/AlphaView")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_aeg00"]
-shader = ExtResource("4_2tqtb")
+shader = ExtResource("5_osq8b")
 shader_parameter/time = 0.0
 
 [sub_resource type="QuadMesh" id="QuadMesh_aeg00"]
@@ -28,6 +28,7 @@ shader_parameter/time = 0.0
 light_mask = 3
 visibility_layer = 3
 script = ExtResource("1_s0cnc")
+enemy_scene = ExtResource("2_c7luf")
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=941733479]
 offset = Vector2(320, 180)
@@ -63,9 +64,9 @@ vrs_update_mode = 2
 vrs_texture = SubResource("ViewportTexture_5ku2r")
 size = Vector2i(640, 360)
 render_target_update_mode = 4
-script = ExtResource("2_c7luf")
+script = ExtResource("3_057vo")
 
-[node name="WorldAlpha" parent="AlphaContainer/AlphaView" unique_id=1065720756 instance=ExtResource("3_057vo")]
+[node name="WorldAlpha" parent="AlphaContainer/AlphaView" unique_id=1065720756 instance=ExtResource("4_2tqtb")]
 
 [node name="Combiner" type="MeshInstance2D" parent="." unique_id=1981513513]
 material = SubResource("ShaderMaterial_aeg00")
@@ -73,21 +74,13 @@ position = Vector2(320, 180)
 scale = Vector2(-640, 360)
 mesh = SubResource("QuadMesh_aeg00")
 
-[node name="Background" parent="." unique_id=250843349 instance=ExtResource("5_osq8b")]
+[node name="Background" parent="." unique_id=250843349 instance=ExtResource("6_o4ffv")]
+visible = false
 
-[node name="player" parent="." unique_id=472819889 instance=ExtResource("6_o4ffv")]
-position = Vector2(145, 105)
+[node name="player" parent="." unique_id=472819889 instance=ExtResource("7_p08dl")]
+position = Vector2(172, 154)
 
 [node name="DarkTheme" type="AudioStreamPlayer" parent="." unique_id=1238683811]
-stream = ExtResource("7_p08dl")
+stream = ExtResource("8_bb6jp")
 autoplay = true
 parameters/looping = true
-
-[node name="ArrowTrap" parent="." unique_id=494595754 instance=ExtResource("9_57b7u")]
-position = Vector2(26, 130)
-rotation = 1.5707964
-fire_rate = 3.0
-
-[node name="ArrowTrap2" parent="." unique_id=420388319 instance=ExtResource("9_57b7u")]
-position = Vector2(622, 318)
-fire_rate = 4.5

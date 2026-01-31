@@ -1,8 +1,5 @@
 extends Control
 
-@export var scene_to_load_on_restart: PackedScene
-@export var scene_to_load_on_exit: PackedScene
-
 @onready var window: MarginContainer = $Window
 
 func open() -> void:
@@ -21,10 +18,10 @@ func _on_button_continue_pressed() -> void:
 	close()
 
 func _on_button_restart_pressed() -> void:
-	get_tree().change_scene_to_packed(scene_to_load_on_restart)
+	get_tree().change_scene_to_file("res://scenes/main_scene.tscn")
 
 func _on_button_settings_pressed() -> void:
 	pass # Replace with function body.
 
 func _on_button_exit_pressed() -> void:
-	get_tree().change_scene_to_packed(scene_to_load_on_exit)
+	get_tree().change_scene_to_file("res://scenes/silas/main_menu.tscn")

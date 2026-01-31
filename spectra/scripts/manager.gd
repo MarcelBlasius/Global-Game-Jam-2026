@@ -5,6 +5,7 @@ extends Node2D
 #@onready var vp_alpha := $AlphaTexture
 @onready var vp_alpha := $AlphaContainer/AlphaView
 @onready var mat := $Combiner.material as ShaderMaterial
+@export var spawn_enemies = true
 
 @export var enemy_scene : PackedScene 
 
@@ -15,8 +16,9 @@ func _ready():
 	
 	move_backgrounds()
 	
-	for i in range(3):
-		spawn_enemy()
+	if spawn_enemies:
+		for i in range(3):
+			spawn_enemy()
 
 
 func move_backgrounds():
