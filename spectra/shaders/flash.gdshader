@@ -2,6 +2,7 @@ shader_type canvas_item;
 
 uniform bool active = false;
 uniform vec4 flash_color = vec4(0.8, 0.5, 0.5, 1.0);
+uniform float alpha = 1.0;
 
 void fragment() {
 	vec4 tint_color = texture(TEXTURE, UV);
@@ -9,6 +10,8 @@ void fragment() {
 	if (active) {
 		tint_color.rgb *= flash_color.rgb;
 	}
+	
+	tint_color.a = min(tint_color.a, alpha);
 	
 	COLOR = tint_color;
 }

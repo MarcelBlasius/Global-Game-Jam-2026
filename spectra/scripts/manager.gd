@@ -7,12 +7,17 @@ extends Node2D
 @onready var vp_alpha := $AlphaContainer/AlphaView
 @onready var mat := $Combiner.material as ShaderMaterial
 
+@export var enemy_scene : PackedScene 
+
 func _ready():
 	mat.set_shader_parameter("tex_left", vp_a.get_texture())
 	mat.set_shader_parameter("tex_right", vp_b.get_texture())
 	mat.set_shader_parameter("tex_alpha", vp_alpha.get_texture())
 	
 	move_backgrounds()
+	
+	for i in range(3):
+		spawn_enemy()
 
 
 func move_backgrounds():
@@ -29,7 +34,23 @@ func move_backgrounds():
 	background2.get_parent().remove_child(background2)
 	$Subview2.add_child(background2)
 	background2.global_transform = old_global2
+
+var enemies : Array[Node]
+func spawn_enemy():
+	var enemy = enemy_scene.instantiate()
 	
+	var viewport := get_viewport()
+	var size := viewport.get_visible_rect().size
+
+	var pos := Vector2(
+	randf_range(0, size.x),
+	randf_range(0, size.y)
+)
+	enemy.global_position = pos
+	#enemy.direction = dir
+	#enemy.hit_group = "enemies"
+	get_tree().root.add_child.call_deferred(enemy) 
+	enemies.append(enemy)
 	
 #func _process(_delta: float):
 	#print_debug($AlphaContainer/AlphaView.get_world(get_viewport().get_mouse_position()))

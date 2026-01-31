@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://bv25mwaky7njn"]
 
 [ext_resource type="Texture2D" uid="uid://b06ewonenu7hk" path="res://ressources/spritesheet.png" id="1_hky1a"]
-[ext_resource type="PackedScene" uid="uid://c8f3q1vvtl1p2" path="res://scenes/silas/flower.tscn" id="2_ci8kt"]
+[ext_resource type="PackedScene" path="res://scenes/silas/flower.tscn" id="2_ci8kt"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hky1a"]
 size = Vector2(640, 36)

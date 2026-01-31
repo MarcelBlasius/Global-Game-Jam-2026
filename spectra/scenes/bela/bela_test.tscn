@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://8cekys15b7o4"]
 
-[ext_resource type="Script" uid="uid://bv22wqcqebdlm" path="res://scripts/set_textures.gd" id="1_mg1ac"]
+[ext_resource type="Script" uid="uid://bv22wqcqebdlm" path="res://scripts/manager.gd" id="1_mg1ac"]
 [ext_resource type="Shader" uid="uid://d2s8gjwxai8qe" path="res://shaders/combine_textures.gdshader" id="2_5gry2"]
 [ext_resource type="Script" uid="uid://c6ao6bkdykvyk" path="res://scripts/get_world.gd" id="4_oxpa2"]
 [ext_resource type="PackedScene" uid="uid://cb235eerke4w2" path="res://scenes/bela/subviews/world_a.tscn" id="6_oxpa2"]
