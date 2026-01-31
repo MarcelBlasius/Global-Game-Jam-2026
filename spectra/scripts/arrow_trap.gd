@@ -9,8 +9,39 @@ const bullet_scene = preload("res://scenes/bullet.tscn")
 @onready var sprite = $Sprite2D
 
 var direction: Vector2 
-var last_collision : int
-var before_last_collision: int
+
+var view1 : Node;
+var view2 : Node;
+var spriteParent1 : Node;
+var spriteParent2 : Node;
+var sprite1 : Sprite2D
+var sprite2 : Sprite2D
+
+func _ready() -> void:
+	view1 = get_node("/root/main_scene/Subview1")
+	view2 = get_node("/root/main_scene/Subview2")
+	spriteParent1 = $World1
+	spriteParent2 = $World2
+	sprite1 = $World1/Sprite2D
+	sprite2 = $World2/Sprite2D
+	sprite1.z_index = 1000
+	sprite2.z_index = 1000
+	
+	var old_global1 := spriteParent1.global_transform as Transform2D
+
+	spriteParent1.get_parent().remove_child(spriteParent1)
+	view1.add_child(spriteParent1)
+	spriteParent1.global_transform = old_global1
+	
+	var old_global2 := spriteParent2.global_transform as Transform2D
+
+	spriteParent2.get_parent().remove_child(spriteParent2)
+	view2.add_child(spriteParent2)
+	spriteParent2.global_transform = old_global2
+
+func _process(delta: float) -> void:
+	spriteParent1.global_transform = global_transform
+	spriteParent2.global_transform = global_transform
 
 func cooldown_collider():
 	var own_collider = $CollisionPolygon2D
@@ -40,13 +71,13 @@ func move(_delta):
 			self.rotate(-deg_to_rad(90))
 		
 	velocity = direction * movement_speed
-	
+
 func _physics_process(_delta: float):	
 	move(_delta)
 	
 	if !shoot_timer.is_stopped(): return
 		
-	var size = sprite.get_rect().size * sprite.scale
+	var size = sprite1.get_rect().size * sprite1.scale
 	var offset = transform.y * size.y
 	
 	spawn_bullet(-transform.y, -offset)
