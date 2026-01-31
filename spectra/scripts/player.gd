@@ -19,16 +19,29 @@ func _physics_process(_delta: float):
 	var move_velocity = get_movement_direction()
 	
 	velocity = move_velocity + knockback_velocity
-	
 	knockback_velocity = knockback_velocity.move_toward(Vector2.ZERO, 1500 * _delta)
 	
 	move_and_slide()
 	
-	if shoot_timer.is_stopped():
-		shoot()
-		
-func shoot():
-	var dir = Input.get_vector("shoot left", "shoot right", "shoot up", "shoot down")
+	var shoot_dir = Input.get_vector("shoot left", "shoot right", "shoot up", "shoot down")
+	
+	if shoot_dir.x > 0:
+		anim_player.play("walk_right")
+	elif shoot_dir.x < 0:
+		anim_player.play("walk_left")
+	
+	else:
+		if move_velocity.x > 0:
+			anim_player.play("walk_right")
+		elif move_velocity.x < 0:
+			anim_player.play("walk_left")
+		elif move_velocity == Vector2.ZERO:
+			anim_player.stop() # Or play "idle"
+			
+	if shoot_timer.is_stopped() and shoot_dir != Vector2.ZERO:
+		shoot(shoot_dir)
+
+func shoot(dir: Vector2):
 	var size = sprite.get_rect().size * sprite.scale
 	var width = size.x
 	var height = size.y
