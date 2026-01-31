@@ -6,11 +6,46 @@ extends CharacterBody2D
 @export var fire_rate: float = 0.5 # seconds
 @onready var shoot_timer = $ShootTimer
 @onready var invincivility_Timer = $InvincibilityTimer
-@onready var sprite = $Node2D/Sprite2D
-@onready var node2d = $Node2D
-@onready var anim_player : AnimationPlayer = $Node2D/AnimationPlayer
+
+@onready var anim_player1 : AnimationPlayer = $World1/AnimationPlayer
+@onready var anim_player2 : AnimationPlayer = $World2/AnimationPlayer
 var knockback_velocity: Vector2 = Vector2.ZERO
 
+var view1 : Node;
+var view2 : Node;
+var spriteParent1 : Node;
+var spriteParent2 : Node;
+var sprite1 : Sprite2D
+var sprite2 : Sprite2D
+
+func _ready() -> void:
+	view1 = get_node("/root/main_scene/Subview1")
+	view2 = get_node("/root/main_scene/Subview2")
+	spriteParent1 = $World1
+	spriteParent2 = $World2
+	sprite1 = $World1/Sprite2D
+	sprite2 = $World2/Sprite2D
+	sprite1.z_index = 20
+	sprite2.z_index = 20
+	
+	var old_global1 := spriteParent1.global_transform as Transform2D
+
+	spriteParent1.get_parent().remove_child(spriteParent1)
+	view1.add_child(spriteParent1)
+	spriteParent1.global_transform = old_global1
+	
+	var old_global2 := spriteParent2.global_transform as Transform2D
+
+	spriteParent2.get_parent().remove_child(spriteParent2)
+	view2.add_child(spriteParent2)
+	spriteParent2.global_transform = old_global2
+
+func _process(delta: float) -> void:
+	spriteParent1.global_transform.origin = global_transform.origin
+	spriteParent2.global_transform.origin = global_transform.origin
+	await get_tree().physics_frame
+	
+	
 func get_movement_direction() -> Vector2:
 	var input_direction = Input.get_vector("left", "right", "up", "down")
 	return input_direction * speed
@@ -26,23 +61,28 @@ func _physics_process(_delta: float):
 	var shoot_dir = Input.get_vector("shoot left", "shoot right", "shoot up", "shoot down")
 	
 	if shoot_dir.x > 0:
-		anim_player.play("walk_right")
+		anim_player1.play("walk_right")
+		anim_player2.play("walk_right")
 	elif shoot_dir.x < 0:
-		anim_player.play("walk_left")
+		anim_player1.play("walk_left")
+		anim_player2.play("walk_left")
 	
 	else:
 		if move_velocity.x > 0:
-			anim_player.play("walk_right")
+			anim_player1.play("walk_right")
+			anim_player2.play("walk_right")
 		elif move_velocity.x < 0:
-			anim_player.play("walk_left")
+			anim_player1.play("walk_left")
+			anim_player2.play("walk_left")
 		elif move_velocity == Vector2.ZERO:
-			anim_player.stop() # Or play "idle"
+			anim_player1.stop() # Or play "idle"
+			anim_player2.stop() # Or play "idle"
 			
 	if shoot_timer.is_stopped() and shoot_dir != Vector2.ZERO:
 		shoot(shoot_dir)
 
 func shoot(dir: Vector2):
-	var size = sprite.get_rect().size * sprite.scale
+	var size = sprite1.get_rect().size * sprite1.scale
 	var width = size.x
 	var height = size.y
 	var offset = Vector2.ZERO
@@ -68,9 +108,13 @@ func shoot(dir: Vector2):
 func play_shoot_animation(dir: Vector2):	
 	var angle = dir.angle()
 	
-	node2d.rotation = angle
-	sprite.rotation = -angle
-	anim_player.play("shoot_animation")
+	spriteParent1.rotation = angle
+	sprite1.rotation = -angle
+	anim_player1.play("shoot_animation")
+	
+	spriteParent2.rotation = angle
+	sprite2.rotation = -angle
+	anim_player2.play("shoot_animation")
 
 
 func spawn_bullet(dir: Vector2, offset: Vector2):
@@ -83,9 +127,11 @@ func spawn_bullet(dir: Vector2, offset: Vector2):
 	
 
 func flash_hit():
-	sprite.material.set_shader_parameter("active", true)
+	sprite1.material.set_shader_parameter("active", true)
+	sprite2.material.set_shader_parameter("active", true)
 	await get_tree().create_timer(0.1).timeout
-	sprite.material.set_shader_parameter("active", false)
+	sprite1.material.set_shader_parameter("active", false)
+	sprite2.material.set_shader_parameter("active", false)
 	
 func take_damage(amount: int):
 	if !invincivility_Timer.is_stopped(): return
@@ -96,6 +142,8 @@ func take_damage(amount: int):
 	
 	if health == 0:
 		queue_free()
+		spriteParent1.queue_free()
+		spriteParent2.queue_free()
 		
 func apply_knockback(source_position: Vector2, force: float):
 	var push_dir = (global_position - source_position).normalized()
