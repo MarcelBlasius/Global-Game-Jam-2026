@@ -1,0 +1,28 @@
+[gd_scene format=3 uid="uid://gq3a66jwnddg"]
+
+[ext_resource type="Texture2D" uid="uid://da1mlbtxyalbj" path="res://ressources/atlas_textures/game_ui/life_left.tres" id="1_b0vqc"]
+[ext_resource type="Script" uid="uid://carl2xsttl4xm" path="res://scripts/life.gd" id="1_swlpd"]
+[ext_resource type="Texture2D" uid="uid://brqvp38qdfcgh" path="res://ressources/atlas_textures/game_ui/life_right.tres" id="2_swlpd"]
+
+[node name="Life" type="HBoxContainer" unique_id=1938320905]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 59.0
+offset_top = 39.0
+offset_right = 59.0
+offset_bottom = 39.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 0
+script = ExtResource("1_swlpd")
+
+[node name="Left" type="TextureRect" parent="." unique_id=1508529379]
+layout_mode = 2
+texture = ExtResource("1_b0vqc")
+stretch_mode = 2
+
+[node name="Right" type="TextureRect" parent="." unique_id=577305272]
+layout_mode = 2
+texture = ExtResource("2_swlpd")
+stretch_mode = 2

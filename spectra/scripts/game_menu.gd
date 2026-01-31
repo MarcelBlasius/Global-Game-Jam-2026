@@ -2,6 +2,9 @@ extends Control
 
 @onready var window: MarginContainer = $Window
 
+func _ready() -> void:
+	close()
+
 func open() -> void:
 	window.show()
 

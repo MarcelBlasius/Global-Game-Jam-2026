@@ -5,7 +5,7 @@
 [ext_resource type="Shader" uid="uid://cstew5jd8ujmt" path="res://shaders/flash.gdshader" id="3_dqkch"]
 [ext_resource type="Texture2D" uid="uid://dbhq6w72enrba" path="res://ressources/atlas_textures/player/player_move_left.tres" id="5_qlg0r"]
 [ext_resource type="Texture2D" uid="uid://clrod1vfregwv" path="res://ressources/atlas_textures/player/player_move_right_world1.tres" id="6_fjrip"]
-[ext_resource type="Texture2D" uid="uid://kw8ktus0hrdp" path="res://ressources/atlas_textures/player/player_move_left_world1.tres" id="6_smehm"]
+[ext_resource type="Texture2D" path="res://ressources/atlas_textures/player/player_move_left_world1.tres" id="6_smehm"]
 [ext_resource type="Texture2D" uid="uid://csacddjpue1kw" path="res://ressources/atlas_textures/player/player_move_right.tres" id="6_tuyoq"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qhqgy"]
