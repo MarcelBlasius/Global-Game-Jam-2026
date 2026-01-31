@@ -2,9 +2,10 @@
 
 [ext_resource type="Script" uid="uid://bv22wqcqebdlm" path="res://scripts/set_textures.gd" id="1_mg1ac"]
 [ext_resource type="Shader" uid="uid://d2s8gjwxai8qe" path="res://shaders/combine_textures.gdshader" id="2_5gry2"]
-[ext_resource type="PackedScene" uid="uid://c5pj50j2i8l22" path="res://scenes/bela/subviews/world_1.tscn" id="2_7yynl"]
-[ext_resource type="PackedScene" uid="uid://hwpftxwex22" path="res://scenes/bela/subviews/world_2.tscn" id="3_xf32j"]
+[ext_resource type="Script" uid="uid://c6ao6bkdykvyk" path="res://scripts/get_world.gd" id="4_oxpa2"]
 [ext_resource type="PackedScene" uid="uid://cb235eerke4w2" path="res://scenes/bela/subviews/world_a.tscn" id="6_oxpa2"]
+[ext_resource type="PackedScene" uid="uid://bts3vhr7hpc1n" path="res://scenes/player.tscn" id="6_t362c"]
+[ext_resource type="PackedScene" uid="uid://bv25mwaky7njn" path="res://scenes/silas/background.tscn" id="7_t362c"]
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_aeg00"]
 viewport_path = NodePath("Subview1")
@@ -13,10 +14,11 @@ viewport_path = NodePath("Subview1")
 viewport_path = NodePath("Subview2")
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_5ku2r"]
-viewport_path = NodePath("SubViewportContainer/AlphaView")
+viewport_path = NodePath("AlphaContainer/AlphaView")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_aeg00"]
 shader = ExtResource("2_5gry2")
+shader_parameter/time = 0.0
 
 [sub_resource type="QuadMesh" id="QuadMesh_aeg00"]
 
@@ -38,8 +40,6 @@ canvas_cull_mask = 4293918721
 size = Vector2i(640, 360)
 render_target_update_mode = 4
 
-[node name="World1" parent="Subview1" unique_id=683563028 instance=ExtResource("2_7yynl")]
-
 [node name="Subview2" type="SubViewport" parent="." unique_id=32321506]
 disable_3d = true
 handle_input_locally = false
@@ -49,13 +49,11 @@ vrs_texture = SubResource("ViewportTexture_y6ytb")
 size = Vector2i(640, 360)
 render_target_update_mode = 4
 
-[node name="World2" parent="Subview2" unique_id=247149375 instance=ExtResource("3_xf32j")]
-
-[node name="SubViewportContainer" type="SubViewportContainer" parent="." unique_id=1668166439]
+[node name="AlphaContainer" type="SubViewportContainer" parent="." unique_id=1668166439]
 offset_right = 640.0
 offset_bottom = 360.0
 
-[node name="AlphaView" type="SubViewport" parent="SubViewportContainer" unique_id=1584608148]
+[node name="AlphaView" type="SubViewport" parent="AlphaContainer" unique_id=1584608148]
 disable_3d = true
 handle_input_locally = false
 vrs_mode = 1
@@ -63,12 +61,17 @@ vrs_update_mode = 2
 vrs_texture = SubResource("ViewportTexture_5ku2r")
 size = Vector2i(640, 360)
 render_target_update_mode = 4
+script = ExtResource("4_oxpa2")
 
-[node name="World3" parent="SubViewportContainer/AlphaView" unique_id=1065720756 instance=ExtResource("6_oxpa2")]
+[node name="WorldAlpha" parent="AlphaContainer/AlphaView" unique_id=1065720756 instance=ExtResource("6_oxpa2")]
 
-[node name="MeshInstance2D" type="MeshInstance2D" parent="." unique_id=1981513513]
+[node name="Combiner" type="MeshInstance2D" parent="." unique_id=1981513513]
 material = SubResource("ShaderMaterial_aeg00")
 position = Vector2(320, 180)
-rotation = 3.1415927
-scale = Vector2(640, 360)
+scale = Vector2(-640, 360)
 mesh = SubResource("QuadMesh_aeg00")
+
+[node name="Background" parent="." unique_id=250843349 instance=ExtResource("7_t362c")]
+
+[node name="player" parent="." unique_id=472819889 instance=ExtResource("6_t362c")]
+position = Vector2(145, 105)
