@@ -1,5 +1,6 @@
 shader_type canvas_item;
 
+
 uniform vec2 point;
 uniform float radius;
 uniform float corona = 40;

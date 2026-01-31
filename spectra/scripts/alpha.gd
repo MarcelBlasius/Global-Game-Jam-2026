@@ -4,8 +4,6 @@ var mat : ShaderMaterial
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	mat = material as ShaderMaterial
-	
-	
 	pass # Replace with function body.
 
 var mouse_pos: Vector2
@@ -35,10 +33,9 @@ func _input(input_event: InputEvent) -> void:
 			mouse_scroll *=0.9
 			print("Mausrad runter")
 			# Aktion: z.B. Zoom Out
-		
-	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	mat.set_shader_parameter("point", mouse_pos)
+func _process(_delta: float) -> void:
+	if (mouse_pressed):
+		mat.set_shader_parameter("point", mouse_pos)
 	mat.set_shader_parameter("radius", mouse_scroll * 100)
 	pass

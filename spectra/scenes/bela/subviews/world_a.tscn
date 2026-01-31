@@ -20,6 +20,6 @@ offset = Vector2(320, 180)
 material = SubResource("ShaderMaterial_mtvx8")
 position = Vector2(320, 180)
 rotation = 3.1415927
-scale = Vector2(640, 360)
+scale = Vector2(-640, 360)
 mesh = SubResource("QuadMesh_ltjy5")
 script = ExtResource("2_mtvx8")
