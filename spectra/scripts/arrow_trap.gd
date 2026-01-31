@@ -18,12 +18,17 @@ func cooldown_collider():
 	await get_tree().create_timer(1.5).timeout
 	own_collider.disabled = false
 	
-func move():
+func move(_delta):
 	var collided = move_and_slide()
-	
+		
 	if collided && rotaiton_cooldown.is_stopped():
 		var collision = get_last_slide_collision()
 		var collider = collision.get_collider()
+		
+		if !collider.is_in_group("environment"):
+			add_collision_exception_with(collider)
+			move_and_collide(velocity * _delta)
+			return
 		
 		if collider.is_in_group("environment"):
 			var normal = collision.get_normal()
@@ -37,7 +42,7 @@ func move():
 	velocity = direction * movement_speed
 	
 func _physics_process(_delta: float):	
-	move()
+	move(_delta)
 	
 	if !shoot_timer.is_stopped(): return
 		

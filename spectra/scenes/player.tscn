@@ -166,6 +166,8 @@ _data = {
 
 [node name="player" type="CharacterBody2D" unique_id=472819889 groups=["player"]]
 physics_interpolation_mode = 1
+collision_layer = 5
+collision_mask = 18
 script = ExtResource("1_qhqgy")
 bullet_scene = ExtResource("2_dqkch")
 

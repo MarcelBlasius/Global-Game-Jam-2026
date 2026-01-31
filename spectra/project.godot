@@ -84,6 +84,10 @@ open_menu={
 [layer_names]
 
 2d_physics/layer_1="PlayerColliders"
+2d_physics/layer_2="environment"
+2d_physics/layer_3="player"
+2d_physics/layer_4="beetles"
+2d_physics/layer_5="enemies"
 
 [physics]
 

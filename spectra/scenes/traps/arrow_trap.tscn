@@ -7,6 +7,9 @@
 size = Vector2(7.666663, 10.333332)
 
 [node name="ArrowTrap" type="CharacterBody2D" unique_id=1298705077]
+collision_layer = 8
+collision_mask = 2
+platform_floor_layers = 4294967040
 script = ExtResource("1_3l0u4")
 fire_rate = 4.0
 
