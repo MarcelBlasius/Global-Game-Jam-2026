@@ -1,0 +1,82 @@
+[gd_scene format=3 uid="uid://dt2713sbc5xi5"]
+
+[ext_resource type="Script" uid="uid://dvtt64r7co8um" path="res://scripts/game_menu.gd" id="1_r3o0d"]
+[ext_resource type="Texture2D" uid="uid://cs7f0ur4vntf" path="res://ressources/atlas_textures/game_menu/button_continue.tres" id="2_11jwc"]
+[ext_resource type="PackedScene" uid="uid://cj3d4rudap4qg" path="res://scenes/main_scene.tscn" id="2_fp28n"]
+[ext_resource type="Texture2D" uid="uid://dc2w3fqkl8b6g" path="res://ressources/atlas_textures/game_menu/button_continue_hovered.tres" id="3_6i2d7"]
+[ext_resource type="PackedScene" uid="uid://c5fuyafloib7" path="res://scenes/silas/menu_button.tscn" id="3_11jwc"]
+[ext_resource type="PackedScene" uid="uid://owtaduiouwa3" path="res://scenes/silas/main_menu.tscn" id="3_p2c7i"]
+[ext_resource type="Texture2D" uid="uid://rib1srvk1kpe" path="res://ressources/atlas_textures/game_menu/button_restart.tres" id="4_snn1x"]
+[ext_resource type="Texture2D" uid="uid://nqn37qmeuvds" path="res://ressources/atlas_textures/game_menu/button_restart_hovered.tres" id="5_aigmv"]
+[ext_resource type="Texture2D" uid="uid://dxuca6bw6tatd" path="res://ressources/atlas_textures/main_menu/button_settings.tres" id="6_a64mi"]
+[ext_resource type="Texture2D" uid="uid://b3qbqyjrfim7m" path="res://ressources/atlas_textures/main_menu/button_settings_hovered.tres" id="7_a08ow"]
+[ext_resource type="Texture2D" uid="uid://c7qnem04040i" path="res://ressources/atlas_textures/game_menu/button_exit.tres" id="8_fp28n"]
+[ext_resource type="Texture2D" uid="uid://dbjp4bnev0wc8" path="res://ressources/atlas_textures/game_menu/button_exit_hovered.tres" id="9_p2c7i"]
+[ext_resource type="Texture2D" uid="uid://c6vtrlaei2hpi" path="res://ressources/atlas_textures/game_menu/background.tres" id="10_aigmv"]
+
+[node name="GameMenu" type="Control" unique_id=1060992188]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+script = ExtResource("1_r3o0d")
+scene_to_load_on_restart = ExtResource("2_fp28n")
+scene_to_load_on_exit = ExtResource("3_p2c7i")
+
+[node name="Window" type="MarginContainer" parent="." unique_id=1644581855]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -68.0
+offset_top = -99.0
+offset_right = 68.0
+offset_bottom = 99.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextureRect" type="TextureRect" parent="Window" unique_id=172034978]
+layout_mode = 2
+texture = ExtResource("10_aigmv")
+
+[node name="MarginContainer" type="MarginContainer" parent="Window" unique_id=2027553239]
+layout_mode = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Window/MarginContainer" unique_id=95940939]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="ButtonContinue" parent="Window/MarginContainer/VBoxContainer" unique_id=936845202 instance=ExtResource("3_11jwc")]
+layout_mode = 2
+texture_normal = ExtResource("2_11jwc")
+texture_hover = ExtResource("3_6i2d7")
+
+[node name="ButtonRestart" parent="Window/MarginContainer/VBoxContainer" unique_id=1325181758 instance=ExtResource("3_11jwc")]
+layout_mode = 2
+texture_normal = ExtResource("4_snn1x")
+texture_hover = ExtResource("5_aigmv")
+
+[node name="ButtonSettings" parent="Window/MarginContainer/VBoxContainer" unique_id=239973182 instance=ExtResource("3_11jwc")]
+layout_mode = 2
+texture_normal = ExtResource("6_a64mi")
+texture_hover = ExtResource("7_a08ow")
+
+[node name="ButtonExit" parent="Window/MarginContainer/VBoxContainer" unique_id=1478839069 instance=ExtResource("3_11jwc")]
+layout_mode = 2
+texture_normal = ExtResource("8_fp28n")
+texture_hover = ExtResource("9_p2c7i")
+
+[connection signal="pressed" from="Window/MarginContainer/VBoxContainer/ButtonContinue" to="." method="_on_button_continue_pressed"]
+[connection signal="pressed" from="Window/MarginContainer/VBoxContainer/ButtonRestart" to="." method="_on_button_restart_pressed"]
+[connection signal="pressed" from="Window/MarginContainer/VBoxContainer/ButtonSettings" to="." method="_on_button_settings_pressed"]
+[connection signal="pressed" from="Window/MarginContainer/VBoxContainer/ButtonExit" to="." method="_on_button_exit_pressed"]

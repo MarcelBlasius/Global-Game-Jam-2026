@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://irbacu5rycqm"]
 
 [ext_resource type="PackedScene" uid="uid://cvq60bc51xilo" path="res://scenes/player.tscn" id="1_v80g3"]
-[ext_resource type="PackedScene" uid="uid://b25wp58kkbixo" path="res://scenes/enemy.tscn" id="2_ipayf"]
+[ext_resource type="PackedScene" uid="uid://b25wp58kkbixo" path="res://scenes/enemies/chaser.tscn" id="2_ipayf"]
 [ext_resource type="AudioStream" uid="uid://dt0jv8scmnscu" path="res://ressources/dark_theme.mp3" id="3_ipayf"]
 
 [node name="MblTestScene" type="Node2D" unique_id=322031435]

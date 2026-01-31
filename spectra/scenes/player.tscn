@@ -6,7 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://b06ewonenu7hk" path="res://ressources/spritesheet.png" id="3_qhqgy"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qhqgy"]
-size = Vector2(20, 6)
+size = Vector2(25, 29)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_qlg0r"]
 shader = ExtResource("3_dqkch")
@@ -50,13 +50,13 @@ _data = {
 &"shoot_animation": SubResource("Animation_dqkch")
 }
 
-[node name="player" type="CharacterBody2D" unique_id=472819889]
+[node name="player" type="CharacterBody2D" unique_id=472819889 groups=["player"]]
 physics_interpolation_mode = 1
 script = ExtResource("1_qhqgy")
 bullet_scene = ExtResource("2_dqkch")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=766425432]
-position = Vector2(0, 6)
+position = Vector2(0.5, -11)
 shape = SubResource("RectangleShape2D_qhqgy")
 
 [node name="ShootTimer" type="Timer" parent="." unique_id=1406925166]
@@ -76,4 +76,5 @@ root_node = NodePath("../..")
 libraries/ = SubResource("AnimationLibrary_qlg0r")
 
 [node name="InvincibilityTimer" type="Timer" parent="." unique_id=1796086557]
+wait_time = 0.25
 one_shot = true
