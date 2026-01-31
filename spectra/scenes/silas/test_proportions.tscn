@@ -1,0 +1,15 @@
+[gd_scene format=3 uid="uid://bkm6i8xqbq0eh"]
+
+[ext_resource type="PackedScene" uid="uid://bv25mwaky7njn" path="res://scenes/silas/background.tscn" id="1_kse60"]
+[ext_resource type="PackedScene" uid="uid://cvq60bc51xilo" path="res://scenes/player.tscn" id="2_ixgpg"]
+
+[node name="TestProportions" type="Node2D" unique_id=737991173]
+
+[node name="Background" parent="." unique_id=250843349 instance=ExtResource("1_kse60")]
+
+[node name="player" parent="." unique_id=472819889 instance=ExtResource("2_ixgpg")]
+position = Vector2(316, 171)
+speed = 200
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=916459579]
+offset = Vector2(320, 180)
