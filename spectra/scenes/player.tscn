@@ -2,10 +2,16 @@
 
 [ext_resource type="Script" uid="uid://bub6p8m3dxcfn" path="res://scripts/player.gd" id="1_qhqgy"]
 [ext_resource type="PackedScene" uid="uid://b1c7qq5v6oah7" path="res://scenes/bullet.tscn" id="2_dqkch"]
+[ext_resource type="Shader" uid="uid://cstew5jd8ujmt" path="res://shaders/flash.gdshader" id="3_dqkch"]
 [ext_resource type="Texture2D" uid="uid://b06ewonenu7hk" path="res://ressources/spritesheet.png" id="3_qhqgy"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qhqgy"]
 size = Vector2(20, 6)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_qlg0r"]
+shader = ExtResource("3_dqkch")
+shader_parameter/active = false
+shader_parameter/flash_color = Vector4(0.8, 0.5, 0.5, 1)
 
 [sub_resource type="Animation" id="Animation_qhqgy"]
 length = 0.001
@@ -60,6 +66,7 @@ one_shot = true
 
 [node name="Sprite2D" type="Sprite2D" parent="Node2D" unique_id=204285705]
 texture_filter = 1
+material = SubResource("ShaderMaterial_qlg0r")
 texture = ExtResource("3_qhqgy")
 region_enabled = true
 region_rect = Rect2(1304, 285, 32, 51)
@@ -67,3 +74,6 @@ region_rect = Rect2(1304, 285, 32, 51)
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Node2D" unique_id=118912800]
 root_node = NodePath("../..")
 libraries/ = SubResource("AnimationLibrary_qlg0r")
+
+[node name="InvincibilityTimer" type="Timer" parent="." unique_id=1796086557]
+one_shot = true
