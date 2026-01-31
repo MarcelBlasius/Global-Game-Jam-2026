@@ -1,0 +1,24 @@
+[gd_scene format=3 uid="uid://cp8s52c5gtk3a"]
+
+[ext_resource type="Script" uid="uid://b81v06w2wjjhk" path="res://scripts/arrow_trap.gd" id="1_3l0u4"]
+[ext_resource type="Texture2D" uid="uid://bursdnrr6dso4" path="res://icon.svg" id="2_gfvr7"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_buurg"]
+
+[node name="ArrowTrap" type="StaticBody2D" unique_id=420388319]
+physics_material_override = SubResource("PhysicsMaterial_buurg")
+script = ExtResource("1_3l0u4")
+fire_rate = 4.0
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=2108009331]
+scale = Vector2(0.1875, 0.1875)
+texture = ExtResource("2_gfvr7")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="." unique_id=2040087400]
+scale = Vector2(0.1875, 0.1875)
+polygon = PackedVector2Array(59.1, -64, -59, -64, -63.8, -59, -64, 61, -60.3, 64, 59.6, 64, 63.9, 59, 64, -61.1)
+
+[node name="ShootTimer" type="Timer" parent="." unique_id=1316644018]
+one_shot = true
+
+[connection signal="ready" from="." to="." method="_on_ready"]

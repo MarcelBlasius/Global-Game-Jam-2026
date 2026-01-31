@@ -9,6 +9,11 @@ var mat : ShaderMaterial
 var posList : Array[MaskPos]
 const arrayMaxLength := 5
 const arrayElementSize := 4
+var invert_world := false
+var mouse_pos: Vector2
+var mouse_pressed: bool = false
+var mouse_scroll: float = 1
+var invert_world_debug: bool = false
 
 func setPosAndRad():
 	var posVals := []
@@ -45,10 +50,7 @@ func _ready() -> void:
 	setPosAndRad()
 	pass # Replace with function body.
 
-var mouse_pos: Vector2
-var mouse_pressed: bool = false
-var mouse_scroll: float = 1
-var invert_world: bool = false;
+
 
 #func _unhandled_input(input_event: InputEvent) -> void:
 func _unhandled_input(input_event: InputEvent) -> void:
@@ -58,7 +60,10 @@ func _unhandled_input(input_event: InputEvent) -> void:
 
 	if input_event is InputEventKey and input_event.pressed and not input_event.echo:
 		if input_event.keycode == KEY_SHIFT:
+			invert_world_debug = !invert_world_debug
+		if input_event.keycode == KEY_CTRL:
 			invert_world = !invert_world
+			
 			
 	if input_event is InputEventMouseMotion or input_event is InputEventMouseButton:
 		mouse_pos = input_event.global_position
@@ -81,7 +86,8 @@ func _process(_delta: float) -> void:
 	if (mouse_pressed):
 		posList[0].pos = mouse_pos
 	posList[0].radius = mouse_scroll * 100
-	posList[0].worldBit = invert_world if 1 else 0
+	posList[0].worldBit = invert_world_debug if 1 else 0
 	setPosAndRad()
+	material.set_shader_parameter("invert_world", invert_world)
 	
 	pass
