@@ -8,9 +8,6 @@ size = Vector2(640, 36)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ci8kt"]
 size = Vector2(36, 360)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_35j2h"]
-size = Vector2(15, 20)
-
 [node name="Background" type="Node2D" unique_id=250843349]
 
 [node name="BackgroundWorld1" type="Node2D" parent="." unique_id=1668724930]
@@ -19,7 +16,7 @@ size = Vector2(15, 20)
 position = Vector2(320, 180)
 texture = ExtResource("1_hky1a")
 region_enabled = true
-region_rect = Rect2(0, 0, 640, 360)
+region_rect = Rect2(0, 384, 640, 360)
 
 [node name="Tutorial" type="Sprite2D" parent="BackgroundWorld1" unique_id=1237919311]
 position = Vector2(320, 220)
@@ -33,7 +30,7 @@ region_rect = Rect2(1408, 88, 208, 88)
 position = Vector2(320, 180)
 texture = ExtResource("1_hky1a")
 region_enabled = true
-region_rect = Rect2(640, 0, 640, 360)
+region_rect = Rect2(656, 384, 640, 360)
 
 [node name="Tutorial" type="Sprite2D" parent="BackgroundWorld2" unique_id=1409494047]
 position = Vector2(320, 220)
@@ -63,10 +60,3 @@ shape = SubResource("RectangleShape2D_hky1a")
 texture_filter = 1
 position = Vector2(622, 180)
 shape = SubResource("RectangleShape2D_ci8kt")
-
-[node name="DoorCollider" type="StaticBody2D" parent="." unique_id=461436052]
-collision_layer = 0
-
-[node name="Door" type="CollisionShape2D" parent="DoorCollider" unique_id=1307183650]
-position = Vector2(30, 172)
-shape = SubResource("RectangleShape2D_35j2h")
