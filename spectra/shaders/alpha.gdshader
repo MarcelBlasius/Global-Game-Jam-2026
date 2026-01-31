@@ -4,6 +4,7 @@ uniform float posValues[20]; // position  and radius packed together in 4 values
 uniform int value_count;
 
 uniform float corona = 40;
+uniform bool invert_world;
 //void vertex() {
 	//// Called for every vertex the material is visible on.
 //}
@@ -74,12 +75,13 @@ void fragment() {
 	for(int i = 0; i< value_count; i++)
 	{
 		int index = i * 4;
-		float worldBit = posValues[index + 3];
-		if (worldBit == 1.0)
+		//bool worldBit = getWorldBit(posValues[index + 3], invert_world);
+		bool worldBit = posValues[index + 3] == 1.0;
+		if (worldBit)
 		{
 			continue;
 		}
-		
+
 		vec2 point = vec2(posValues[index], posValues[index +1]);
 		float radius = posValues[index + 2];
 		
@@ -92,8 +94,8 @@ void fragment() {
 	for(int i = 0; i< value_count; i++)
 	{
 		int index = i * 4;
-		float worldBit = posValues[index + 3];
-		if (worldBit == 0.0)
+		bool worldBit = posValues[index + 3] == 1.0; //getWorldBit(posValues[index + 3], invert_world);
+		if (!worldBit)
 		{
 			continue;
 		}
@@ -114,10 +116,10 @@ void fragment() {
 
     float a = calcAlpha(distResult);
 		
-	//if (invertWorld)
-	//{
-		//a = 1.0 - a;
-	//}
+	if (invert_world)
+	{
+		a = 1.0 - a;
+	}
 	
 	COLOR = vec4(a, a, a, 1);
 }

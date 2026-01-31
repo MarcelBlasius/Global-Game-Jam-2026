@@ -4,7 +4,7 @@
 [ext_resource type="Shader" uid="uid://d2s8gjwxai8qe" path="res://shaders/combine_textures.gdshader" id="2_5gry2"]
 [ext_resource type="Script" uid="uid://c6ao6bkdykvyk" path="res://scripts/get_world.gd" id="4_oxpa2"]
 [ext_resource type="PackedScene" uid="uid://cb235eerke4w2" path="res://scenes/bela/subviews/world_a.tscn" id="6_oxpa2"]
-[ext_resource type="PackedScene" uid="uid://bts3vhr7hpc1n" path="res://scenes/player.tscn" id="6_t362c"]
+[ext_resource type="PackedScene" uid="uid://cvq60bc51xilo" path="res://scenes/player.tscn" id="6_t362c"]
 [ext_resource type="PackedScene" uid="uid://bv25mwaky7njn" path="res://scenes/silas/background.tscn" id="7_t362c"]
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_aeg00"]
