@@ -4,22 +4,28 @@ var mat : ShaderMaterial
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	mat = material as ShaderMaterial
+	mat.set_shader_parameter("point2", Vector2(100, 100))
+	mat.set_shader_parameter("radius2", 40)
 	pass # Replace with function body.
 
 var mouse_pos: Vector2
 var mouse_pressed: bool = false
 var mouse_scroll: float = 1
+var invert_world: bool = false;
 
 #func _unhandled_input(input_event: InputEvent) -> void:
-func _input(input_event: InputEvent) -> void:
+func _unhandled_input(input_event: InputEvent) -> void:
 	# If tool enabled, we don't want to handle our input in the editor.
 	if Engine.is_editor_hint():
 		return
 
-	
+	if input_event is InputEventKey and input_event.pressed and not input_event.echo:
+		if input_event.keycode == KEY_SHIFT:
+			invert_world = !invert_world
+			
 	if input_event is InputEventMouseMotion or input_event is InputEventMouseButton:
 		mouse_pos = input_event.global_position
-		print_debug("mouse_pos", mouse_pos.x, ",", mouse_pos.y)
+		#print_debug("mouse_pos", mouse_pos.x, ",", mouse_pos.y)
 
 	if input_event is InputEventMouseButton and input_event.button_index == MouseButton.MOUSE_BUTTON_LEFT:
 		mouse_pressed = input_event.pressed
@@ -32,10 +38,11 @@ func _input(input_event: InputEvent) -> void:
 		elif input_event.button_index == MouseButton.MOUSE_BUTTON_WHEEL_DOWN:
 			mouse_scroll *=0.9
 			print("Mausrad runter")
-			# Aktion: z.B. Zoom Out
+			# Aktion: z.B. Zoom Oout
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
 	if (mouse_pressed):
-		mat.set_shader_parameter("point", mouse_pos)
-	mat.set_shader_parameter("radius", mouse_scroll * 100)
+		mat.set_shader_parameter("point1", mouse_pos)
+	mat.set_shader_parameter("radius1", mouse_scroll * 100)
+	mat.set_shader_parameter("invertWorld", invert_world)
 	pass
