@@ -40,7 +40,7 @@ func _ready() -> void:
 	spriteParent2.global_transform = old_global2
 
 func _process(delta: float) -> void:
-	await get_tree().physics_frame
+	#await get_tree().physics_frame
 	spriteParent1.global_transform = global_transform
 	spriteParent2.global_transform = global_transform
 

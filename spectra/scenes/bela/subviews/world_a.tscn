@@ -5,9 +5,10 @@
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_mtvx8"]
 shader = ExtResource("1_c8xer")
-shader_parameter/point = Vector2(0, 0)
-shader_parameter/radius = 0.0
+shader_parameter/posValues = PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+shader_parameter/value_count = 0
 shader_parameter/corona = 5.0
+shader_parameter/invert_world = false
 
 [sub_resource type="QuadMesh" id="QuadMesh_ltjy5"]
 

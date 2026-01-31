@@ -48,15 +48,15 @@ one_shot = true
 wait_time = 0.5
 one_shot = true
 
-[node name="World1" type="Node2D" parent="." unique_id=331871653]
+[node name="World1Beetle" type="Node2D" parent="." unique_id=331871653]
 
-[node name="Sprite2D" type="Sprite2D" parent="World1" unique_id=2108009331]
+[node name="GoldBeetle" type="Sprite2D" parent="World1Beetle" unique_id=2108009331]
 material = SubResource("ShaderMaterial_sck2v")
 texture = SubResource("AtlasTexture_3p0wh")
 
-[node name="World2" type="Node2D" parent="." unique_id=1367569755]
+[node name="World2Beetle" type="Node2D" parent="." unique_id=1367569755]
 
-[node name="Sprite2D" type="Sprite2D" parent="World2" unique_id=2027138100]
+[node name="DarkBeetle" type="Sprite2D" parent="World2Beetle" unique_id=2027138100]
 material = SubResource("ShaderMaterial_brcl1")
 texture = SubResource("AtlasTexture_k7ogl")
 
