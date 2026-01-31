@@ -19,6 +19,7 @@ var spriteParent1 : Node;
 var spriteParent2 : Node;
 var sprite1 : Sprite2D
 var sprite2 : Sprite2D
+var health_bar : HealthBar
 
 func _ready() -> void:
 	view1 = get_node("/root/main_scene/Subview1")
@@ -31,6 +32,10 @@ func _ready() -> void:
 	sprite2.z_index = 20
 	spriteParent1.z_index = 20
 	spriteParent2.z_index = 20
+	
+	health_bar = get_node("/root/main_scene/HealthBar")
+	if (health_bar):
+		health_bar.add_lives(health)
 	
 	var old_global1 := spriteParent1.global_transform as Transform2D
 
@@ -141,6 +146,10 @@ func take_damage(amount: int):
 	if !invincivility_Timer.is_stopped(): return
 	
 	health -= amount
+	
+	if (health_bar):
+		health_bar.remove_lives(amount)
+	
 	flash_hit()
 	invincivility_Timer.start()
 	

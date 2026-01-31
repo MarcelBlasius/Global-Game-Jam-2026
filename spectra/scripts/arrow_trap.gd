@@ -20,10 +20,10 @@ var sprite2 : Sprite2D
 func _ready() -> void:
 	view1 = get_node("/root/main_scene/Subview1")
 	view2 = get_node("/root/main_scene/Subview2")
-	spriteParent1 = $World1
-	spriteParent2 = $World2
-	sprite1 = $World1/Sprite2D
-	sprite2 = $World2/Sprite2D
+	spriteParent1 = $World1Beetle
+	spriteParent2 = $World2Beetle
+	sprite1 = $World1Beetle/GoldBeetle
+	sprite2 = $World2Beetle/DarkBeetle
 	sprite1.z_index = 1000
 	sprite2.z_index = 1000
 	

@@ -1,0 +1,26 @@
+[gd_scene format=3 uid="uid://d1yclyd20cb0r"]
+
+[ext_resource type="Script" uid="uid://cati1cfalmglp" path="res://scripts/health_bar.gd" id="1_c32gc"]
+[ext_resource type="PackedScene" uid="uid://gq3a66jwnddg" path="res://scenes/silas/life.tscn" id="2_ceu7r"]
+
+[node name="HealthBar" type="MarginContainer" unique_id=2106552665]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_c32gc")
+life_scene = ExtResource("2_ceu7r")
+
+[node name="LifeContainer" type="HBoxContainer" parent="." unique_id=681783425]
+layout_mode = 2
+theme_override_constants/separation = 2
+
+[node name="Life" parent="LifeContainer" unique_id=1938320905 instance=ExtResource("2_ceu7r")]
+layout_mode = 2
+
+[node name="Life2" parent="LifeContainer" unique_id=1118408104 instance=ExtResource("2_ceu7r")]
+layout_mode = 2
+
+[node name="Life3" parent="LifeContainer" unique_id=946657535 instance=ExtResource("2_ceu7r")]
+layout_mode = 2

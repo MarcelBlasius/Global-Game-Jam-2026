@@ -13,6 +13,7 @@
 [ext_resource type="Texture2D" uid="uid://c6vtrlaei2hpi" path="res://ressources/atlas_textures/game_menu/background.tres" id="10_aigmv"]
 
 [node name="GameMenu" type="Control" unique_id=1060992188]
+process_mode = 3
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
