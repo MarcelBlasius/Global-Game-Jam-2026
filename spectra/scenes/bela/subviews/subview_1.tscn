@@ -1,0 +1,30 @@
+[gd_scene format=3 uid="uid://bec3deoepraay"]
+
+[ext_resource type="Texture2D" uid="uid://xgu6wiil1as8" path="res://ressources/bela_dark_background.png" id="1_mx7v2"]
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_aeg00"]
+viewport_path = NodePath("Subview1")
+
+[sub_resource type="QuadMesh" id="QuadMesh_kh0ho"]
+
+[node name="Subview1" type="SubViewport" unique_id=464019152]
+disable_3d = true
+handle_input_locally = false
+vrs_mode = 1
+vrs_update_mode = 2
+vrs_texture = SubResource("ViewportTexture_aeg00")
+canvas_cull_mask = 4293918721
+size = Vector2i(640, 360)
+render_target_update_mode = 4
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=443885512]
+position = Vector2(103, 41)
+
+[node name="WorldOne" type="Node2D" parent="." unique_id=1667797841]
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="WorldOne" unique_id=1860078385]
+modulate = Color(0, 0, 1, 1)
+position = Vector2(56.68756, 27.3125)
+scale = Vector2(1324.6251, 721.375)
+mesh = SubResource("QuadMesh_kh0ho")
+texture = ExtResource("1_mx7v2")

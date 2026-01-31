@@ -1,26 +1,23 @@
 shader_type canvas_item;
 
-uniform sampler2D tex_left;
-uniform sampler2D tex_right;
-uniform sampler2D tex_alpha;
-
-
+uniform vec2 point;
+uniform float radius;
 //void vertex() {
 	//// Called for every vertex the material is visible on.
 //}
 
 void fragment() {
 	// Called for every pixel the material is visible on.
-	vec2 uv = UV;
-	vec4 alpha = texture(tex_alpha, uv);
-	
-	if (alpha.x < 0.5) {
-        // Left half → texture 1
-        COLOR = texture(tex_left, uv);
-    } else {
-        // Right half → texture 2
-        COLOR = texture(tex_right, uv);
+	vec2 uv = UV * vec2(640, 360);
+	float sqDist = (uv.x - point.x) * (uv.x - point.x) + (uv.y - point.y) * (uv.y - point.y);;
+    float a = 1.0;
+	//float corona = 10.0 * 10.0;
+    if (sqDist < radius * radius)
+    {
+        a = 0.0;
     }
+
+   COLOR = vec4(a, a, a, 1);
 }
 
 //void light() {

@@ -1,0 +1,24 @@
+[gd_scene format=3 uid="uid://cb235eerke4w2"]
+
+[ext_resource type="Shader" uid="uid://5bqcxyn7775i" path="res://shaders/alpha.gdshader" id="1_c8xer"]
+[ext_resource type="Script" uid="uid://dlvp6n60jdk5e" path="res://scripts/alpha.gd" id="2_mtvx8"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_mtvx8"]
+shader = ExtResource("1_c8xer")
+shader_parameter/point = Vector2(0, 0)
+shader_parameter/radius = 0.0
+
+[sub_resource type="QuadMesh" id="QuadMesh_ltjy5"]
+
+[node name="World3" type="Node2D" unique_id=247149375]
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=157069135]
+offset = Vector2(320, 180)
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="." unique_id=163221975]
+material = SubResource("ShaderMaterial_mtvx8")
+position = Vector2(320, 180)
+rotation = 3.1415927
+scale = Vector2(640, 360)
+mesh = SubResource("QuadMesh_ltjy5")
+script = ExtResource("2_mtvx8")
