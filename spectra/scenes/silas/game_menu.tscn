@@ -11,6 +11,7 @@
 [ext_resource type="Texture2D" uid="uid://c7qnem04040i" path="res://ressources/atlas_textures/game_menu/button_exit.tres" id="8_fp28n"]
 [ext_resource type="Texture2D" uid="uid://dbjp4bnev0wc8" path="res://ressources/atlas_textures/game_menu/button_exit_hovered.tres" id="9_p2c7i"]
 [ext_resource type="Texture2D" uid="uid://c6vtrlaei2hpi" path="res://ressources/atlas_textures/game_menu/background.tres" id="10_aigmv"]
+[ext_resource type="PackedScene" uid="uid://dctlcgiaa710p" path="res://scenes/silas/settings_menu.tscn" id="12_a08ow"]
 
 [node name="GameMenu" type="Control" unique_id=1060992188]
 process_mode = 3
@@ -72,6 +73,9 @@ texture_hover = ExtResource("7_a08ow")
 layout_mode = 2
 texture_normal = ExtResource("8_fp28n")
 texture_hover = ExtResource("9_p2c7i")
+
+[node name="SettingsMenu" parent="." unique_id=1211209358 instance=ExtResource("12_a08ow")]
+layout_mode = 1
 
 [connection signal="pressed" from="Window/MarginContainer/VBoxContainer/ButtonContinue" to="." method="_on_button_continue_pressed"]
 [connection signal="pressed" from="Window/MarginContainer/VBoxContainer/ButtonRestart" to="." method="_on_button_restart_pressed"]

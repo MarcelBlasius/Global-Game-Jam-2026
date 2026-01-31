@@ -2,7 +2,6 @@
 
 [ext_resource type="Script" uid="uid://b2pf5pmgiec63" path="res://scripts/main_menu.gd" id="1_36jji"]
 [ext_resource type="Texture2D" uid="uid://ba4a4idawf5wf" path="res://ressources/atlas_textures/main_menu/button_start.tres" id="2_2hyvm"]
-[ext_resource type="PackedScene" uid="uid://bkn7yb5jcjed1" path="res://scenes/main_scene.tscn" id="2_evkfa"]
 [ext_resource type="Texture2D" uid="uid://n5qhc5d4j003" path="res://ressources/atlas_textures/main_menu/background.tres" id="2_oe1it"]
 [ext_resource type="Texture2D" uid="uid://dxuca6bw6tatd" path="res://ressources/atlas_textures/main_menu/button_settings.tres" id="3_hhpil"]
 [ext_resource type="PackedScene" uid="uid://c5fuyafloib7" path="res://scenes/silas/menu_button.tscn" id="4_36jji"]
@@ -10,6 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://b3qbqyjrfim7m" path="res://ressources/atlas_textures/main_menu/button_settings_hovered.tres" id="8_nwhpg"]
 [ext_resource type="Texture2D" uid="uid://c0nd547dirnlg" path="res://ressources/atlas_textures/main_menu/button_quit.tres" id="9_nwhpg"]
 [ext_resource type="Texture2D" uid="uid://bvfovj34ncq50" path="res://ressources/atlas_textures/main_menu/button_quit_hovered.tres" id="10_evkfa"]
+[ext_resource type="PackedScene" uid="uid://dctlcgiaa710p" path="res://scenes/silas/settings_menu.tscn" id="10_nwhpg"]
 
 [node name="MainMenu" type="Control" unique_id=614620433]
 layout_mode = 3
@@ -21,7 +21,6 @@ grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 script = ExtResource("1_36jji")
-scene_to_load = ExtResource("2_evkfa")
 
 [node name="TextureRect" type="TextureRect" parent="." unique_id=1312540264]
 layout_mode = 1
@@ -59,6 +58,9 @@ texture_hover = ExtResource("8_nwhpg")
 layout_mode = 2
 texture_normal = ExtResource("9_nwhpg")
 texture_hover = ExtResource("10_evkfa")
+
+[node name="SettingsMenu" parent="." unique_id=1211209358 instance=ExtResource("10_nwhpg")]
+layout_mode = 1
 
 [connection signal="pressed" from="VBoxContainer/ButtonStart" to="." method="_on_button_start_pressed"]
 [connection signal="pressed" from="VBoxContainer/ButtonSettings" to="." method="_on_button_settings_pressed"]
