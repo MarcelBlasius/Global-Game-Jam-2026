@@ -16,7 +16,7 @@ shader_parameter/alpha = 0.5
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_3p0wh"]
 atlas = ExtResource("3_buurg")
-region = Rect2(1444, 517, 22, 23)
+region = Rect2(1476, 517, 22, 23)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_brcl1"]
 resource_local_to_scene = true
