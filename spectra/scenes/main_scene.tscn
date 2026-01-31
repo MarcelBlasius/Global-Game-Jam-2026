@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://bkn7yb5jcjed1"]
 
-[ext_resource type="Script" uid="uid://bv22wqcqebdlm" path="res://scripts/set_textures.gd" id="1_ti0ar"]
+[ext_resource type="Script" uid="uid://bv22wqcqebdlm" path="res://scripts/manager.gd" id="1_ti0ar"]
 [ext_resource type="Script" uid="uid://c6ao6bkdykvyk" path="res://scripts/get_world.gd" id="2_inkdm"]
 [ext_resource type="PackedScene" uid="uid://cb235eerke4w2" path="res://scenes/bela/subviews/world_a.tscn" id="3_r8c42"]
 [ext_resource type="Shader" uid="uid://d2s8gjwxai8qe" path="res://shaders/combine_textures.gdshader" id="4_oji5d"]
@@ -28,6 +28,7 @@ shader_parameter/time = 0.0
 light_mask = 3
 visibility_layer = 3
 script = ExtResource("1_ti0ar")
+enemy_scene = ExtResource("8_18nlu")
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=941733479]
 offset = Vector2(320, 180)
@@ -83,6 +84,3 @@ position = Vector2(145, 105)
 stream = ExtResource("7_c16ls")
 autoplay = true
 parameters/looping = true
-
-[node name="enemy" parent="." unique_id=1170387137 instance=ExtResource("8_18nlu")]
-position = Vector2(215, 231)

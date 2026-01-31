@@ -84,10 +84,10 @@ autoplay = true
 parameters/looping = true
 
 [node name="ArrowTrap" parent="." unique_id=494595754 instance=ExtResource("9_57b7u")]
-position = Vector2(25, 127)
+position = Vector2(26, 130)
 rotation = 1.5707964
 fire_rate = 3.0
 
 [node name="ArrowTrap2" parent="." unique_id=420388319 instance=ExtResource("9_57b7u")]
-position = Vector2(175, 334)
+position = Vector2(622, 318)
 fire_rate = 4.5

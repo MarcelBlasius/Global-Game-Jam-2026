@@ -24,6 +24,7 @@ func _ready() -> void:
 	sprite2 = $World2/Sprite2D
 	sprite1.z_index = 10
 	sprite2.z_index = 10
+	player = get_node("/root/main_scene/player")
 	
 	
 	var old_global1 := spriteParent1.global_transform as Transform2D
