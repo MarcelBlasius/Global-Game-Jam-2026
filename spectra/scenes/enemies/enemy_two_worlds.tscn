@@ -1,0 +1,34 @@
+[gd_scene format=3 uid="uid://cq3spk0xo0so8"]
+
+[ext_resource type="Script" uid="uid://chhxqsa40oops" path="res://scripts/enemy.gd" id="1_sceeg"]
+[ext_resource type="Shader" path="res://shaders/flash.gdshader" id="2_xse2d"]
+[ext_resource type="Texture2D" uid="uid://b06ewonenu7hk" path="res://ressources/spritesheet.png" id="3_cml8g"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_c4w8v"]
+shader = ExtResource("2_xse2d")
+shader_parameter/active = false
+shader_parameter/flash_color = Vector4(0.8, 0.5, 0.5, 1)
+
+[node name="enemy" type="CharacterBody2D" unique_id=1170387137 groups=["enemies"]]
+script = ExtResource("1_sceeg")
+
+[node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="." unique_id=1452213936]
+polygon = PackedVector2Array(59.1, -64, -59, -64, -63.8, -59, -64, 61, -60.3, 64, 59.6, 64, 63.9, 59, 64, -61.1)
+
+[node name="World1" type="Node2D" parent="." unique_id=1845600155]
+
+[node name="Sprite2D" type="Sprite2D" parent="World1" unique_id=1064888869]
+modulate = Color(1, 0.76552, 0.6855334, 1)
+material = SubResource("ShaderMaterial_c4w8v")
+texture = ExtResource("3_cml8g")
+region_enabled = true
+region_rect = Rect2(1307, 195, 28, 29)
+
+[node name="World2" type="Node2D" parent="." unique_id=2012854484]
+
+[node name="Sprite2D" type="Sprite2D" parent="World2" unique_id=775491790]
+modulate = Color(1, 0.76552, 0.6855334, 1)
+material = SubResource("ShaderMaterial_c4w8v")
+texture = ExtResource("3_cml8g")
+region_enabled = true
+region_rect = Rect2(1342, 195, 28, 29)
