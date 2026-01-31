@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://b2pf5pmgiec63" path="res://scripts/main_menu.gd" id="1_36jji"]
 [ext_resource type="Texture2D" uid="uid://ba4a4idawf5wf" path="res://ressources/atlas_textures/main_menu/button_start.tres" id="2_2hyvm"]
-[ext_resource type="PackedScene" uid="uid://cj3d4rudap4qg" path="res://scenes/main_scene.tscn" id="2_evkfa"]
+[ext_resource type="PackedScene" uid="uid://bkn7yb5jcjed1" path="res://scenes/main_scene.tscn" id="2_evkfa"]
 [ext_resource type="Texture2D" uid="uid://n5qhc5d4j003" path="res://ressources/atlas_textures/main_menu/background.tres" id="2_oe1it"]
 [ext_resource type="Texture2D" uid="uid://dxuca6bw6tatd" path="res://ressources/atlas_textures/main_menu/button_settings.tres" id="3_hhpil"]
 [ext_resource type="PackedScene" uid="uid://c5fuyafloib7" path="res://scenes/silas/menu_button.tscn" id="4_36jji"]
