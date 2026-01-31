@@ -1,3 +1,4 @@
+class_name Alpha
 extends MeshInstance2D
 
 class MaskPos:
@@ -26,21 +27,28 @@ func setPosAndRad():
 	posVals.resize(arrayMaxLength * arrayElementSize)
 	
 	for i in range(arrayMaxLength):
-		posVals[i * arrayElementSize] = posList[i].pos.x
-		posVals[i * arrayElementSize + 1] = posList[i].pos.y
-		posVals[i * arrayElementSize + 2] = posList[i].radius
-		posVals[i * arrayElementSize + 3] = posList[i].worldBit
+		if (i < posList.size()):
+			posVals[i * arrayElementSize] = posList[i].pos.x
+			posVals[i * arrayElementSize + 1] = posList[i].pos.y
+			posVals[i * arrayElementSize + 2] = posList[i].radius
+			posVals[i * arrayElementSize + 3] = posList[i].worldBit
+		else:
+			posVals[i * arrayElementSize] = -1000
+			posVals[i * arrayElementSize + 1] = -1000
+			posVals[i * arrayElementSize + 2] = -1000
+			posVals[i * arrayElementSize + 3] = -1000
 		
 	material.set_shader_parameter("posValues", posVals)
 	material.set_shader_parameter("value_count", arrayMaxLength)
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	posList.resize(arrayMaxLength)
-	for i in range(arrayMaxLength):
-		var pos := MaskPos.new()
-		pos.pos = Vector2(-10000, -10000)
-		pos.radius = -10000
-		posList[i] = pos
+	#posList.resize(arrayMaxLength)
+	#print(posList.size())
+	#for i in range(arrayMaxLength):
+		#var pos := MaskPos.new()
+		#pos.pos = Vector2(-10000, -10000)
+		#pos.radius = -10000
+		#posList[i] = pos
 		
 	mat = material as ShaderMaterial
 	
