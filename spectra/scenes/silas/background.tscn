@@ -8,6 +8,9 @@ size = Vector2(640, 36)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ci8kt"]
 size = Vector2(36, 360)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_35j2h"]
+size = Vector2(15, 20)
+
 [node name="Background" type="Node2D" unique_id=250843349]
 
 [node name="BackgroundWorld1" type="Node2D" parent="." unique_id=1668724930]
@@ -24,8 +27,13 @@ texture = ExtResource("1_hky1a")
 region_enabled = true
 region_rect = Rect2(1408, 88, 208, 88)
 
+[node name="Door" type="Sprite2D" parent="BackgroundWorld1" unique_id=1254929497]
+position = Vector2(20, 186)
+texture = ExtResource("1_hky1a")
+region_enabled = true
+region_rect = Rect2(0, 384, 40, 80)
+
 [node name="BackgroundWorld2" type="Node2D" parent="." unique_id=1966780275]
-visible = false
 
 [node name="Map" type="Sprite2D" parent="BackgroundWorld2" unique_id=1849247978]
 position = Vector2(320, 180)
@@ -39,20 +47,34 @@ texture = ExtResource("1_hky1a")
 region_enabled = true
 region_rect = Rect2(1408, -8, 208, 88)
 
+[node name="Door" type="Sprite2D" parent="BackgroundWorld2" unique_id=1110986335]
+position = Vector2(20, 186)
+texture = ExtResource("1_hky1a")
+region_enabled = true
+region_rect = Rect2(64, 384, 40, 80)
+
 [node name="Colliders" type="RigidBody2D" parent="." unique_id=122341860]
 
 [node name="Top" type="CollisionShape2D" parent="Colliders" unique_id=345326928]
+texture_filter = 1
 position = Vector2(320, 18)
 shape = SubResource("RectangleShape2D_hky1a")
 
 [node name="Right" type="CollisionShape2D" parent="Colliders" unique_id=1607454083]
+texture_filter = 1
 position = Vector2(18, 180)
 shape = SubResource("RectangleShape2D_ci8kt")
 
 [node name="Bottom" type="CollisionShape2D" parent="Colliders" unique_id=1005550753]
+texture_filter = 1
 position = Vector2(320, 342)
 shape = SubResource("RectangleShape2D_hky1a")
 
 [node name="Left" type="CollisionShape2D" parent="Colliders" unique_id=807396060]
+texture_filter = 1
 position = Vector2(622, 180)
 shape = SubResource("RectangleShape2D_ci8kt")
+
+[node name="Door" type="CollisionShape2D" parent="Colliders" unique_id=1307183650]
+position = Vector2(30, 180)
+shape = SubResource("RectangleShape2D_35j2h")
