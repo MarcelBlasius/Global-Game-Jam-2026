@@ -41,7 +41,7 @@ texture = ExtResource("1_hky1a")
 region_enabled = true
 region_rect = Rect2(1408, -8, 208, 88)
 
-[node name="WallColliders" type="StaticBody2D" parent="." unique_id=51051484]
+[node name="WallColliders" type="StaticBody2D" parent="." unique_id=51051484 groups=["environment"]]
 collision_mask = 0
 
 [node name="Top" type="CollisionShape2D" parent="WallColliders" unique_id=345326928]

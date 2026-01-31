@@ -4,7 +4,9 @@ extends CharacterBody2D
 @export var bullet_scene: PackedScene 
 @export var fire_rate: float = 0.5 # seconds
 @onready var shoot_timer = $ShootTimer
-@onready var sprite = $Sprite2D
+@onready var sprite = $Node2D/Sprite2D
+@onready var node2d = $Node2D
+@onready var anim_player : AnimationPlayer = $Node2D/AnimationPlayer
 
 func get_movement_direction():
 	var input_direction = Input.get_vector("left", "right", "up", "down")
@@ -42,8 +44,17 @@ func shoot():
 	spawn_bullet(dir, offset)
 	shoot_timer.start(fire_rate)
 
+func play_shoot_animation(dir: Vector2):	
+	var angle = dir.angle()
+	
+	node2d.rotation = angle
+	sprite.rotation = -angle
+	anim_player.play("shoot_animation")
+
+
 func spawn_bullet(dir: Vector2, offset: Vector2):
+	play_shoot_animation(dir)
 	var bullet = bullet_scene.instantiate()
-	get_tree().root.add_child(bullet) 
 	bullet.global_position = global_position + offset
 	bullet.direction = dir
+	get_tree().root.add_child(bullet) 

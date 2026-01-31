@@ -7,15 +7,47 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qhqgy"]
 size = Vector2(20, 6)
 
+[sub_resource type="Animation" id="Animation_qhqgy"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Node2D/Sprite2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_dqkch"]
+resource_name = "shoot_animation"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Node2D/Sprite2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(-10, 0), Vector2(0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_qlg0r"]
+_data = {
+&"RESET": SubResource("Animation_qhqgy"),
+&"shoot_animation": SubResource("Animation_dqkch")
+}
+
 [node name="player" type="CharacterBody2D" unique_id=472819889]
+physics_interpolation_mode = 1
 script = ExtResource("1_qhqgy")
 bullet_scene = ExtResource("2_dqkch")
-
-[node name="Sprite2D" type="Sprite2D" parent="." unique_id=204285705]
-texture_filter = 1
-texture = ExtResource("3_qhqgy")
-region_enabled = true
-region_rect = Rect2(1304, 285, 32, 51)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=766425432]
 position = Vector2(0, 6)
@@ -23,3 +55,15 @@ shape = SubResource("RectangleShape2D_qhqgy")
 
 [node name="ShootTimer" type="Timer" parent="." unique_id=1406925166]
 one_shot = true
+
+[node name="Node2D" type="Node2D" parent="." unique_id=400492728]
+
+[node name="Sprite2D" type="Sprite2D" parent="Node2D" unique_id=204285705]
+texture_filter = 1
+texture = ExtResource("3_qhqgy")
+region_enabled = true
+region_rect = Rect2(1304, 285, 32, 51)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Node2D" unique_id=118912800]
+root_node = NodePath("../..")
+libraries/ = SubResource("AnimationLibrary_qlg0r")

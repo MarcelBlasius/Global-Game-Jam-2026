@@ -1,0 +1,20 @@
+[gd_scene format=3 uid="uid://jrr0c0y5a62y"]
+
+[ext_resource type="PackedScene" uid="uid://bv25mwaky7njn" path="res://scenes/silas/background.tscn" id="1_wmcac"]
+[ext_resource type="PackedScene" uid="uid://cvq60bc51xilo" path="res://scenes/player.tscn" id="2_uh1qm"]
+[ext_resource type="AudioStream" uid="uid://dt0jv8scmnscu" path="res://ressources/dark_theme.mp3" id="3_6du11"]
+
+[node name="TestProportions" type="Node2D" unique_id=737991173]
+
+[node name="Background" parent="." unique_id=250843349 instance=ExtResource("1_wmcac")]
+
+[node name="player" parent="." unique_id=472819889 instance=ExtResource("2_uh1qm")]
+position = Vector2(316, 171)
+speed = 200
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=916459579]
+offset = Vector2(320, 180)
+
+[node name="DarkTheme" type="AudioStreamPlayer" parent="." unique_id=1923093043]
+stream = ExtResource("3_6du11")
+autoplay = true
