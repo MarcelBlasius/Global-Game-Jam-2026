@@ -78,7 +78,7 @@ mesh = SubResource("QuadMesh_aeg00")
 visible = false
 
 [node name="player" parent="." unique_id=472819889 instance=ExtResource("6_4la4h")]
-position = Vector2(145, 105)
+position = Vector2(172, 154)
 
 [node name="DarkTheme" type="AudioStreamPlayer" parent="." unique_id=1238683811]
 stream = ExtResource("7_c16ls")
