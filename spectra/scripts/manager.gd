@@ -7,7 +7,11 @@ extends Node2D
 @onready var mat := $Combiner.material as ShaderMaterial
 @export var spawn_enemies = true
 
-@export var enemy_scene : PackedScene 
+@export var enemy_standard_1 : PackedScene 
+
+var current_world : int = 1
+@onready var alpha = $AlphaContainer/AlphaView/WorldAlpha/MeshInstance2D
+@onready var player = $player
 
 func _ready():
 	mat.set_shader_parameter("tex_left", vp_a.get_texture())
@@ -15,10 +19,7 @@ func _ready():
 	mat.set_shader_parameter("tex_alpha", vp_alpha.get_texture())
 	
 	move_backgrounds()
-	
-	if spawn_enemies:
-		for i in range(3):
-			spawn_enemy()
+	level_one()
 
 
 func move_backgrounds():
@@ -37,21 +38,39 @@ func move_backgrounds():
 	background2.global_transform = old_global2
 
 var enemies : Array[Node]
-func spawn_enemy():
-	var enemy = enemy_scene.instantiate()
+
+func spawn_enemy(enemyScene : PackedScene):
+	if !spawn_enemies:
+		return
+	var enemy = enemyScene.instantiate()
 	
 	var viewport := get_viewport()
 	var size := viewport.get_visible_rect().size
-
+	var offset := 40
+	
 	var pos := Vector2(
-	randf_range(0, size.x),
-	randf_range(0, size.y)
-)
+	randf_range(offset, size.x - offset),
+	randf_range(offset, size.y - offset))
+	
+	while (pos.distance_to(player.global_position) < 50):
+		pos = Vector2(
+		randf_range(offset, size.x - offset),
+		randf_range(offset, size.y - offset))
+	
 	enemy.global_position = pos
 	#enemy.direction = dir
 	#enemy.hit_group = "enemies"
 	get_tree().root.add_child.call_deferred(enemy) 
 	enemies.append(enemy)
+
+func level_one():
+	alpha.set_world(current_world)
+	for i in range(3):
+		spawn_enemy(enemy_standard_1)
+		
+
+func spawn_portal_routine(time: float):
+	pass #await 
 
 func remove_enemy(enemy: Node):
 	enemies.erase(enemy)

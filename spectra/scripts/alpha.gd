@@ -15,6 +15,12 @@ var mouse_pressed: bool = false
 var mouse_scroll: float = 1
 var invert_world_debug: bool = false
 
+func set_world(index: int):
+	if (index == 0):
+		invert_world = true
+	elif (index == 1):
+		invert_world = false
+
 func setPosAndRad():
 	var posVals := []
 	posVals.resize(arrayMaxLength * arrayElementSize)
