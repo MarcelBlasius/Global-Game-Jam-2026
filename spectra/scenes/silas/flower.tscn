@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://c8f3q1vvtl1p2"]
 
 [ext_resource type="Texture2D" uid="uid://b06ewonenu7hk" path="res://ressources/spritesheet.png" id="1_amfke"]
+[ext_resource type="PackedScene" uid="uid://b44byjki4pf86" path="res://scenes/silas/light_flicker.tscn" id="2_fys7m"]
 
 [sub_resource type="Curve" id="Curve_fys7m"]
 _data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.5019921, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
@@ -40,3 +41,8 @@ region_rect = Rect2(1312, 384, 16, 16)
 amount = 3
 lifetime = 2.0
 process_material = SubResource("ParticleProcessMaterial_kt4ta")
+
+[node name="PointLight2D" parent="." unique_id=612838345 instance=ExtResource("2_fys7m")]
+flicker_speed = 0.5
+base_energy = 0.15
+flicker_intensity = 0.3

@@ -1,0 +1,14 @@
+[gd_scene format=3 uid="uid://b44byjki4pf86"]
+
+[ext_resource type="Texture2D" uid="uid://cjv4spb8qlehv" path="res://ressources/light_cookie.png" id="1_e53xi"]
+[ext_resource type="Script" uid="uid://c4kd5uwaeg2rd" path="res://scripts/light_flaring.gd" id="2_px2k5"]
+
+[node name="PointLight2D" type="PointLight2D" unique_id=612838345]
+color = Color(0.66500837, 0.86853385, 0.97949654, 1)
+energy = 0.6
+texture = ExtResource("1_e53xi")
+texture_scale = 0.3
+script = ExtResource("2_px2k5")
+flicker_speed = 2.0
+base_energy = 0.6
+flicker_intensity = 0.2
