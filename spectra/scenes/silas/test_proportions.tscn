@@ -2,12 +2,17 @@
 
 [ext_resource type="PackedScene" uid="uid://bv25mwaky7njn" path="res://scenes/silas/background.tscn" id="1_kse60"]
 [ext_resource type="PackedScene" uid="uid://cvq60bc51xilo" path="res://scenes/player.tscn" id="2_ixgpg"]
+[ext_resource type="PackedScene" uid="uid://c8f3q1vvtl1p2" path="res://scenes/silas/flower.tscn" id="3_ixgpg"]
 
 [node name="TestProportions" type="Node2D" unique_id=737991173]
 
 [node name="Background" parent="." unique_id=250843349 instance=ExtResource("1_kse60")]
 
+[node name="Flower" parent="." unique_id=196264919 instance=ExtResource("3_ixgpg")]
+position = Vector2(128, 141)
+
 [node name="player" parent="." unique_id=472819889 instance=ExtResource("2_ixgpg")]
+physics_interpolation_mode = 0
 position = Vector2(316, 171)
 speed = 200
 

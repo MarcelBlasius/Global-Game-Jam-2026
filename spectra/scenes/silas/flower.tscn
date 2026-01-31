@@ -9,6 +9,13 @@ point_count = 3
 [sub_resource type="CurveTexture" id="CurveTexture_hhxuw"]
 curve = SubResource("Curve_fys7m")
 
+[sub_resource type="Gradient" id="Gradient_amfke"]
+colors = PackedColorArray(4.415934, 4.415934, 4.415934, 1, 4.415934, 4.415934, 4.415934, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_fys7m"]
+gradient = SubResource("Gradient_amfke")
+use_hdr = true
+
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_kt4ta"]
 lifetime_randomness = 0.1
 particle_flag_disable_z = true
@@ -19,6 +26,7 @@ emission_sphere_radius = 8.53
 radial_velocity_min = 1.9999776
 radial_velocity_max = 4.9999776
 gravity = Vector3(0, -5, 0)
+color_ramp = SubResource("GradientTexture1D_fys7m")
 alpha_curve = SubResource("CurveTexture_hhxuw")
 
 [node name="Flower" type="Node2D" unique_id=196264919]
