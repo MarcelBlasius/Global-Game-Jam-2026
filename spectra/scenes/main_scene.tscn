@@ -12,11 +12,11 @@
 [ext_resource type="PackedScene" uid="uid://bv25mwaky7njn" path="res://scenes/silas/background.tscn" id="5_nugp1"]
 [ext_resource type="PackedScene" uid="uid://cvq60bc51xilo" path="res://scenes/player.tscn" id="6_4la4h"]
 [ext_resource type="PackedScene" uid="uid://cp8s52c5gtk3a" path="res://scenes/enemies/SunBeetle.tscn" id="7_c1pb6"]
-[ext_resource type="AudioStream" uid="uid://dt0jv8scmnscu" path="res://ressources/dark_theme.mp3" id="7_c16ls"]
 [ext_resource type="PackedScene" uid="uid://dt2713sbc5xi5" path="res://scenes/silas/game_menu.tscn" id="8_18nlu"]
 [ext_resource type="PackedScene" uid="uid://denkrvknh5f3c" path="res://scenes/enemies/GrayBeetle.tscn" id="9_e1cbu"]
 [ext_resource type="PackedScene" uid="uid://d1yclyd20cb0r" path="res://scenes/silas/health_bar.tscn" id="10_6wevv"]
 [ext_resource type="PackedScene" uid="uid://cxil4vxqp2h56" path="res://scenes/silas/game_over_menu.tscn" id="13_4w45t"]
+[ext_resource type="PackedScene" uid="uid://goufg1hekg3d" path="res://scenes/silas/level_hint.tscn" id="17_6u1mn"]
 
 [sub_resource type="Curve" id="Curve_6wevv"]
 _limits = [0.0, 2.0, 0.0, 1.0]
@@ -59,9 +59,11 @@ stream = ExtResource("3_bcnxi")
 
 [node name="PortalSpawn1" type="AudioStreamPlayer" parent="." unique_id=68085857]
 stream = ExtResource("2_si52b")
+volume_db = 10.0
 
 [node name="PortalSpawn2" type="AudioStreamPlayer" parent="." unique_id=1433550259]
 stream = ExtResource("3_01n6w")
+volume_db = 10.0
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=941733479]
 offset = Vector2(320, 180)
@@ -168,9 +170,14 @@ rotation = 1.5707964
 position = Vector2(172, 154)
 speed = 200
 
-[node name="DarkTheme" type="AudioStreamPlayer" parent="." unique_id=1238683811]
-stream = ExtResource("7_c16ls")
-autoplay = true
-parameters/looping = true
+[node name="LevelHint" parent="." unique_id=606772722 instance=ExtResource("17_6u1mn")]
+custom_minimum_size = Vector2(640, 360)
+anchors_preset = 0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_right = 640.0
+offset_bottom = 360.0
+grow_horizontal = 1
+grow_vertical = 1
 
 [connection signal="player_died" from="player" to="." method="_on_player_player_died"]

@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://c25mfmbp1fp1f"]
+
+[ext_resource type="AudioStream" uid="uid://dt0jv8scmnscu" path="res://ressources/dark_theme.mp3" id="1_vwcqx"]
+
+[node name="ThemeMusic" type="AudioStreamPlayer" unique_id=1623057769]
+stream = ExtResource("1_vwcqx")
+autoplay = true
+parameters/looping = true

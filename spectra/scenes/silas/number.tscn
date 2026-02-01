@@ -1,0 +1,18 @@
+[gd_scene format=3 uid="uid://ip2wpvxnoiq"]
+
+[ext_resource type="Script" uid="uid://88jkje6gb0bu" path="res://scripts/number.gd" id="1_5fa3j"]
+[ext_resource type="Texture2D" uid="uid://c462u75ujm40c" path="res://ressources/atlas_textures/level_hint/1.tres" id="2_0ciwh"]
+[ext_resource type="Texture2D" uid="uid://dxrrq4abet3et" path="res://ressources/atlas_textures/level_hint/2.tres" id="3_rw0cf"]
+[ext_resource type="Texture2D" uid="uid://cruimst2jwt3e" path="res://ressources/atlas_textures/level_hint/3.tres" id="4_lbelx"]
+[ext_resource type="Texture2D" uid="uid://bm6o2liab077g" path="res://ressources/atlas_textures/level_hint/0.tres" id="4_o3j8m"]
+[ext_resource type="Texture2D" uid="uid://ng83406gn0gw" path="res://ressources/atlas_textures/level_hint/4.tres" id="5_rmtt6"]
+[ext_resource type="Texture2D" uid="uid://ct7e86m8b0vvt" path="res://ressources/atlas_textures/level_hint/5.tres" id="6_75vmb"]
+[ext_resource type="Texture2D" uid="uid://byrfqo3022sus" path="res://ressources/atlas_textures/level_hint/6.tres" id="7_j2vri"]
+[ext_resource type="Texture2D" uid="uid://dn3ae0lsa68bq" path="res://ressources/atlas_textures/level_hint/7.tres" id="8_jiyoi"]
+[ext_resource type="Texture2D" uid="uid://bsjwl7xxqaoh5" path="res://ressources/atlas_textures/level_hint/8.tres" id="9_ks6al"]
+[ext_resource type="Texture2D" uid="uid://cffye7r44mm77" path="res://ressources/atlas_textures/level_hint/9.tres" id="10_excmw"]
+
+[node name="Number" type="HBoxContainer" unique_id=1451498272]
+theme_override_constants/separation = 2
+script = ExtResource("1_5fa3j")
+textures = Array[AtlasTexture]([ExtResource("4_o3j8m"), ExtResource("2_0ciwh"), ExtResource("3_rw0cf"), ExtResource("4_lbelx"), ExtResource("5_rmtt6"), ExtResource("6_75vmb"), ExtResource("7_j2vri"), ExtResource("8_jiyoi"), ExtResource("9_ks6al"), ExtResource("10_excmw")])
