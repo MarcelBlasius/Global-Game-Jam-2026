@@ -15,15 +15,17 @@ var current_world : int = 1
 @onready var alpha = $AlphaContainer/AlphaView/WorldAlpha/MeshInstance2D as Alpha
 @onready var player = $player
 @onready var background: Background = $Background
+@onready var fade: Fade = $Fade
+@onready var game_over_menu: GameOverMenu = $GameOverMenu
 
 func _ready():
 	mat.set_shader_parameter("tex_left", vp_a.get_texture())
 	mat.set_shader_parameter("tex_right", vp_b.get_texture())
 	mat.set_shader_parameter("tex_alpha", vp_alpha.get_texture())
 	
+	fade.fade_out()
 	move_backgrounds()
 	level_one()
-
 
 func move_backgrounds():
 	var background1 = $Background/BackgroundWorld1
@@ -214,3 +216,6 @@ func end_round():
 ## Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta: float) -> void:
 	#pass
+
+func _on_player_player_died() -> void:
+	game_over_menu.open()

@@ -1,5 +1,7 @@
 extends CharacterBody2D
 
+signal player_died
+
 @export var health = 3
 @export var speed = 400
 const bullet_scene = preload("res://scenes/player_bullet.tscn")
@@ -159,6 +161,7 @@ func take_damage(amount: int):
 	invincivility_Timer.start()
 	
 	if health == 0:
+		player_died.emit()
 		queue_free()
 		spriteParent1.queue_free()
 		spriteParent2.queue_free()

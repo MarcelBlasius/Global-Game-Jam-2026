@@ -1,0 +1,29 @@
+[gd_scene format=3 uid="uid://d3rvb1eynygpa"]
+
+[ext_resource type="Script" uid="uid://6pp18a4ijpv2" path="res://scripts/fade.gd" id="1_g0ou1"]
+
+[node name="Fade" type="Control" unique_id=122845171]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_g0ou1")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1966515605]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(1, 1, 1, 0)
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=1682028664]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
