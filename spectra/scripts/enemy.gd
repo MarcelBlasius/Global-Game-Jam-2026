@@ -5,6 +5,7 @@ extends CharacterBody2D
 @export var speed: int = 500
 @export var player: CharacterBody2D
 @export var bump_force: float = 400.0
+@export var world = 1 # world of entity
 
 #@onready var sprite: Sprite2D = $Sprite2D
 var knockback_velocity: Vector2 = Vector2.ZERO
@@ -78,6 +79,9 @@ func take_damage(amount: int):
 	flash_hit()
 	if health <= 0:
 		die()
+
+func get_world():
+	return world
 
 func die():
 	get_node("/root/main_scene").remove_enemy(self)
