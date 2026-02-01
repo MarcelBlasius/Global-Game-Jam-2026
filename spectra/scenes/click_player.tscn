@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://7h1cc415kl1i"]
+
+[ext_resource type="AudioStream" uid="uid://cabmvr2gii5ci" path="res://ressources/click_1.mp3" id="1_kwv2t"]
+
+[node name="ClickPlayer" type="Node2D" unique_id=1856828427]
+
+[node name="Click1" type="AudioStreamPlayer" parent="." unique_id=1227054163]
+stream = ExtResource("1_kwv2t")

@@ -121,8 +121,8 @@ func level_two():
 
 func spawn_portal_routine(pos : Vector2, radius : float, time: float = 0):
 	await get_tree().create_timer(time).timeout
-	#var timer = Timer.new()#	
-	
+	#var timer = Timer.new()#
+		
 	var maskPos := Alpha.MaskPos.new()
 	maskPos.pos = pos
 	maskPos.radius = 0
@@ -138,6 +138,12 @@ func spawn_end_portal_routine(pos : Vector2, time: float = 0):
 	await tree.create_timer(time).timeout
 	#var timer = Timer.new()#	
 	
+	var sound = randi_range(0, 1)
+	if (sound == 0):
+		$PortalSpawn1.play()
+	else:
+		$PortalSpawn2.play()
+		
 	var maskPos := Alpha.MaskPos.new()
 	maskPos.pos = pos
 	maskPos.radius = 0

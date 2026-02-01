@@ -67,14 +67,16 @@ polygon = PackedVector2Array(59.1, -64, -59, -64, -63.8, -59, -64, 61, -60.3, 64
 [node name="Sprite2D" type="Sprite2D" parent="World1" unique_id=775491790]
 modulate = Color(1, 0.76552, 0.6855334, 1)
 material = SubResource("ShaderMaterial_cml8g")
+position = Vector2(0, -0.5)
 texture = ExtResource("3_cml8g")
 region_enabled = true
-region_rect = Rect2(1342, 195, 28, 29)
+region_rect = Rect2(1346, 133, 28, 28)
 
 [node name="World2" type="Node2D" parent="." unique_id=2012854484]
 
 [node name="Sprite2D" type="Sprite2D" parent="World2" unique_id=1064888869]
 material = SubResource("ShaderMaterial_c4w8v")
+position = Vector2(0, -0.5)
 texture = ExtResource("3_cml8g")
 region_enabled = true
 region_rect = Rect2(1342, 195, 28, 29)
