@@ -1,3 +1,4 @@
+class_name CustomPlayer
 extends CharacterBody2D
 
 signal player_died

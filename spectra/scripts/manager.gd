@@ -13,7 +13,7 @@ const enemy_whisp_dark = preload("res://scenes/enemies/DarkWhisp.tscn")
 
 var current_world : int = 1
 @onready var alpha = $AlphaContainer/AlphaView/WorldAlpha/MeshInstance2D as Alpha
-@onready var player = $player
+@onready var player = $player as CustomPlayer
 @onready var background: Background = $Background
 @onready var fade: Fade = $Fade
 @onready var game_over_menu: GameOverMenu = $GameOverMenu
@@ -209,7 +209,7 @@ func find_by_key(search_key: Node) -> Enemy_Info:
 	
 func remove_enemy(enemy: Node):
 	var enemy_info = find_by_key(enemy)
-	enemies.erase(enemy)
+	enemies.erase(enemy_info)
 	enemy_counter -= 1
 	if (enemy_counter <= 0):
 		enemy_counter = 0
@@ -221,6 +221,7 @@ func remove_enemy(enemy: Node):
 func _process(_delta: float):
 	check_portal_despawn()
 	#print_debug(await $AlphaContainer/AlphaView.get_world(get_viewport().get_mouse_position()))
+	#check_player_spell()
 	pass
 	#if (vp_alpha):
 		#await RenderingServer.frame_post_draw
@@ -237,3 +238,17 @@ func end_round():
 
 func _on_player_player_died() -> void:
 	game_over_menu.open()
+
+var player_skill_cd : float = 5
+var player_skill_current_cd : float = -100000
+func _unhandled_input(input_event: InputEvent) -> void:
+	# If tool enabled, we don't want to handle our input in the editor.
+	if Engine.is_editor_hint():
+		return
+
+	if input_event is InputEventKey and input_event.pressed and not input_event.echo:
+		if input_event.keycode == KEY_E:
+			if (Time.get_ticks_msec() - player_skill_current_cd >= player_skill_cd * 1000):
+				spawn_portal_routine(player.global_position, 50, 0)
+				player_skill_current_cd = Time.get_ticks_msec()
+			
