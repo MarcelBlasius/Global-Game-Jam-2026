@@ -113,6 +113,12 @@ func shoot(dir: Vector2):
 	
 	if dir == Vector2.ZERO:
 		return
+	
+	var sound = randi_range(0, 1)
+	if (sound == 0):
+		$Shot1.play()
+	else:
+		$Shot2.play()
 		
 	spawn_bullet(dir, offset)
 	shoot_timer.start(fire_rate)
@@ -152,12 +158,19 @@ func flash_hit():
 func take_damage(amount: int):
 	if !invincivility_Timer.is_stopped(): return
 	
+	
 	health -= amount
 	
 	if (health_bar):
 		health_bar.remove_lives(amount)
 	
 	flash_hit()
+	var sound = randi_range(0, 1)
+	if (sound == 0):
+		$Hit1.play()
+	else:
+		$Hit2.play()
+		
 	invincivility_Timer.start()
 	
 	if health == 0:

@@ -1,8 +1,10 @@
 [gd_scene format=3 uid="uid://bf320aw11bpmw"]
 
 [ext_resource type="Script" uid="uid://d3jeg0sopfqrc" path="res://scripts/whisp.gd" id="1_0ds48"]
+[ext_resource type="AudioStream" uid="uid://dwdrpu1vjn85w" path="res://ressources/hit_1.mp3" id="2_8tkkf"]
 [ext_resource type="Shader" uid="uid://cstew5jd8ujmt" path="res://shaders/flash.gdshader" id="2_pyesk"]
 [ext_resource type="Texture2D" uid="uid://b06ewonenu7hk" path="res://ressources/spritesheet.png" id="3_8tkkf"]
+[ext_resource type="AudioStream" uid="uid://bsmkdiumj6t6e" path="res://ressources/hit_2.mp3" id="3_s2o2b"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_0ds48"]
 shader = ExtResource("2_pyesk")
@@ -49,6 +51,12 @@ script = ExtResource("1_0ds48")
 health = 1
 speed = 100
 world = 0
+
+[node name="Hit1" type="AudioStreamPlayer" parent="." unique_id=922432640]
+stream = ExtResource("2_8tkkf")
+
+[node name="Hit2" type="AudioStreamPlayer" parent="." unique_id=911723159]
+stream = ExtResource("3_s2o2b")
 
 [node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="." unique_id=1452213936]
 scale = Vector2(0.21484375, 0.24414063)
