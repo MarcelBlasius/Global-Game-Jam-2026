@@ -75,13 +75,22 @@ func flash_hit():
 	await get_tree().create_timer(0.1).timeout
 	sprite1.material.set_shader_parameter("active", false)
 	sprite2.material.set_shader_parameter("active", false)
-	
+
+func play_hit(path):
+	var sfx_player = AudioStreamPlayer.new()
+	var sfx_resource = load(path)
+	sfx_player.stream = sfx_resource
+	get_node(("/root/main_scene")).add_child(sfx_player)
+	sfx_player.play();
+	await get_tree().create_timer(5).timeout
+	get_node(("/root/main_scene")).remove_child(sfx_player)
+
 func take_damage(amount: int):
 	var sound = randi_range(0, 1)
 	if (sound == 0):
-		$Hit1.play()
+		play_hit("res://ressources/hit_1.mp3")
 	else:
-		$Hit2.play()
+		play_hit("res://ressources/hit_2.mp3")
 	
 	health -= amount
 	flash_hit()
