@@ -8,6 +8,8 @@ extends Node2D
 @export var spawn_enemies = true
 
 const enemy_standard_1 = preload("res://scenes/enemies/enemy_two_worlds.tscn") 
+const enemy_whisp_sun = preload("res://scenes/enemies/SunWhisp.tscn")
+const enemy_whisp_dark = preload("res://scenes/enemies/DarkWhisp.tscn")
 
 var current_world : int = 1
 @onready var alpha = $AlphaContainer/AlphaView/WorldAlpha/MeshInstance2D as Alpha
@@ -49,8 +51,10 @@ func get_random_pos(offset: int = 40) -> Vector2:
 		randf_range(offset, size.y - offset))
 	return pos
 	
+var enemy_counter = 0
 
 func spawn_enemy(enemyScene: PackedScene, time: float = 0):
+	enemy_counter += 1
 	var timer = get_tree().create_timer(time)
 	await timer.timeout
 	
@@ -76,12 +80,28 @@ func spawn_enemy(enemyScene: PackedScene, time: float = 0):
 	add_child.call_deferred(enemy) 
 	enemies.append(enemy)
 
+var randis := [enemy_standard_1, enemy_whisp_sun, enemy_whisp_dark] 
+
 func level_one():
 	alpha.set_world(current_world)
 	var time = 2.0
 	for i in range(2):
 		spawn_enemy(enemy_standard_1, time)
 		time += 2
+	
+	var pos = get_random_pos(150)
+	spawn_portal_routine(pos, 8)
+	
+func level_two():
+	alpha.set_world(current_world)
+	var time = 2.0
+	var randamount = randi_range(5, 10)
+	
+	for i in range(randamount):
+		var randi = randi_range(0, 2)
+		var randif = randf_range(2, 5)
+		spawn_enemy(randis[randi], time)
+		time += randif
 	
 	var pos = get_random_pos(150)
 	spawn_portal_routine(pos, 8)
@@ -170,7 +190,9 @@ func check_portal_despawn():
 	
 func remove_enemy(enemy: Node):
 	enemies.erase(enemy)
-	if (enemies.size() == 0):
+	enemy_counter -= 1
+	if (enemy_counter <= 0):
+		enemy_counter = 0
 		spawn_end_portal_routine(enemy.global_position)
 		return
 	spawn_portal_routine(enemy.global_position)
@@ -186,7 +208,7 @@ func _process(_delta: float):
 
 func end_round():
 	background.fade_out_tutorial()
-	level_one()
+	level_two()
 	print("oioioioioi")
 	pass
 ## Called every frame. 'delta' is the elapsed time since the previous frame.
