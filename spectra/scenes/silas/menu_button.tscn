@@ -1,10 +1,21 @@
 [gd_scene format=3 uid="uid://c5fuyafloib7"]
 
 [ext_resource type="Script" uid="uid://qefuwcjn8fqt" path="res://scripts/menu_button.gd" id="1_n8bpg"]
+[ext_resource type="AudioStream" uid="uid://dwdrpu1vjn85w" path="res://ressources/hit_1.mp3" id="3_8kb0x"]
+[ext_resource type="AudioStream" uid="uid://ba3se4nmjp6uw" path="res://ressources/click2.mp3" id="3_p8ip7"]
 
 [node name="MenuButton" type="TextureButton" unique_id=936845202]
 stretch_mode = 3
 script = ExtResource("1_n8bpg")
 
+[node name="HoverSound" type="AudioStreamPlayer" parent="." unique_id=631764213]
+stream = ExtResource("3_8kb0x")
+volume_db = -5.0
+
+[node name="PressSound" type="AudioStreamPlayer" parent="." unique_id=1859818865]
+stream = ExtResource("3_p8ip7")
+
 [connection signal="button_down" from="." to="." method="_on_button_down"]
 [connection signal="button_up" from="." to="." method="_on_button_up"]
+[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
+[connection signal="pressed" from="." to="." method="_on_pressed"]
