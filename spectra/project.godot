@@ -11,13 +11,14 @@ config_version=5
 [application]
 
 config/name="Spectra"
-run/main_scene="uid://bkn7yb5jcjed1"
+run/main_scene="uid://owtaduiouwa3"
 config/features=PackedStringArray("4.6", "GL Compatibility")
 config/icon="res://icon.svg"
 
 [autoload]
 
 Settings="*uid://chhbbgg32e8fj"
+ThemeMusic="*uid://c25mfmbp1fp1f"
 
 [display]
 
