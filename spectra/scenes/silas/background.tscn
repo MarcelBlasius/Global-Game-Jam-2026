@@ -26,7 +26,7 @@ region_rect = Rect2(0, 384, 640, 360)
 position = Vector2(320, 220)
 texture = ExtResource("1_hky1a")
 region_enabled = true
-region_rect = Rect2(1408, 88, 208, 88)
+region_rect = Rect2(1424, 96, 296, 80)
 
 [node name="BackgroundWorld2" type="Node2D" parent="." unique_id=1966780275]
 
@@ -40,7 +40,7 @@ region_rect = Rect2(656, 384, 640, 360)
 position = Vector2(320, 220)
 texture = ExtResource("1_hky1a")
 region_enabled = true
-region_rect = Rect2(1408, -8, 208, 88)
+region_rect = Rect2(1424, 0, 296, 80)
 
 [node name="Flower" parent="BackgroundWorld2" unique_id=196264919 instance=ExtResource("2_ci8kt")]
 position = Vector2(128, 141)
