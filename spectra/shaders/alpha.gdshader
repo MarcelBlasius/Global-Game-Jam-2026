@@ -1,10 +1,13 @@
 shader_type canvas_item;
 
+uniform sampler2D tex_noise;
+
 uniform float posValues[40]; // position  and radius packed together in 4 values
 uniform int value_count;
 
 uniform float corona = 40;
 uniform bool invert_world;
+uniform float time_millis;
 //void vertex() {
 	//// Called for every vertex the material is visible on.
 //}
@@ -70,6 +73,12 @@ float smoothDifference(float d1, float d2, float k)
 
 void fragment() {
 	// Called for every pixel the material is visible on.
+	vec2 noiseUV = UV + vec2(0.3, 0.4) * time_millis * 0.00001;
+	int uInt = int(noiseUV.x);
+	int vInt = int(noiseUV.y);
+	noiseUV = noiseUV - vec2(float(uInt), float(vInt)); 
+	
+	vec4 noise = texture(tex_noise, noiseUV);
 	vec2 uv = UV * vec2(640, 360);
 	float distResult = 9999999.0;
 	for(int i = 0; i< value_count; i++)
@@ -113,7 +122,8 @@ void fragment() {
 		float intersection = smoothIntersection(distResult, dist, 20);
 		distResult = differenceSDF(union, intersection);
 	}
-
+	
+	distResult -= ((noise.x + 1.0)/ 2.0)  * 30.0;
     float a = calcAlpha(distResult);
 		
 	if (invert_world)

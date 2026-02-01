@@ -16,6 +16,8 @@ var mouse_pressed: bool = false
 var mouse_scroll: float = 1
 var invert_world_debug: bool = false
 
+@onready var vp_noise := $SubViewport
+
 func set_world(index: int):
 	if (index == 0):
 		invert_world = true
@@ -42,6 +44,7 @@ func setPosAndRad():
 	material.set_shader_parameter("value_count", arrayMaxLength)
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	material.set_shader_parameter("tex_noise", vp_noise.get_texture())
 	#posList.resize(arrayMaxLength)
 	#print(posList.size())
 	#for i in range(arrayMaxLength):
@@ -104,5 +107,6 @@ func _process(_delta: float) -> void:
 	#posList[0].worldBit = invert_world_debug if 1 else 0
 	setPosAndRad()
 	material.set_shader_parameter("invert_world", invert_world)
+	material.set_shader_parameter("time_millis", Time.get_ticks_msec())
 	
 	pass

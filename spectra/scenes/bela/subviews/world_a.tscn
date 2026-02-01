@@ -2,6 +2,7 @@
 
 [ext_resource type="Shader" uid="uid://5bqcxyn7775i" path="res://shaders/alpha.gdshader" id="1_c8xer"]
 [ext_resource type="Script" uid="uid://dlvp6n60jdk5e" path="res://scripts/alpha.gd" id="2_mtvx8"]
+[ext_resource type="PackedScene" uid="uid://dg1hwbo6oki8" path="res://scenes/bela/noise_test.tscn" id="3_ltjy5"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_mtvx8"]
 shader = ExtResource("1_c8xer")
@@ -9,6 +10,7 @@ shader_parameter/posValues = PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
 shader_parameter/value_count = 0
 shader_parameter/corona = 5.0
 shader_parameter/invert_world = false
+shader_parameter/time_millis = 0.0
 
 [sub_resource type="QuadMesh" id="QuadMesh_ltjy5"]
 
@@ -24,3 +26,8 @@ rotation = 3.1415927
 scale = Vector2(-640, 360)
 mesh = SubResource("QuadMesh_ltjy5")
 script = ExtResource("2_mtvx8")
+
+[node name="SubViewport" type="SubViewport" parent="MeshInstance2D" unique_id=54492146]
+size = Vector2i(640, 320)
+
+[node name="NoiseTest" parent="MeshInstance2D/SubViewport" unique_id=1102631375 instance=ExtResource("3_ltjy5")]
