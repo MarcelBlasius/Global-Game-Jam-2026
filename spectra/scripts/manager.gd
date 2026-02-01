@@ -12,6 +12,7 @@ const enemy_standard_1 = preload("res://scenes/enemies/enemy_two_worlds.tscn")
 var current_world : int = 1
 @onready var alpha = $AlphaContainer/AlphaView/WorldAlpha/MeshInstance2D as Alpha
 @onready var player = $player
+@onready var background: Background = $Background
 
 func _ready():
 	mat.set_shader_parameter("tex_left", vp_a.get_texture())
@@ -101,6 +102,7 @@ func remove_enemy(enemy: Node):
 	if (enemies.size() == 0):
 		end_round()
 		
+		
 func _process(_delta: float):
 	#print_debug(await $AlphaContainer/AlphaView.get_world(get_viewport().get_mouse_position()))
 	pass
@@ -109,6 +111,7 @@ func _process(_delta: float):
 		#mat.set_shader_parameter("tex_alpha", vp_alpha.get_texture())
 
 func end_round():
+	background.fade_out_tutorial()
 	print("oioioioioi")
 	pass
 ## Called every frame. 'delta' is the elapsed time since the previous frame.

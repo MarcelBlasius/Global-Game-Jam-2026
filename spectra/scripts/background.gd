@@ -6,7 +6,14 @@ extends Node2D
 @onready var tutorial_1: Sprite2D = $BackgroundWorld1/Tutorial
 @onready var tutorial_2: Sprite2D = $BackgroundWorld2/Tutorial
 
+var is_faded_out := false
+
 func fade_out_tutorial() -> void:
+	if (is_faded_out):
+		return
+	
+	is_faded_out = true
+	
 	var tween = create_tween()
 	
 	tween.set_parallel(true)

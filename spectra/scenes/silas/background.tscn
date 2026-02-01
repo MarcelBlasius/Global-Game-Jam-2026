@@ -12,6 +12,7 @@ size = Vector2(36, 360)
 
 [node name="Background" type="Node2D" unique_id=250843349]
 script = ExtResource("1_35j2h")
+tutorial_fade_out_duration = 5
 
 [node name="BackgroundWorld1" type="Node2D" parent="." unique_id=1668724930]
 
