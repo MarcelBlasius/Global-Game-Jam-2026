@@ -19,6 +19,7 @@ shader = ExtResource("3_dqkch")
 shader_parameter/active = false
 shader_parameter/flash_color = Vector4(0.8, 0.5, 0.5, 1)
 shader_parameter/alpha = 1.0
+shader_parameter/charge_ability = 0.0
 
 [sub_resource type="Animation" id="Animation_qhqgy"]
 length = 0.001

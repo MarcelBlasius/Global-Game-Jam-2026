@@ -12,6 +12,7 @@ shader = ExtResource("4_2dejk")
 shader_parameter/active = false
 shader_parameter/flash_color = Vector4(0.8, 0.5, 0.5, 1)
 shader_parameter/alpha = 0.5
+shader_parameter/charge_ability = 0.0
 
 [sub_resource type="Shader" id="Shader_mbidb"]
 code = "shader_type canvas_item;
