@@ -106,9 +106,9 @@ func level_one():
 func level_two():
 	alpha.set_world(current_world)
 	var time = 0.5
-	var randamount = randi_range(5, 7)
+	var randamount = randi_range(4, 4)
 	
-	for i in range(randamount):
+	for i in range(randamount + roundCounter):
 		var randi = randi_range(0, randis.size() - 1)
 		var randif = randf_range(1.5, 2)
 		spawn_enemy(randis[randi], spawnis[randi], time)
@@ -239,9 +239,13 @@ func _process(_delta: float):
 		#await RenderingServer.frame_post_draw
 		#mat.set_shader_parameter("tex_alpha", vp_alpha.get_texture())
 
+var roundCounter : int = 0
+
 func end_round():
+	
 	background.fade_out_tutorial()
 	level_two()
+	roundCounter += 1
 	print("oioioioioi")
 	pass
 ## Called every frame. 'delta' is the elapsed time since the previous frame.
