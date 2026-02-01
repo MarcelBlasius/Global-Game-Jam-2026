@@ -79,7 +79,7 @@ func spawn_enemy(enemyScene: PackedScene, time: float = 0):
 func level_one():
 	alpha.set_world(current_world)
 	var time = 2.0
-	for i in range(3):
+	for i in range(2):
 		spawn_enemy(enemy_standard_1, time)
 		time += 2
 	
@@ -101,7 +101,10 @@ func spawn_portal_routine(pos : Vector2, time: float = 0):
 	animate_portal_spawn_routine(maskPos, 50, spawn_curve)
 	
 func spawn_end_portal_routine(pos : Vector2, time: float = 0):
-	await get_tree().create_timer(time).timeout
+	var tree = get_tree()
+	if (tree == null):
+		return
+	await tree.create_timer(time).timeout
 	#var timer = Timer.new()#	
 	
 	var maskPos := Alpha.MaskPos.new()
@@ -109,15 +112,23 @@ func spawn_end_portal_routine(pos : Vector2, time: float = 0):
 	maskPos.radius = 0
 	maskPos.worldBit = 1
 	alpha.posList.append(maskPos)
-	animate_portal_spawn_routine(maskPos, 640, finish_curve)
-
-
-
-func animate_portal_spawn_routine(mask : Alpha.MaskPos, radius: float, curve: Curve):
+	var animLength = 7.0
+	animate_portal_spawn_routine(maskPos, 640, finish_curve, animLength)
+	
+	if (tree == null):
+		return
+	await tree.create_timer(animLength).timeout
+	current_world = 1 if (current_world == 0) else 0
+	alpha.set_world(current_world)
+	alpha.posList.erase(maskPos)
+	end_round()
+	
+	
+func animate_portal_spawn_routine(mask : Alpha.MaskPos, radius: float, curve: Curve, animLength : float = 7.0):
 	var current_mills = Time.get_ticks_msec()
-	var animLength = 7.0 * 1000
-	while (Time.get_ticks_msec() - current_mills < animLength):
-		var t = (Time.get_ticks_msec() - current_mills) / (animLength)
+	var animLengthMills = animLength * 1000
+	while (Time.get_ticks_msec() - current_mills < animLengthMills):
+		var t = (Time.get_ticks_msec() - current_mills) / (animLengthMills)
 		var y = curve.sample(t)
 		mask.radius = radius * y
 		var tree = get_tree()
@@ -145,19 +156,21 @@ func animate_portal_despawn_routine(mask : Alpha.MaskPos, radius: float, curve: 
 	current_maskPos_to_delete = null
 
 var current_maskPos_to_delete : Alpha.MaskPos
+var end_Mask_not_to_delete : Alpha.MaskPos
 
 func check_portal_despawn():
 	if (current_maskPos_to_delete != null):
 		return
 	if (alpha.posList.size() > 2):
-		current_maskPos_to_delete = alpha.posList.get(0)
+		var temp = alpha.posList.get(0)
+		if (temp == end_Mask_not_to_delete):
+			return
+		current_maskPos_to_delete = temp
 		animate_portal_despawn_routine(current_maskPos_to_delete, 50, finish_curve)
 	
 func remove_enemy(enemy: Node):
 	enemies.erase(enemy)
 	if (enemies.size() == 0):
-		
-		end_round()
 		spawn_end_portal_routine(enemy.global_position)
 		return
 	spawn_portal_routine(enemy.global_position)
@@ -173,6 +186,7 @@ func _process(_delta: float):
 
 func end_round():
 	background.fade_out_tutorial()
+	level_one()
 	print("oioioioioi")
 	pass
 ## Called every frame. 'delta' is the elapsed time since the previous frame.

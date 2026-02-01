@@ -39,6 +39,9 @@ func _ready() -> void:
 	spriteParent2.get_parent().remove_child(spriteParent2)
 	view2.add_child(spriteParent2)
 	spriteParent2.global_transform = old_global2
+	
+	spriteParent1.visible = false
+	spriteParent2.visible = false
 
 func _process(_delta: float) -> void:
 	#await get_tree().physics_frame
@@ -68,6 +71,9 @@ func _physics_process(_delta):
 			
 			if body.has_method("take_damage"):
 				body.take_damage(1)
+				
+	spriteParent1.visible = true
+	spriteParent2.visible = true
 
 func flash_hit():
 	sprite1.material.set_shader_parameter("active", true)
