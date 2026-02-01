@@ -76,6 +76,12 @@ func _physics_process(_delta: float):
 	
 	if !shoot_timer.is_stopped(): return
 		
+	var sound = randi_range(0, 1)
+	if (sound == 0):
+		$Shot1.play()
+	else:
+		$Shot2.play()
+		
 	var size = sprite1.get_rect().size * sprite1.scale
 	var offset = transform.y * size.y
 	

@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://crann8giao7wm"]
 
-[ext_resource type="Script" path="res://scripts/player_bullet.gd" id="1_opn7j"]
+[ext_resource type="Script" uid="uid://yiuofvc3qxaw" path="res://scripts/player_bullet.gd" id="1_opn7j"]
 [ext_resource type="PackedScene" uid="uid://dnhn13eqhoom" path="res://scenes/explosion.tscn" id="2_6lfmo"]
 [ext_resource type="Texture2D" uid="uid://b663llngg2mc" path="res://ressources/projectile_animation_world_2.png" id="3_rfp20"]
 [ext_resource type="Texture2D" uid="uid://be28w17k10e8s" path="res://ressources/projectile_animation_world_1.png" id="4_opn7j"]

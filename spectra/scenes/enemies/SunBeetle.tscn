@@ -2,7 +2,9 @@
 
 [ext_resource type="Script" uid="uid://dw64eq2jvudvt" path="res://scripts/sun_beetle.gd" id="1_galgx"]
 [ext_resource type="Shader" uid="uid://cstew5jd8ujmt" path="res://shaders/flash.gdshader" id="2_gfvr7"]
+[ext_resource type="AudioStream" uid="uid://ru3uy7qffhdc" path="res://ressources/shot_1.mp3" id="2_p0fux"]
 [ext_resource type="Texture2D" uid="uid://b06ewonenu7hk" path="res://ressources/spritesheet.png" id="3_buurg"]
+[ext_resource type="AudioStream" uid="uid://dwsntiy73m7io" path="res://ressources/shot_2.mp3" id="3_ythbo"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3l0u4"]
 size = Vector2(7.666663, 10.333332)
@@ -35,6 +37,12 @@ collision_mask = 2
 platform_floor_layers = 4294967040
 script = ExtResource("1_galgx")
 fire_rate = 4.0
+
+[node name="Shot1" type="AudioStreamPlayer" parent="." unique_id=106990418]
+stream = ExtResource("2_p0fux")
+
+[node name="Shot2" type="AudioStreamPlayer" parent="." unique_id=616370605]
+stream = ExtResource("3_ythbo")
 
 [node name="CollisionPolygon2D" type="CollisionShape2D" parent="." unique_id=466469136]
 position = Vector2(-12.281251, -12.03125)

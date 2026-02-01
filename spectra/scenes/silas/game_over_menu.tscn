@@ -1,0 +1,21 @@
+[gd_scene format=3 uid="uid://cxil4vxqp2h56"]
+
+[ext_resource type="Texture2D" uid="uid://dwlve5tmpyjlm" path="res://ressources/atlas_textures/game_ui/game_over_screen.tres" id="1_hro5e"]
+[ext_resource type="Script" uid="uid://c1unsy4awn8uc" path="res://scripts/game_over_menu.gd" id="1_pp5x3"]
+[ext_resource type="PackedScene" uid="uid://d3rvb1eynygpa" path="res://scenes/silas/fade.tscn" id="3_7a0xo"]
+
+[node name="GameOverMenu" type="Control" unique_id=143285209]
+process_mode = 3
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_pp5x3")
+game_over_screen_texture = ExtResource("1_hro5e")
+
+[node name="Fade" parent="." unique_id=122845171 instance=ExtResource("3_7a0xo")]
+layout_mode = 1
+
+[connection signal="fade_in_finished" from="Fade" to="." method="_on_fade_fade_in_finished"]

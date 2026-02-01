@@ -1,7 +1,11 @@
 [gd_scene format=3 uid="uid://cvq60bc51xilo"]
 
 [ext_resource type="Script" uid="uid://bub6p8m3dxcfn" path="res://scripts/player.gd" id="1_qhqgy"]
+[ext_resource type="AudioStream" uid="uid://ru3uy7qffhdc" path="res://ressources/shot_1.mp3" id="2_smehm"]
 [ext_resource type="Shader" uid="uid://cstew5jd8ujmt" path="res://shaders/flash.gdshader" id="3_dqkch"]
+[ext_resource type="AudioStream" uid="uid://dwsntiy73m7io" path="res://ressources/shot_2.mp3" id="3_ur7pv"]
+[ext_resource type="AudioStream" uid="uid://dwdrpu1vjn85w" path="res://ressources/hit_1.mp3" id="4_y4r1p"]
+[ext_resource type="AudioStream" uid="uid://bsmkdiumj6t6e" path="res://ressources/hit_2.mp3" id="5_d2wvv"]
 [ext_resource type="Texture2D" uid="uid://dbhq6w72enrba" path="res://ressources/atlas_textures/player/player_move_left.tres" id="5_qlg0r"]
 [ext_resource type="Texture2D" uid="uid://clrod1vfregwv" path="res://ressources/atlas_textures/player/player_move_right_world1.tres" id="6_fjrip"]
 [ext_resource type="Texture2D" uid="uid://kw8ktus0hrdp" path="res://ressources/atlas_textures/player/player_move_left_world1.tres" id="6_smehm"]
@@ -168,6 +172,18 @@ physics_interpolation_mode = 1
 collision_layer = 5
 collision_mask = 18
 script = ExtResource("1_qhqgy")
+
+[node name="Shot1" type="AudioStreamPlayer" parent="." unique_id=1673748946]
+stream = ExtResource("2_smehm")
+
+[node name="Shot2" type="AudioStreamPlayer" parent="." unique_id=2096664781]
+stream = ExtResource("3_ur7pv")
+
+[node name="Hit1" type="AudioStreamPlayer" parent="." unique_id=987187095]
+stream = ExtResource("4_y4r1p")
+
+[node name="Hit2" type="AudioStreamPlayer" parent="." unique_id=178501090]
+stream = ExtResource("5_d2wvv")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=766425432]
 position = Vector2(0.5, -11)
