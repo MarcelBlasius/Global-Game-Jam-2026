@@ -104,6 +104,17 @@ grow_vertical = 1
 theme_override_constants/margin_left = 16
 theme_override_constants/margin_top = 16
 
+[node name="GameOverMenu" parent="." unique_id=143285209 instance=ExtResource("13_4w45t")]
+z_index = 102
+custom_minimum_size = Vector2(640, 360)
+anchors_preset = 0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_right = 640.0
+offset_bottom = 360.0
+grow_horizontal = 1
+grow_vertical = 1
+
 [node name="GameMenu" parent="." unique_id=1060992188 instance=ExtResource("8_18nlu")]
 z_index = 103
 offset_left = 320.0
@@ -145,16 +156,5 @@ speed = 200
 stream = ExtResource("7_c16ls")
 autoplay = true
 parameters/looping = true
-
-[node name="GameOverMenu" parent="." unique_id=143285209 instance=ExtResource("13_4w45t")]
-z_index = 102
-custom_minimum_size = Vector2(640, 360)
-anchors_preset = 0
-anchor_right = 0.0
-anchor_bottom = 0.0
-offset_right = 640.0
-offset_bottom = 320.0
-grow_horizontal = 1
-grow_vertical = 1
 
 [connection signal="player_died" from="player" to="." method="_on_player_player_died"]
