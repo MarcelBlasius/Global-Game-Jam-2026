@@ -11,6 +11,7 @@ class MaskPos:
 
 var mat : ShaderMaterial
 var posList : Array[MaskPos]
+var endPortal : MaskPos
 const arrayMaxLength := 10
 const arrayElementSize := 4
 var invert_world := false
@@ -31,12 +32,23 @@ func setPosAndRad():
 	var posVals := []
 	posVals.resize(arrayMaxLength * arrayElementSize)
 	
-	for i in range(arrayMaxLength):
-		if (i < posList.size()):
-			posVals[i * arrayElementSize] = posList[i].pos.x
-			posVals[i * arrayElementSize + 1] = posList[i].pos.y
-			posVals[i * arrayElementSize + 2] = posList[i].radius
-			posVals[i * arrayElementSize + 3] = posList[i].worldBit
+	if (endPortal == null):
+		posVals[0] = -1000
+		posVals[1] = -1000
+		posVals[2] = -1000
+		posVals[3] = -1000
+	else:
+		posVals[0] = endPortal.pos.x
+		posVals[1] = endPortal.pos.y
+		posVals[2] = endPortal.radius	
+		posVals[3] = endPortal.worldBit
+	
+	for i in range(1, arrayMaxLength):
+		if (i - 1 < posList.size()):
+			posVals[i * arrayElementSize] = posList[i - 1].pos.x
+			posVals[i * arrayElementSize + 1] = posList[i - 1].pos.y
+			posVals[i * arrayElementSize + 2] = posList[i - 1].radius
+			posVals[i * arrayElementSize + 3] = posList[i - 1].worldBit
 		else:
 			posVals[i * arrayElementSize] = -1000
 			posVals[i * arrayElementSize + 1] = -1000

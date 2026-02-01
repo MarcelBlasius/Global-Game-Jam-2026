@@ -40,7 +40,11 @@ func move_backgrounds():
 	$Subview2.add_child(background2)
 	background2.global_transform = old_global2
 
-var enemies : Array[Node]
+class Enemy_Info:
+	var enemy: Node
+	var radius: float
+
+var enemies : Array[Enemy_Info]
 
 func get_random_pos(offset: int = 40) -> Vector2:
 	var viewport := get_viewport()
@@ -53,7 +57,7 @@ func get_random_pos(offset: int = 40) -> Vector2:
 	
 var enemy_counter = 0
 
-func spawn_enemy(enemyScene: PackedScene, time: float = 0):
+func spawn_enemy(enemyScene: PackedScene, death_rad : float, time: float = 0):
 	enemy_counter += 1
 	var timer = get_tree().create_timer(time)
 	await timer.timeout
@@ -78,19 +82,22 @@ func spawn_enemy(enemyScene: PackedScene, time: float = 0):
 	#enemy.direction = dir
 	#enemy.hit_group = "enemies"
 	add_child.call_deferred(enemy) 
-	enemies.append(enemy)
+	var enemy_info := Enemy_Info.new()
+	enemy_info.enemy = enemy
+	enemy_info.radius = death_rad
+	enemies.append(enemy_info)
 
 var randis := [enemy_standard_1, enemy_whisp_sun, enemy_whisp_dark] 
-
+var spawnis := [80, 30, 30]
 func level_one():
 	alpha.set_world(current_world)
 	var time = 2.0
-	for i in range(1):
-		spawn_enemy(enemy_standard_1, time)
+	for i in range(3):
+		spawn_enemy(enemy_standard_1, spawnis[0], time)
 		time += 2
 	
 	var pos = get_random_pos(150)
-	spawn_portal_routine(pos, 1)
+	spawn_portal_routine(pos, 60,  1)
 	
 func level_two():
 	alpha.set_world(current_world)
@@ -100,7 +107,7 @@ func level_two():
 	for i in range(randamount):
 		var randi = randi_range(0, 2)
 		var randif = randf_range(2, 5)
-		spawn_enemy(randis[randi], time)
+		spawn_enemy(randis[randi], spawnis[randi], time)
 		time += randif
 	
 	var pos = get_random_pos(150)
@@ -109,7 +116,7 @@ func level_two():
 @export var spawn_curve: Curve
 @export var finish_curve: Curve
 
-func spawn_portal_routine(pos : Vector2, time: float = 0):
+func spawn_portal_routine(pos : Vector2, radius : float, time: float = 0):
 	await get_tree().create_timer(time).timeout
 	#var timer = Timer.new()#	
 	
@@ -117,7 +124,7 @@ func spawn_portal_routine(pos : Vector2, time: float = 0):
 	maskPos.pos = pos
 	maskPos.radius = 0
 	maskPos.worldBit = 0
-	maskPos.endRadius = 60
+	maskPos.endRadius = radius
 	alpha.posList.append(maskPos)
 	animate_portal_spawn_routine(maskPos, spawn_curve)
 	
@@ -133,7 +140,7 @@ func spawn_end_portal_routine(pos : Vector2, time: float = 0):
 	maskPos.radius = 0
 	maskPos.worldBit = 1
 	maskPos.endRadius = 640
-	alpha.posList.append(maskPos)
+	alpha.endPortal = maskPos
 	var animLength =7.0
 	animate_portal_spawn_routine(maskPos, finish_curve, animLength)
 	
@@ -142,7 +149,7 @@ func spawn_end_portal_routine(pos : Vector2, time: float = 0):
 	await tree.create_timer(animLength).timeout
 	current_world = 1 if (current_world == 0) else 0
 	alpha.set_world(current_world)
-	alpha.posList.erase(maskPos)
+	alpha.endPortal = null
 	end_round()
 	
 	
@@ -178,26 +185,31 @@ func animate_portal_despawn_routine(mask : Alpha.MaskPos, curve: Curve):
 	current_maskPos_to_delete = null
 
 var current_maskPos_to_delete : Alpha.MaskPos
-var end_Mask_not_to_delete : Alpha.MaskPos
+#var end_Mask_not_to_delete : Alpha.MaskPos
 
 func check_portal_despawn():
 	if (current_maskPos_to_delete != null):
 		return
 	if (alpha.posList.size() > 2):
-		var temp = alpha.posList.get(0)
-		if (temp == end_Mask_not_to_delete):
-			return
-		current_maskPos_to_delete = temp
+		current_maskPos_to_delete = alpha.posList.get(0)
+
 		animate_portal_despawn_routine(current_maskPos_to_delete, finish_curve)
 	
+func find_by_key(search_key: Node) -> Enemy_Info:
+	for enemy in enemies:
+		if enemy.enemy == search_key:
+			return enemy
+	return null
+	
 func remove_enemy(enemy: Node):
+	var enemy_info = find_by_key(enemy)
 	enemies.erase(enemy)
 	enemy_counter -= 1
 	if (enemy_counter <= 0):
 		enemy_counter = 0
 		spawn_end_portal_routine(enemy.global_position)
 		return
-	spawn_portal_routine(enemy.global_position)
+	spawn_portal_routine(enemy.global_position, enemy_info.radius)
 		
 		
 func _process(_delta: float):
