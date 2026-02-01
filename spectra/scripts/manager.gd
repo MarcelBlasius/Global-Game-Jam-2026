@@ -87,12 +87,12 @@ var randis := [enemy_standard_1, enemy_whisp_sun, enemy_whisp_dark]
 func level_one():
 	alpha.set_world(current_world)
 	var time = 2.0
-	for i in range(2):
+	for i in range(1):
 		spawn_enemy(enemy_standard_1, time)
 		time += 2
 	
 	var pos = get_random_pos(150)
-	spawn_portal_routine(pos, 8)
+	spawn_portal_routine(pos, 1)
 	
 func level_two():
 	alpha.set_world(current_world)
@@ -119,8 +119,9 @@ func spawn_portal_routine(pos : Vector2, time: float = 0):
 	maskPos.pos = pos
 	maskPos.radius = 0
 	maskPos.worldBit = 0
+	maskPos.endRadius = 60
 	alpha.posList.append(maskPos)
-	animate_portal_spawn_routine(maskPos, 50, spawn_curve)
+	animate_portal_spawn_routine(maskPos, spawn_curve)
 	
 func spawn_end_portal_routine(pos : Vector2, time: float = 0):
 	var tree = get_tree()
@@ -133,9 +134,10 @@ func spawn_end_portal_routine(pos : Vector2, time: float = 0):
 	maskPos.pos = pos
 	maskPos.radius = 0
 	maskPos.worldBit = 1
+	maskPos.endRadius = 640
 	alpha.posList.append(maskPos)
-	var animLength = 7.0
-	animate_portal_spawn_routine(maskPos, 640, finish_curve, animLength)
+	var animLength =7.0
+	animate_portal_spawn_routine(maskPos, finish_curve, animLength)
 	
 	if (tree == null):
 		return
@@ -146,29 +148,29 @@ func spawn_end_portal_routine(pos : Vector2, time: float = 0):
 	end_round()
 	
 	
-func animate_portal_spawn_routine(mask : Alpha.MaskPos, radius: float, curve: Curve, animLength : float = 7.0):
+func animate_portal_spawn_routine(mask : Alpha.MaskPos, curve: Curve, animLength : float = 7.0):
 	var current_mills = Time.get_ticks_msec()
 	var animLengthMills = animLength * 1000
 	while (Time.get_ticks_msec() - current_mills < animLengthMills):
 		var t = (Time.get_ticks_msec() - current_mills) / (animLengthMills)
 		var y = curve.sample(t)
-		mask.radius = radius * y
+		mask.radius = mask.endRadius * y
 		var tree = get_tree()
 		if (tree == null):
 			return
 		await tree.process_frame
-	mask.radius = radius
+	mask.radius = mask.endRadius
 
 var portal_lifetime : float = 4
 
-func animate_portal_despawn_routine(mask : Alpha.MaskPos, radius: float, curve: Curve):
+func animate_portal_despawn_routine(mask : Alpha.MaskPos, curve: Curve):
 	await get_tree().create_timer(portal_lifetime).timeout
 	var current_mills = Time.get_ticks_msec()
 	var animLength = 7.0 * 1000
 	while (Time.get_ticks_msec() - current_mills < animLength):
 		var t = (Time.get_ticks_msec() - current_mills) / (animLength)
 		var y = curve.sample(1 - t)
-		mask.radius = radius * y
+		mask.radius = mask.endRadius * y
 		var tree = get_tree()
 		if (tree == null):
 			return
@@ -188,7 +190,7 @@ func check_portal_despawn():
 		if (temp == end_Mask_not_to_delete):
 			return
 		current_maskPos_to_delete = temp
-		animate_portal_despawn_routine(current_maskPos_to_delete, 50, finish_curve)
+		animate_portal_despawn_routine(current_maskPos_to_delete, finish_curve)
 	
 func remove_enemy(enemy: Node):
 	enemies.erase(enemy)
