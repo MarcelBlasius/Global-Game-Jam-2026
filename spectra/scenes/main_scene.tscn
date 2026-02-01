@@ -58,9 +58,11 @@ stream = ExtResource("3_bcnxi")
 
 [node name="PortalSpawn1" type="AudioStreamPlayer" parent="." unique_id=68085857]
 stream = ExtResource("2_si52b")
+volume_db = 10.0
 
 [node name="PortalSpawn2" type="AudioStreamPlayer" parent="." unique_id=1433550259]
 stream = ExtResource("3_01n6w")
+volume_db = 10.0
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=941733479]
 offset = Vector2(320, 180)
