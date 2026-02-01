@@ -43,7 +43,7 @@ resource_local_to_scene = true
 shader = SubResource("Shader_mbidb")
 shader_parameter/active = false
 shader_parameter/flash_color = Vector4(0.8, 0.5, 0.5, 1)
-shader_parameter/alpha = 0.05
+shader_parameter/alpha = 0.25
 
 [node name="enemy" type="CharacterBody2D" unique_id=1170387137 groups=["enemies"]]
 collision_layer = 16
@@ -75,9 +75,8 @@ region_rect = Rect2(1346, 133, 28, 28)
 [node name="World2" type="Node2D" parent="." unique_id=2012854484]
 
 [node name="Sprite2D" type="Sprite2D" parent="World2" unique_id=1064888869]
-modulate = Color(1, 0.7647059, 0.6862745, 1)
 material = SubResource("ShaderMaterial_c4w8v")
 position = Vector2(0, -0.5)
 texture = ExtResource("3_cml8g")
 region_enabled = true
-region_rect = Rect2(1314, 133, 28, 29)
+region_rect = Rect2(1346, 133, 28, 28)

@@ -7,13 +7,14 @@ extends Node2D
 @onready var mat := $Combiner.material as ShaderMaterial
 @export var spawn_enemies = true
 
-const enemy_standard_1 = preload("res://scenes/enemies/enemy_two_worlds.tscn") 
+const enemy_mask_sun = preload("res://scenes/enemies/SunMask.tscn") 
+const enemy_mask_dark = preload("res://scenes/enemies/DarkMask.tscn") 
 const enemy_whisp_sun = preload("res://scenes/enemies/SunWhisp.tscn")
 const enemy_whisp_dark = preload("res://scenes/enemies/DarkWhisp.tscn")
 
 var current_world : int = 1
 @onready var alpha = $AlphaContainer/AlphaView/WorldAlpha/MeshInstance2D as Alpha
-@onready var player = $player
+@onready var player = $player as CustomPlayer
 @onready var background: Background = $Background
 @onready var fade: Fade = $Fade
 @onready var game_over_menu: GameOverMenu = $GameOverMenu
@@ -89,31 +90,31 @@ func spawn_enemy(enemyScene: PackedScene, death_rad : float, time: float = 0):
 	enemy_info.radius = death_rad
 	enemies.append(enemy_info)
 
-var randis := [enemy_standard_1, enemy_whisp_sun, enemy_whisp_dark] 
-var spawnis := [80, 30, 30]
+var randis := [enemy_mask_sun, enemy_mask_dark, enemy_whisp_sun, enemy_whisp_dark] 
+var spawnis := [80, 80, 30, 30]
 func level_one():
 	alpha.set_world(current_world)
 	var time = 2.0
 	for i in range(3):
-		spawn_enemy(enemy_standard_1, spawnis[0], time)
+		spawn_enemy(enemy_mask_sun, spawnis[0], time)
 		time += 2
 	
 	var pos = get_random_pos(150)
-	spawn_portal_routine(pos, 70,  1)
+	#spawn_portal_routine(pos, 70,  1)
 	
 func level_two():
 	alpha.set_world(current_world)
 	var time = 2.0
-	var randamount = randi_range(5, 10)
+	var randamount = randi_range(5, 7)
 	
 	for i in range(randamount):
-		var randi = randi_range(0, 2)
-		var randif = randf_range(2, 5)
+		var randi = randi_range(0, randis.size() - 1)
+		var randif = randf_range(1.5, 2)
 		spawn_enemy(randis[randi], spawnis[randi], time)
 		time += randif
 	
 	var pos = get_random_pos(150)
-	spawn_portal_routine(pos, 70, 8)
+	#spawn_portal_routine(pos, 70, 8)
 	
 @export var spawn_curve: Curve
 @export var finish_curve: Curve
@@ -215,7 +216,7 @@ func find_by_key(search_key: Node) -> Enemy_Info:
 	
 func remove_enemy(enemy: Node):
 	var enemy_info = find_by_key(enemy)
-	enemies.erase(enemy)
+	enemies.erase(enemy_info)
 	enemy_counter -= 1
 	if (enemy_counter <= 0):
 		enemy_counter = 0
@@ -227,6 +228,7 @@ func remove_enemy(enemy: Node):
 func _process(_delta: float):
 	check_portal_despawn()
 	#print_debug(await $AlphaContainer/AlphaView.get_world(get_viewport().get_mouse_position()))
+	#check_player_spell()
 	pass
 	#if (vp_alpha):
 		#await RenderingServer.frame_post_draw
@@ -243,3 +245,17 @@ func end_round():
 
 func _on_player_player_died() -> void:
 	game_over_menu.open()
+
+var player_skill_cd : float = 5
+var player_skill_current_cd : float = -100000
+func _unhandled_input(input_event: InputEvent) -> void:
+	# If tool enabled, we don't want to handle our input in the editor.
+	if Engine.is_editor_hint():
+		return
+
+	if input_event is InputEventKey and input_event.pressed and not input_event.echo:
+		if input_event.keycode == KEY_E:
+			if (Time.get_ticks_msec() - player_skill_current_cd >= player_skill_cd * 1000):
+				spawn_portal_routine(player.global_position, 50, 0)
+				player_skill_current_cd = Time.get_ticks_msec()
+			
