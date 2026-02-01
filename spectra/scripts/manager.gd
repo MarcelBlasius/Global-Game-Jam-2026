@@ -99,12 +99,12 @@ func level_one():
 		spawn_enemy(enemy_mask_sun, spawnis[0], time)
 		time += 2
 	
-	var pos = get_random_pos(150)
+	#var pos = get_random_pos(150)
 	#spawn_portal_routine(pos, 70,  1)
 	
 func level_two():
 	alpha.set_world(current_world)
-	var time = 2.0
+	var time = 0.5
 	var randamount = randi_range(5, 7)
 	
 	for i in range(randamount):
@@ -113,7 +113,7 @@ func level_two():
 		spawn_enemy(randis[randi], spawnis[randi], time)
 		time += randif
 	
-	var pos = get_random_pos(150)
+	#var pos = get_random_pos(150)
 	#spawn_portal_routine(pos, 70, 8)
 	
 @export var spawn_curve: Curve
@@ -227,6 +227,7 @@ func remove_enemy(enemy: Node):
 		
 func _process(_delta: float):
 	check_portal_despawn()
+	update_player_skill_anim()
 	#print_debug(await $AlphaContainer/AlphaView.get_world(get_viewport().get_mouse_position()))
 	#check_player_spell()
 	pass
@@ -246,8 +247,30 @@ func end_round():
 func _on_player_player_died() -> void:
 	game_over_menu.open()
 
-var player_skill_cd : float = 5
+var player_skill_cd : float = 10000
 var player_skill_current_cd : float = -100000
+
+func update_player_skill_anim():
+	var time = Time.get_ticks_msec() - player_skill_current_cd
+	var length = 400;
+	var t : float = (float(time) - (player_skill_cd - length)) / (float(player_skill_cd) - (player_skill_cd - length))
+	t *= 2
+	t = clampf(t, 0, 4)
+	if (player == null):
+		return;
+	if (t > 1):
+		player.sprite1.material.set_shader_parameter("charge_ability", 1 - (t - 1) )
+		player.sprite2.material.set_shader_parameter("charge_ability", 1 - (t - 1) )
+		return
+	if (t>2):
+		player.sprite1.material.set_shader_parameter("charge_ability", 0 )
+		player.sprite2.material.set_shader_parameter("charge_ability", 0 )
+		return
+	
+	player.sprite1.material.set_shader_parameter("charge_ability", t )
+	player.sprite2.material.set_shader_parameter("charge_ability", t )
+	
+	
 func _unhandled_input(input_event: InputEvent) -> void:
 	# If tool enabled, we don't want to handle our input in the editor.
 	if Engine.is_editor_hint():
@@ -255,7 +278,7 @@ func _unhandled_input(input_event: InputEvent) -> void:
 
 	if input_event is InputEventKey and input_event.pressed and not input_event.echo:
 		if input_event.keycode == KEY_E:
-			if (Time.get_ticks_msec() - player_skill_current_cd >= player_skill_cd * 1000):
+			if (Time.get_ticks_msec() - player_skill_current_cd >= player_skill_cd):
 				spawn_portal_routine(player.global_position, 50, 0)
 				player_skill_current_cd = Time.get_ticks_msec()
 			
