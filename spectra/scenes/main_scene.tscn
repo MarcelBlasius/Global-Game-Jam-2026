@@ -105,14 +105,14 @@ theme_override_constants/margin_left = 16
 theme_override_constants/margin_top = 16
 
 [node name="GameMenu" parent="." unique_id=1060992188 instance=ExtResource("8_18nlu")]
-z_index = 101
+z_index = 103
 offset_left = 320.0
 offset_top = 180.0
 offset_right = 320.0
 offset_bottom = 180.0
 
 [node name="Fade" parent="." unique_id=1966515605 instance=ExtResource("2_mngbo")]
-z_index = 100
+z_index = 101
 custom_minimum_size = Vector2(640, 360)
 anchors_preset = 0
 anchor_right = 0.0
@@ -147,6 +147,7 @@ autoplay = true
 parameters/looping = true
 
 [node name="GameOverMenu" parent="." unique_id=143285209 instance=ExtResource("13_4w45t")]
+z_index = 102
 custom_minimum_size = Vector2(640, 360)
 anchors_preset = 0
 anchor_right = 0.0

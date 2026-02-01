@@ -8,10 +8,10 @@ extends Control
 var lock_input := true
 
 func open() -> void:
-	get_tree().paused = true
 	fade.fade_in(2.0, game_over_screen_texture)
 
 func _on_fade_fade_in_finished() -> void:
+	get_tree().paused = true
 	lock_input = false
 
 func _input(event: InputEvent) -> void:
