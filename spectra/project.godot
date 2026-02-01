@@ -92,6 +92,10 @@ open_menu={
 2d_physics/layer_3="player"
 2d_physics/layer_4="beetles"
 2d_physics/layer_5="enemies"
+2d_physics/layer_9="player_dark"
+2d_physics/layer_10="bullet_dark"
+2d_physics/layer_17="player_sun"
+2d_physics/layer_18="bullet_sun"
 
 [physics]
 
