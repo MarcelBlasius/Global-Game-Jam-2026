@@ -48,9 +48,9 @@ func _process(delta: float) -> void:
 	spriteParent2.global_transform = global_transform
 	
 func _physics_process(delta: float) -> void:
-	position += direction * speed * delta
-	spriteParent1.visible = true
-	spriteParent2.visible = true
+		position += direction * speed * delta
+		spriteParent1.visible = true
+		spriteParent2.visible = true
 	
 func destroy(body: Node2D):
 	
@@ -59,7 +59,7 @@ func destroy(body: Node2D):
 
 		var bounce_direction = -direction.normalized()
 		splat.global_position = self.global_position
-		splat.look_at(splat.global_position + bounce_direction)#
+		splat.look_at(splat.global_position + bounce_direction)
 		splat.emitting = true
 		get_tree().current_scene.add_child(splat)
 	
@@ -76,9 +76,9 @@ func _on_body_entered(body: Node2D):
 	if !body.is_in_group(hit_group) && !body.is_in_group("environment"):
 		return
 	
-	if !body.has_method("get_world"): return
+	if !body.is_in_group("environment") && !body.has_method("get_world"): return
 	
-	if body.get_world() != get_world(): return
+	if !body.is_in_group("environment") && body.get_world() != get_world(): return
 		
 	if body.has_method("take_damage"):
 		body.take_damage(damage)
