@@ -8,7 +8,7 @@
 shader = ExtResource("1_c8xer")
 shader_parameter/posValues = PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
 shader_parameter/value_count = 0
-shader_parameter/corona = 10.0
+shader_parameter/corona = 20.0
 shader_parameter/invert_world = true
 shader_parameter/time_millis = 0.0
 
