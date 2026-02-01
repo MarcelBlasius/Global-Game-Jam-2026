@@ -1,0 +1,63 @@
+[gd_scene format=3 uid="uid://denkrvknh5f3c"]
+
+[ext_resource type="Script" uid="uid://b81v06w2wjjhk" path="res://scripts/arrow_trap.gd" id="1_galgx"]
+[ext_resource type="Shader" uid="uid://cstew5jd8ujmt" path="res://shaders/flash.gdshader" id="2_sf3vw"]
+[ext_resource type="Texture2D" uid="uid://b06ewonenu7hk" path="res://ressources/spritesheet.png" id="3_p0fux"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3l0u4"]
+size = Vector2(7.666663, 10.333332)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_sck2v"]
+resource_local_to_scene = true
+shader = ExtResource("2_sf3vw")
+shader_parameter/active = false
+shader_parameter/flash_color = Vector4(0.8, 0.5, 0.5, 1)
+shader_parameter/alpha = 0.5
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3p0wh"]
+atlas = ExtResource("3_p0fux")
+region = Rect2(1476, 517, 22, 23)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_brcl1"]
+resource_local_to_scene = true
+shader = ExtResource("2_sf3vw")
+shader_parameter/active = false
+shader_parameter/flash_color = Vector4(0.8, 0.5, 0.5, 1)
+shader_parameter/alpha = 1.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k7ogl"]
+atlas = ExtResource("3_p0fux")
+region = Rect2(1476, 517, 22, 23)
+
+[node name="GrayBeetle" type="CharacterBody2D" unique_id=1298705077]
+collision_layer = 8
+collision_mask = 2
+platform_floor_layers = 4294967040
+script = ExtResource("1_galgx")
+fire_rate = 4.0
+
+[node name="CollisionPolygon2D" type="CollisionShape2D" parent="." unique_id=466469136]
+position = Vector2(-12.281251, -12.03125)
+scale = Vector2(0.1875, 0.1875)
+shape = SubResource("RectangleShape2D_3l0u4")
+
+[node name="ShootTimer" type="Timer" parent="." unique_id=1316644018]
+one_shot = true
+
+[node name="RotationCooldown" type="Timer" parent="." unique_id=1092714016]
+wait_time = 0.5
+one_shot = true
+
+[node name="World1Beetle" type="Node2D" parent="." unique_id=331871653]
+
+[node name="GoldBeetle" type="Sprite2D" parent="World1Beetle" unique_id=2108009331]
+material = SubResource("ShaderMaterial_sck2v")
+texture = SubResource("AtlasTexture_3p0wh")
+
+[node name="World2Beetle" type="Node2D" parent="." unique_id=1367569755]
+
+[node name="DarkBeetle" type="Sprite2D" parent="World2Beetle" unique_id=2027138100]
+material = SubResource("ShaderMaterial_brcl1")
+texture = SubResource("AtlasTexture_k7ogl")
+
+[connection signal="ready" from="." to="." method="_on_ready"]
