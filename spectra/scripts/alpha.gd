@@ -12,7 +12,7 @@ class MaskPos:
 var mat : ShaderMaterial
 var posList : Array[MaskPos]
 var endPortal : MaskPos
-const arrayMaxLength := 10
+const arrayMaxLength := 20
 const arrayElementSize := 4
 var invert_world := false
 var mouse_pos: Vector2

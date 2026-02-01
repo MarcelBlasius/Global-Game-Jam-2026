@@ -99,7 +99,7 @@ func level_one():
 		time += 2
 	
 	var pos = get_random_pos(150)
-	spawn_portal_routine(pos, 60,  1)
+	spawn_portal_routine(pos, 70,  1)
 	
 func level_two():
 	alpha.set_world(current_world)
@@ -113,7 +113,7 @@ func level_two():
 		time += randif
 	
 	var pos = get_random_pos(150)
-	spawn_portal_routine(pos, 8)
+	spawn_portal_routine(pos, 70, 8)
 	
 @export var spawn_curve: Curve
 @export var finish_curve: Curve
@@ -184,18 +184,22 @@ func animate_portal_despawn_routine(mask : Alpha.MaskPos, curve: Curve):
 		await tree.process_frame
 	mask.radius = 0
 	alpha.posList.erase(mask)
-	current_maskPos_to_delete = null
+	current_masks_to_delete.erase(mask)
 
-var current_maskPos_to_delete : Alpha.MaskPos
+var current_masks_to_delete : Array[Alpha.MaskPos]
 #var end_Mask_not_to_delete : Alpha.MaskPos
 
 func check_portal_despawn():
-	if (current_maskPos_to_delete != null):
-		return
-	if (alpha.posList.size() > 2):
-		current_maskPos_to_delete = alpha.posList.get(0)
-
-		animate_portal_despawn_routine(current_maskPos_to_delete, finish_curve)
+	if (alpha.posList.size() - current_masks_to_delete.size()  > 1):
+		var curr_mask : Alpha.MaskPos 
+		for posMask in alpha.posList:
+			if (current_masks_to_delete.has(posMask)):
+				continue
+			curr_mask = posMask
+			current_masks_to_delete.append(posMask)
+			break;
+			
+		animate_portal_despawn_routine(curr_mask, finish_curve)
 	
 func find_by_key(search_key: Node) -> Enemy_Info:
 	for enemy in enemies:
