@@ -18,6 +18,7 @@ var current_world : int = 1
 @onready var background: Background = $Background
 @onready var fade: Fade = $Fade
 @onready var game_over_menu: GameOverMenu = $GameOverMenu
+@onready var level_hint: LevelHint = $LevelHint
 
 func _ready():
 	mat.set_shader_parameter("tex_left", vp_a.get_texture())
@@ -155,6 +156,9 @@ func spawn_end_portal_routine(pos : Vector2, time: float = 0):
 	
 	if (tree == null):
 		return
+	
+	level_hint.play_hint()
+		
 	await tree.create_timer(animLength).timeout
 	current_world = 1 if (current_world == 0) else 0
 	alpha.set_world(current_world)
