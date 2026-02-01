@@ -84,6 +84,13 @@ func flash_hit():
 	
 func take_damage(amount: int):
 	health -= amount
+	
+	var sound = randi_range(0, 1)
+	if (sound == 0):
+		$Hit1.play()
+	else:
+		$Hit2.play()
+		
 	flash_hit()
 	if health <= 0:
 		die()

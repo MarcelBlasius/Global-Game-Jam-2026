@@ -77,6 +77,12 @@ func flash_hit():
 	sprite2.material.set_shader_parameter("active", false)
 	
 func take_damage(amount: int):
+	var sound = randi_range(0, 1)
+	if (sound == 0):
+		$Hit1.play()
+	else:
+		$Hit2.play()
+	
 	health -= amount
 	flash_hit()
 	if health <= 0:

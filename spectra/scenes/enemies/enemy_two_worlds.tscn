@@ -1,7 +1,9 @@
 [gd_scene format=3 uid="uid://cq3spk0xo0so8"]
 
 [ext_resource type="Script" uid="uid://chhxqsa40oops" path="res://scripts/enemy.gd" id="1_sceeg"]
+[ext_resource type="AudioStream" uid="uid://dwdrpu1vjn85w" path="res://ressources/hit_1.mp3" id="2_3mbdc"]
 [ext_resource type="Shader" uid="uid://cstew5jd8ujmt" path="res://shaders/flash.gdshader" id="2_xse2d"]
+[ext_resource type="AudioStream" uid="uid://bsmkdiumj6t6e" path="res://ressources/hit_2.mp3" id="3_6kgaw"]
 [ext_resource type="Texture2D" uid="uid://b06ewonenu7hk" path="res://ressources/spritesheet.png" id="3_cml8g"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_cml8g"]
@@ -49,6 +51,12 @@ collision_mask = 3
 script = ExtResource("1_sceeg")
 isEnemyWorld1 = false
 speed = 50
+
+[node name="Hit1" type="AudioStreamPlayer" parent="." unique_id=527167930]
+stream = ExtResource("2_3mbdc")
+
+[node name="Hit2" type="AudioStreamPlayer" parent="." unique_id=1201961269]
+stream = ExtResource("3_6kgaw")
 
 [node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="." unique_id=1452213936]
 scale = Vector2(0.21484375, 0.24414063)
