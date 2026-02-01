@@ -7,6 +7,7 @@
 [ext_resource type="AudioStream" uid="uid://bsmkdiumj6t6e" path="res://ressources/hit_2.mp3" id="3_s2o2b"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_0ds48"]
+resource_local_to_scene = true
 shader = ExtResource("2_pyesk")
 shader_parameter/active = false
 shader_parameter/flash_color = Vector4(0.8, 0.5, 0.5, 1)

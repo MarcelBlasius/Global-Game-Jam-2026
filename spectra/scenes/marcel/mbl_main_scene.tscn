@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://c1vt8t3juonqk"]
 
 [ext_resource type="Script" uid="uid://bv22wqcqebdlm" path="res://scripts/manager.gd" id="1_s0cnc"]
-[ext_resource type="PackedScene" uid="uid://cq3spk0xo0so8" path="res://scenes/enemies/enemy_two_worlds.tscn" id="2_c7luf"]
+[ext_resource type="PackedScene" uid="uid://cq3spk0xo0so8" path="res://scenes/enemies/SunMask.tscn" id="2_c7luf"]
 [ext_resource type="Script" uid="uid://c6ao6bkdykvyk" path="res://scripts/get_world.gd" id="3_057vo"]
 [ext_resource type="PackedScene" uid="uid://cb235eerke4w2" path="res://scenes/bela/subviews/world_a.tscn" id="4_2tqtb"]
 [ext_resource type="Shader" uid="uid://d2s8gjwxai8qe" path="res://shaders/combine_textures.gdshader" id="5_osq8b"]

@@ -43,7 +43,7 @@ resource_local_to_scene = true
 shader = SubResource("Shader_mbidb")
 shader_parameter/active = false
 shader_parameter/flash_color = Vector4(0.8, 0.5, 0.5, 1)
-shader_parameter/alpha = 0.5
+shader_parameter/alpha = 0.25
 
 [node name="SunWhisp" type="CharacterBody2D" unique_id=1170387137 groups=["enemies"]]
 collision_layer = 16

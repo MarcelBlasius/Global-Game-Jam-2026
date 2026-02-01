@@ -7,7 +7,8 @@ extends Node2D
 @onready var mat := $Combiner.material as ShaderMaterial
 @export var spawn_enemies = true
 
-const enemy_standard_1 = preload("res://scenes/enemies/enemy_two_worlds.tscn") 
+const enemy_mask_sun = preload("res://scenes/enemies/SunMask.tscn") 
+const enemy_mask_dark = preload("res://scenes/enemies/DarkMask.tscn") 
 const enemy_whisp_sun = preload("res://scenes/enemies/SunWhisp.tscn")
 const enemy_whisp_dark = preload("res://scenes/enemies/DarkWhisp.tscn")
 
@@ -89,31 +90,31 @@ func spawn_enemy(enemyScene: PackedScene, death_rad : float, time: float = 0):
 	enemy_info.radius = death_rad
 	enemies.append(enemy_info)
 
-var randis := [enemy_standard_1, enemy_whisp_sun, enemy_whisp_dark] 
-var spawnis := [80, 30, 30]
+var randis := [enemy_mask_sun, enemy_mask_dark, enemy_whisp_sun, enemy_whisp_dark] 
+var spawnis := [80, 80, 30, 30]
 func level_one():
 	alpha.set_world(current_world)
 	var time = 2.0
 	for i in range(3):
-		spawn_enemy(enemy_standard_1, spawnis[0], time)
+		spawn_enemy(enemy_mask_sun, spawnis[0], time)
 		time += 2
 	
 	var pos = get_random_pos(150)
-	spawn_portal_routine(pos, 70,  1)
+	#spawn_portal_routine(pos, 70,  1)
 	
 func level_two():
 	alpha.set_world(current_world)
 	var time = 2.0
-	var randamount = randi_range(5, 10)
+	var randamount = randi_range(5, 7)
 	
 	for i in range(randamount):
-		var randi = randi_range(0, 2)
-		var randif = randf_range(2, 5)
+		var randi = randi_range(0, randis.size() - 1)
+		var randif = randf_range(1.5, 2)
 		spawn_enemy(randis[randi], spawnis[randi], time)
 		time += randif
 	
 	var pos = get_random_pos(150)
-	spawn_portal_routine(pos, 70, 8)
+	#spawn_portal_routine(pos, 70, 8)
 	
 @export var spawn_curve: Curve
 @export var finish_curve: Curve

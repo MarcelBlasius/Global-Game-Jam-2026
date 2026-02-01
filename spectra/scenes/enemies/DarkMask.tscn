@@ -1,17 +1,17 @@
-[gd_scene format=3 uid="uid://cq3spk0xo0so8"]
+[gd_scene format=3 uid="uid://2ixnbhdycn77"]
 
-[ext_resource type="Script" uid="uid://chhxqsa40oops" path="res://scripts/enemy.gd" id="1_sceeg"]
-[ext_resource type="AudioStream" uid="uid://dwdrpu1vjn85w" path="res://ressources/hit_1.mp3" id="2_3mbdc"]
-[ext_resource type="Shader" uid="uid://cstew5jd8ujmt" path="res://shaders/flash.gdshader" id="2_xse2d"]
-[ext_resource type="AudioStream" uid="uid://bsmkdiumj6t6e" path="res://ressources/hit_2.mp3" id="3_6kgaw"]
-[ext_resource type="Texture2D" uid="uid://b06ewonenu7hk" path="res://ressources/spritesheet.png" id="3_cml8g"]
+[ext_resource type="Script" uid="uid://chhxqsa40oops" path="res://scripts/enemy.gd" id="1_d7g78"]
+[ext_resource type="AudioStream" uid="uid://dwdrpu1vjn85w" path="res://ressources/hit_1.mp3" id="2_reaui"]
+[ext_resource type="AudioStream" uid="uid://bsmkdiumj6t6e" path="res://ressources/hit_2.mp3" id="3_fhk2m"]
+[ext_resource type="Shader" uid="uid://cstew5jd8ujmt" path="res://shaders/flash.gdshader" id="4_2dejk"]
+[ext_resource type="Texture2D" uid="uid://b06ewonenu7hk" path="res://ressources/spritesheet.png" id="5_2qp6j"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_cml8g"]
 resource_local_to_scene = true
-shader = ExtResource("2_xse2d")
+shader = ExtResource("4_2dejk")
 shader_parameter/active = false
 shader_parameter/flash_color = Vector4(0.8, 0.5, 0.5, 1)
-shader_parameter/alpha = 1.0
+shader_parameter/alpha = 0.5
 
 [sub_resource type="Shader" id="Shader_mbidb"]
 code = "shader_type canvas_item;
@@ -43,20 +43,21 @@ resource_local_to_scene = true
 shader = SubResource("Shader_mbidb")
 shader_parameter/active = false
 shader_parameter/flash_color = Vector4(0.8, 0.5, 0.5, 1)
-shader_parameter/alpha = 0.05
+shader_parameter/alpha = 1.0
 
 [node name="enemy" type="CharacterBody2D" unique_id=1170387137 groups=["enemies"]]
 collision_layer = 16
 collision_mask = 3
-script = ExtResource("1_sceeg")
+script = ExtResource("1_d7g78")
 isEnemyWorld1 = false
 speed = 50
+world = 0
 
 [node name="Hit1" type="AudioStreamPlayer" parent="." unique_id=527167930]
-stream = ExtResource("2_3mbdc")
+stream = ExtResource("2_reaui")
 
 [node name="Hit2" type="AudioStreamPlayer" parent="." unique_id=1201961269]
-stream = ExtResource("3_6kgaw")
+stream = ExtResource("3_fhk2m")
 
 [node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="." unique_id=1452213936]
 scale = Vector2(0.21484375, 0.24414063)
@@ -67,15 +68,14 @@ polygon = PackedVector2Array(59.1, -64, -59, -64, -63.8, -59, -64, 61, -60.3, 64
 [node name="Sprite2D" type="Sprite2D" parent="World1" unique_id=775491790]
 modulate = Color(1, 0.76552, 0.6855334, 1)
 material = SubResource("ShaderMaterial_cml8g")
-texture = ExtResource("3_cml8g")
+texture = ExtResource("5_2qp6j")
 region_enabled = true
-region_rect = Rect2(1342, 195, 28, 29)
+region_rect = Rect2(1307, 195, 28, 29)
 
 [node name="World2" type="Node2D" parent="." unique_id=2012854484]
 
 [node name="Sprite2D" type="Sprite2D" parent="World2" unique_id=1064888869]
-modulate = Color(1, 0.7647059, 0.6862745, 1)
 material = SubResource("ShaderMaterial_c4w8v")
-texture = ExtResource("3_cml8g")
+texture = ExtResource("5_2qp6j")
 region_enabled = true
 region_rect = Rect2(1307, 195, 28, 29)
