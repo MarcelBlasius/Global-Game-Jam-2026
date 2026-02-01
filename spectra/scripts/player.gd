@@ -50,7 +50,7 @@ func _ready() -> void:
 	view2.add_child(spriteParent2)
 	spriteParent2.global_transform = old_global2
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	spriteParent1.global_transform.origin = global_transform.origin
 	spriteParent2.global_transform.origin = global_transform.origin
 	#await get_tree().physics_frame

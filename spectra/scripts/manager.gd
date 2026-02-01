@@ -120,7 +120,10 @@ func animate_portal_spawn_routine(mask : Alpha.MaskPos, radius: float, curve: Cu
 		var t = (Time.get_ticks_msec() - current_mills) / (animLength)
 		var y = curve.sample(t)
 		mask.radius = radius * y
-		await get_tree().process_frame
+		var tree = get_tree()
+		if (tree == null):
+			return
+		await tree.process_frame
 	mask.radius = radius
 
 var portal_lifetime : float = 4
@@ -133,7 +136,10 @@ func animate_portal_despawn_routine(mask : Alpha.MaskPos, radius: float, curve: 
 		var t = (Time.get_ticks_msec() - current_mills) / (animLength)
 		var y = curve.sample(1 - t)
 		mask.radius = radius * y
-		await get_tree().process_frame
+		var tree = get_tree()
+		if (tree == null):
+			return
+		await tree.process_frame
 	mask.radius = 0
 	alpha.posList.erase(mask)
 	current_maskPos_to_delete = null

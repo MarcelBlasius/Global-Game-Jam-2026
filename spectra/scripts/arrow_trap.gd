@@ -38,7 +38,7 @@ func _ready() -> void:
 	view2.add_child(spriteParent2)
 	spriteParent2.global_transform = old_global2
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	spriteParent1.global_transform = global_transform
 	spriteParent2.global_transform = global_transform
 
@@ -88,6 +88,7 @@ func spawn_bullet(dir: Vector2, offset: Vector2):
 	bullet.global_position = global_position + offset
 	bullet.direction = dir
 	bullet.hit_group = "player"
+	
 	get_tree().current_scene.add_child(bullet)
 	
 

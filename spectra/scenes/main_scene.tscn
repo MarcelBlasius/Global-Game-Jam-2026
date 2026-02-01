@@ -9,7 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://cp8s52c5gtk3a" path="res://scenes/enemies/GreyBeetle.tscn" id="7_c1pb6"]
 [ext_resource type="AudioStream" uid="uid://dt0jv8scmnscu" path="res://ressources/dark_theme.mp3" id="7_c16ls"]
 [ext_resource type="PackedScene" uid="uid://dt2713sbc5xi5" path="res://scenes/silas/game_menu.tscn" id="8_18nlu"]
-[ext_resource type="PackedScene" path="res://scenes/silas/health_bar.tscn" id="10_6wevv"]
+[ext_resource type="PackedScene" uid="uid://d1yclyd20cb0r" path="res://scenes/silas/health_bar.tscn" id="10_6wevv"]
 
 [sub_resource type="Curve" id="Curve_6wevv"]
 _limits = [0.0, 2.0, 0.0, 1.0]
@@ -118,6 +118,7 @@ rotation = 1.5707964
 
 [node name="player" parent="." unique_id=472819889 instance=ExtResource("6_4la4h")]
 position = Vector2(172, 154)
+speed = 200
 
 [node name="DarkTheme" type="AudioStreamPlayer" parent="." unique_id=1238683811]
 stream = ExtResource("7_c16ls")

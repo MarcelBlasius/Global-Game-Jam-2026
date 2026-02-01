@@ -43,7 +43,7 @@ func _ready() -> void:
 	spriteParent1.visible = false
 	spriteParent2.visible = false
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	spriteParent1.global_transform = global_transform
 	spriteParent2.global_transform = global_transform
 	

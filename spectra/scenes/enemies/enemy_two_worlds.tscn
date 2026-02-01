@@ -48,7 +48,7 @@ collision_layer = 16
 collision_mask = 3
 script = ExtResource("1_sceeg")
 isEnemyWorld1 = false
-speed = 100
+speed = 50
 
 [node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="." unique_id=1452213936]
 scale = Vector2(0.21484375, 0.24414063)

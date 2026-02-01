@@ -16,7 +16,6 @@ func add_lives(count_lives: int) -> void:
 		var new_life = life_scene.instantiate()
 		life_container.add_child(new_life)
 		lives.push_back(new_life)
-		get_tree().current_scene.add_child(new_life)
 
 func remove_lives(count_lives: int) -> void:
 	var lives_to_remove_count = min(count_lives, lives.size())
