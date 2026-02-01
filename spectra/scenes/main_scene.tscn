@@ -16,6 +16,10 @@ _limits = [0.0, 2.0, 0.0, 1.0]
 _data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.15, 2), -0.07822139, -0.07822139, 0, 0, Vector2(0.3, 0.691), 0.0, 0.0, 0, 0, Vector2(0.4, 1.201), 0.0, 0.0, 0, 0, Vector2(0.5027523, 0.93905675), 1.0541859, 0.0, 0, 0, Vector2(0.57798165, 1.0423955), 0.0, 0.0, 0, 0, Vector2(0.68440366, 0.9803922), 0.0, 0.0, 0, 0, Vector2(0.77614677, 1.0217277), 0.0, 0.0, 0, 0, Vector2(0.89908254, 1.00106), 0.0, 0.0, 0, 0, Vector2(1, 1.00106), 0.0, 0.0, 0, 0]
 point_count = 10
 
+[sub_resource type="Curve" id="Curve_e1cbu"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
 [sub_resource type="ViewportTexture" id="ViewportTexture_aeg00"]
 viewport_path = NodePath("Subview1")
 
@@ -36,6 +40,7 @@ light_mask = 3
 visibility_layer = 3
 script = ExtResource("1_ti0ar")
 spawn_curve = SubResource("Curve_6wevv")
+finish_curve = SubResource("Curve_e1cbu")
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=941733479]
 offset = Vector2(320, 180)

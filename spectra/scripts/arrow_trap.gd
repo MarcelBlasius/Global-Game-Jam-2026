@@ -6,7 +6,6 @@ const bullet_scene = preload("res://scenes/dark_bullet.tscn")
 @export var fire_rate: float = 0.5 # seconds
 @onready var shoot_timer = $ShootTimer
 @onready var rotaiton_cooldown = $RotationCooldown
-@onready var sprite = $Sprite2D
 
 var direction: Vector2 
 
