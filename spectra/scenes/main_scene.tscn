@@ -6,10 +6,11 @@
 [ext_resource type="Shader" uid="uid://d2s8gjwxai8qe" path="res://shaders/combine_textures.gdshader" id="4_oji5d"]
 [ext_resource type="PackedScene" uid="uid://bv25mwaky7njn" path="res://scenes/silas/background.tscn" id="5_nugp1"]
 [ext_resource type="PackedScene" uid="uid://cvq60bc51xilo" path="res://scenes/player.tscn" id="6_4la4h"]
-[ext_resource type="PackedScene" uid="uid://cp8s52c5gtk3a" path="res://scenes/enemies/GreyBeetle.tscn" id="7_c1pb6"]
+[ext_resource type="PackedScene" uid="uid://cp8s52c5gtk3a" path="res://scenes/enemies/SunBeetle.tscn" id="7_c1pb6"]
 [ext_resource type="AudioStream" uid="uid://dt0jv8scmnscu" path="res://ressources/dark_theme.mp3" id="7_c16ls"]
 [ext_resource type="PackedScene" uid="uid://dt2713sbc5xi5" path="res://scenes/silas/game_menu.tscn" id="8_18nlu"]
-[ext_resource type="PackedScene" uid="uid://d1yclyd20cb0r" path="res://scenes/silas/health_bar.tscn" id="10_6wevv"]
+[ext_resource type="PackedScene" uid="uid://denkrvknh5f3c" path="res://scenes/enemies/GrayBeetle.tscn" id="9_e1cbu"]
+[ext_resource type="PackedScene" path="res://scenes/silas/health_bar.tscn" id="10_6wevv"]
 
 [sub_resource type="Curve" id="Curve_6wevv"]
 _limits = [0.0, 2.0, 0.0, 1.0]
@@ -106,14 +107,14 @@ offset_right = 320.0
 offset_bottom = 180.0
 
 [node name="GrayBeetle" parent="." unique_id=1298705077 instance=ExtResource("7_c1pb6")]
-position = Vector2(327.1, 334.9)
+position = Vector2(326, 334)
 
-[node name="GrayBeetle1" parent="." unique_id=2125647504 instance=ExtResource("7_c1pb6")]
+[node name="Sun" parent="." unique_id=2125647504 instance=ExtResource("7_c1pb6")]
 position = Vector2(614.9, 92)
 rotation = -1.5707964
 
-[node name="GrayBeetle2" parent="." unique_id=992459231 instance=ExtResource("7_c1pb6")]
-position = Vector2(25.1, 55)
+[node name="GrayBeetle3" parent="." unique_id=1977400290 instance=ExtResource("9_e1cbu")]
+position = Vector2(26, 55)
 rotation = 1.5707964
 
 [node name="player" parent="." unique_id=472819889 instance=ExtResource("6_4la4h")]
