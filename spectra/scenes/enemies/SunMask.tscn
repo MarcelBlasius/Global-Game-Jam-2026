@@ -79,4 +79,4 @@ material = SubResource("ShaderMaterial_c4w8v")
 position = Vector2(0, -0.5)
 texture = ExtResource("3_cml8g")
 region_enabled = true
-region_rect = Rect2(1342, 195, 28, 29)
+region_rect = Rect2(1346, 133, 28, 28)

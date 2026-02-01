@@ -70,7 +70,7 @@ modulate = Color(1, 0.76552, 0.6855334, 1)
 material = SubResource("ShaderMaterial_cml8g")
 texture = ExtResource("5_2qp6j")
 region_enabled = true
-region_rect = Rect2(1307, 195, 28, 29)
+region_rect = Rect2(1314, 133, 28, 29)
 
 [node name="World2" type="Node2D" parent="." unique_id=2012854484]
 
@@ -78,4 +78,4 @@ region_rect = Rect2(1307, 195, 28, 29)
 material = SubResource("ShaderMaterial_c4w8v")
 texture = ExtResource("5_2qp6j")
 region_enabled = true
-region_rect = Rect2(1307, 195, 28, 29)
+region_rect = Rect2(1314, 133, 28, 29)
