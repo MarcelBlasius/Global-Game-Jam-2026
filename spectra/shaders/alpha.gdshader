@@ -2,7 +2,7 @@ shader_type canvas_item;
 
 uniform sampler2D tex_noise;
 
-uniform float posValues[40]; // position  and radius packed together in 4 values
+uniform float posValues[80]; // position  and radius packed together in 4 values
 uniform int value_count;
 
 uniform float corona = 40;
