@@ -50,17 +50,26 @@ func get_random_pos(offset: int = 40) -> Vector2:
 	return pos
 	
 
-func spawn_enemy(enemyScene : PackedScene, time: float = 0):
-	await get_tree().create_timer(time).timeout
-	if !spawn_enemies:
-		return
-	var enemy = enemyScene.instantiate()
+func spawn_enemy(enemyScene: PackedScene, time: float = 0):
+	var timer = get_tree().create_timer(time)
+	await timer.timeout
 	
+	if !is_inside_tree() or !spawn_enemies:
+		return
+		
+	if !is_instance_valid(player):
+		return
+
+	var enemy = enemyScene.instantiate()
 	var pos := get_random_pos()
 	
-	while (pos.distance_to(player.global_position) < 200):
+	while is_instance_valid(player) and pos.distance_to(player.global_position) < 200:
 		pos = get_random_pos()
-	
+		
+	if !is_instance_valid(player):
+		enemy.queue_free()
+		return
+		
 	enemy.global_position = pos
 	#enemy.direction = dir
 	#enemy.hit_group = "enemies"
