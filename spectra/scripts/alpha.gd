@@ -86,6 +86,7 @@ func _ready() -> void:
 
 #func _unhandled_input(input_event: InputEvent) -> void:
 func _unhandled_input(input_event: InputEvent) -> void:
+	return
 	# If tool enabled, we don't want to handle our input in the editor.
 	if Engine.is_editor_hint():
 		return
