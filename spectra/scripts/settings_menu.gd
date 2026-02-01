@@ -5,7 +5,9 @@ extends Control
 @onready var window: MarginContainer = $Window
 
 func _ready() -> void:
-	volume_slider.value = Settings.volume
+	#if (volume_slider != null):
+		#volume_slider.value = Settings.volume
+	pass
 
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("close_menu") && visible:

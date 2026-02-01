@@ -88,7 +88,7 @@ func spawn_bullet(dir: Vector2, offset: Vector2):
 	bullet.global_position = global_position + offset
 	bullet.direction = dir
 	bullet.hit_group = "player"
-	get_tree().root.add_child(bullet) 
+	get_tree().current_scene.add_child(bullet)
 	
 
 

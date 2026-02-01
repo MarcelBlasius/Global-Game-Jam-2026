@@ -64,7 +64,7 @@ func spawn_enemy(enemyScene : PackedScene, time: float = 0):
 	enemy.global_position = pos
 	#enemy.direction = dir
 	#enemy.hit_group = "enemies"
-	get_tree().root.add_child.call_deferred(enemy) 
+	add_child.call_deferred(enemy) 
 	enemies.append(enemy)
 
 func level_one():

@@ -134,7 +134,7 @@ func spawn_bullet(dir: Vector2, offset: Vector2):
 	bullet.global_position = global_position + (offset / 2)
 	bullet.direction = dir
 	bullet.hit_group = "enemies"
-	get_tree().root.add_child(bullet) 
+	get_tree().current_scene.add_child(bullet) 
 
 
 func get_world():
