@@ -1,0 +1,38 @@
+[gd_scene format=3 uid="uid://goufg1hekg3d"]
+
+[ext_resource type="Script" uid="uid://des1qwlj5shap" path="res://scripts/level_hint.gd" id="1_xlqb8"]
+[ext_resource type="Texture2D" uid="uid://betnw60m064ol" path="res://ressources/atlas_textures/level_hint/level.tres" id="2_f6vx5"]
+[ext_resource type="PackedScene" uid="uid://ip2wpvxnoiq" path="res://scenes/silas/number.tscn" id="3_cqdrj"]
+
+[node name="LevelHint" type="Control" unique_id=606772722]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_xlqb8")
+stay_time = 5.0
+
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=192560162]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -22.0
+offset_right = 22.0
+offset_bottom = 40.0
+grow_horizontal = 2
+theme_override_constants/margin_top = 25
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer" unique_id=1500278981]
+layout_mode = 2
+theme_override_constants/separation = 5
+
+[node name="Level" type="TextureRect" parent="MarginContainer/HBoxContainer" unique_id=660266386]
+layout_mode = 2
+texture = ExtResource("2_f6vx5")
+stretch_mode = 2
+
+[node name="Number" parent="MarginContainer/HBoxContainer" unique_id=1451498272 instance=ExtResource("3_cqdrj")]
+layout_mode = 2
