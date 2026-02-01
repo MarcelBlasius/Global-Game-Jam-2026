@@ -135,7 +135,10 @@ func spawn_bullet(dir: Vector2, offset: Vector2):
 	bullet.direction = dir
 	bullet.hit_group = "enemies"
 	get_tree().root.add_child(bullet) 
-	
+
+
+func get_world():
+	return get_node("/root/main_scene/AlphaContainer/AlphaView").get_world(self.global_position)	
 
 func flash_hit():
 	sprite1.material.set_shader_parameter("active", true)

@@ -3,6 +3,7 @@ extends Area2D
 @export var speed: float = 600.0
 @export var damage: int = 1
 @export var hit_group : String
+@export var world = 1
 
 
 const explosion = preload("res://scenes/explosion.tscn")
@@ -66,10 +67,18 @@ func destroy(body: Node2D):
 	spriteParent1.queue_free()
 	spriteParent2.queue_free()
 	
+
+func get_world():
+	return world;
+
 func _on_body_entered(body: Node2D):
 	
 	if !body.is_in_group(hit_group) && !body.is_in_group("environment"):
 		return
+	
+	if !body.has_method("get_world"): return
+	
+	if body.get_world() != get_world(): return
 		
 	if body.has_method("take_damage"):
 		body.take_damage(damage)
