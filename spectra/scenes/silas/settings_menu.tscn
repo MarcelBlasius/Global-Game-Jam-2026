@@ -1,0 +1,87 @@
+[gd_scene format=3 uid="uid://dctlcgiaa710p"]
+
+[ext_resource type="Script" uid="uid://b4wxjaaajg8yu" path="res://scripts/settings_menu.gd" id="1_75tev"]
+[ext_resource type="Texture2D" uid="uid://c6vtrlaei2hpi" path="res://ressources/atlas_textures/game_menu/background.tres" id="1_klqf3"]
+[ext_resource type="Texture2D" uid="uid://co1pby6pb88q6" path="res://ressources/atlas_textures/settings_menu/volume.tres" id="2_j8t25"]
+[ext_resource type="Texture2D" uid="uid://b0g2r6l5wiw5y" path="res://ressources/atlas_textures/settings_menu/button_close.tres" id="4_14tbu"]
+[ext_resource type="PackedScene" uid="uid://c5fuyafloib7" path="res://scenes/silas/menu_button.tscn" id="4_mi8vl"]
+[ext_resource type="Texture2D" uid="uid://bc1xamp1k55jd" path="res://ressources/atlas_textures/settings_menu/button_close_hovered.tres" id="5_3yyqo"]
+
+[node name="SettingsMenu" type="Control" unique_id=1396697738]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_75tev")
+
+[node name="Panel" type="Panel" parent="." unique_id=1619251193]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -320.0
+offset_top = -180.0
+offset_right = 320.0
+offset_bottom = 180.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Window" type="MarginContainer" parent="." unique_id=936047747]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -62.0
+offset_top = -63.0
+offset_right = 62.0
+offset_bottom = 63.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextureRect" type="TextureRect" parent="Window" unique_id=577194160]
+layout_mode = 2
+texture = ExtResource("1_klqf3")
+
+[node name="MarginContainer" type="MarginContainer" parent="Window" unique_id=1505226839]
+layout_mode = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Window/MarginContainer" unique_id=336430600]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Window/MarginContainer/VBoxContainer" unique_id=1365388132]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="Window/MarginContainer/VBoxContainer/HBoxContainer" unique_id=856375945]
+layout_mode = 2
+texture = ExtResource("2_j8t25")
+
+[node name="VolumeSlider" type="HSlider" parent="Window/MarginContainer/VBoxContainer/HBoxContainer" unique_id=1574196207]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 8
+step = 5.0
+
+[node name="Gap" type="Control" parent="Window/MarginContainer/VBoxContainer" unique_id=85261496]
+custom_minimum_size = Vector2(0, 10)
+layout_mode = 2
+
+[node name="CloseButton" parent="Window/MarginContainer/VBoxContainer" unique_id=936845202 instance=ExtResource("4_mi8vl")]
+layout_mode = 2
+texture_normal = ExtResource("4_14tbu")
+texture_hover = ExtResource("5_3yyqo")
+
+[connection signal="value_changed" from="Window/MarginContainer/VBoxContainer/HBoxContainer/VolumeSlider" to="." method="_on_volume_slider_value_changed"]
+[connection signal="pressed" from="Window/MarginContainer/VBoxContainer/CloseButton" to="." method="_on_close_button_pressed"]

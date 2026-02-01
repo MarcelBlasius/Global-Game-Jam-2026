@@ -3,8 +3,6 @@ extends Area2D
 @export var speed: float = 600.0
 @export var damage: int = 1
 @export var hit_group : String
-@export var world = 1
-
 
 const explosion = preload("res://scenes/explosion.tscn")
 
@@ -46,11 +44,21 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	spriteParent1.global_transform = global_transform
 	spriteParent2.global_transform = global_transform
-	
+
+func get_world():
+	return get_node("/root/main_scene/AlphaContainer/AlphaView").get_world(self.global_position)
+
+
 func _physics_process(delta: float) -> void:
 	position += direction * speed * delta
-	spriteParent1.visible = true
-	spriteParent2.visible = true
+	
+	var world = get_world()
+	if world == 0:
+		spriteParent1.visible = true
+		spriteParent2.visible = false
+	else:
+		spriteParent1.visible = false
+		spriteParent2.visible = true
 	
 func destroy(body: Node2D):
 	
@@ -67,19 +75,14 @@ func destroy(body: Node2D):
 	spriteParent1.queue_free()
 	spriteParent2.queue_free()
 	
-
-func get_world():
-	return world;
-
 func _on_body_entered(body: Node2D):
 	
 	if !body.is_in_group(hit_group) && !body.is_in_group("environment"):
 		return
 	
-	if !body.has_method("get_world"): return
+	if body.has_method("get_world"):
+		if get_world() == body.get_world(): return
 	
-	if body.get_world() != get_world(): return
-		
 	if body.has_method("take_damage"):
 		body.take_damage(damage)
 	

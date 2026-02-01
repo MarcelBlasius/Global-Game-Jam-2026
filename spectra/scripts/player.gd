@@ -2,8 +2,7 @@ extends CharacterBody2D
 
 @export var health = 3
 @export var speed = 400
-const sun_bullet_scene = preload("res://scenes/sun_bullet.tscn")
-const dark_bullet_scene = preload("res://scenes/dark_bullet.tscn")
+const bullet_scene = preload("res://scenes/player_bullet.tscn")
 
 @export var fire_rate: float = 0.5 # seconds
 @onready var shoot_timer = $ShootTimer
@@ -129,20 +128,17 @@ func play_shoot_animation(dir: Vector2):
 	recoil_player2.play("shoot_animation")
 
 func spawn_bullet(dir: Vector2, offset: Vector2):
-	var world = get_node("/root/main_scene/AlphaContainer/AlphaView").get_world(self.global_position)
-
-	var bullet: Node
-	if (world == 0):
-		bullet = sun_bullet_scene.instantiate()
-	else :
-		bullet = dark_bullet_scene.instantiate()
+	var bullet = bullet_scene.instantiate()
 		
 	play_shoot_animation(dir)
 	bullet.global_position = global_position + (offset / 2)
 	bullet.direction = dir
 	bullet.hit_group = "enemies"
 	get_tree().root.add_child(bullet) 
-	
+
+
+func get_world():
+	return get_node("/root/main_scene/AlphaContainer/AlphaView").get_world(self.global_position)	
 
 func flash_hit():
 	sprite1.material.set_shader_parameter("active", true)

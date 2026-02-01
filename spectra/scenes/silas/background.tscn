@@ -1,5 +1,6 @@
 [gd_scene format=3 uid="uid://bv25mwaky7njn"]
 
+[ext_resource type="Script" uid="uid://b4ui3nnro0sqo" path="res://scripts/background.gd" id="1_35j2h"]
 [ext_resource type="Texture2D" uid="uid://b06ewonenu7hk" path="res://ressources/spritesheet.png" id="1_hky1a"]
 [ext_resource type="PackedScene" uid="uid://c8f3q1vvtl1p2" path="res://scenes/silas/flower.tscn" id="2_ci8kt"]
 
@@ -10,6 +11,8 @@ size = Vector2(640, 36)
 size = Vector2(36, 360)
 
 [node name="Background" type="Node2D" unique_id=250843349]
+script = ExtResource("1_35j2h")
+tutorial_fade_out_duration = 5
 
 [node name="BackgroundWorld1" type="Node2D" parent="." unique_id=1668724930]
 

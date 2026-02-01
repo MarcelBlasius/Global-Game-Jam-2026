@@ -2,7 +2,6 @@
 
 [ext_resource type="Script" uid="uid://b7w23iqs82lm8" path="res://scripts/bullet.gd" id="1_mx1jh"]
 [ext_resource type="Texture2D" uid="uid://b663llngg2mc" path="res://ressources/projectile_animation_world_2.png" id="2_1il3u"]
-[ext_resource type="Shader" uid="uid://cstew5jd8ujmt" path="res://shaders/flash.gdshader" id="4_1il3u"]
 [ext_resource type="PackedScene" uid="uid://dnhn13eqhoom" path="res://scenes/explosion.tscn" id="4_46lte"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_l5glv"]
@@ -37,12 +36,6 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_mx1jh"]
-shader = ExtResource("4_1il3u")
-shader_parameter/active = false
-shader_parameter/flash_color = Vector4(0.8, 0.5, 0.5, 1)
-shader_parameter/alpha = 0.25
-
 [node name="SunBullet" type="Area2D" unique_id=2130175322]
 visible = false
 collision_layer = 20
@@ -66,7 +59,6 @@ frame_progress = 0.9981774
 
 [node name="DarkBullet" type="AnimatedSprite2D" parent="World2Bullet" unique_id=1283840922]
 texture_filter = 1
-material = SubResource("ShaderMaterial_mx1jh")
 sprite_frames = SubResource("SpriteFrames_1cfmv")
 frame_progress = 0.9981774
 
