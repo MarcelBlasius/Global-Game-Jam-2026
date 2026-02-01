@@ -17,11 +17,12 @@ float calcDist(vec2 uv, vec2 point, float radius)
 	return sqrt((uv.x - point.x) * (uv.x - point.x) + (uv.y - point.y) * (uv.y - point.y)) - radius;;
 }
 
-float calcAlpha(float dist)
+float calcAlpha(float dist, float noise)
 {
 	float minDist = -(corona / 2.0);
 	float maxDist =  (corona / 2.0);
 	float a;
+	
 	
     if (dist < minDist)
     {
@@ -35,6 +36,20 @@ float calcAlpha(float dist)
 	{
 		a = 1.0;
 	}
+	
+	if (invert_world)
+	{
+		a = 1.0 -a;
+	}
+	
+	if (invert_world)
+	{
+		a *= smoothstep(1.0, 0.0, 1.0 - a) * (noise);
+	}
+	else{
+		a *= smoothstep(0.0, 1.0, a) * noise;
+	}
+	
 	
 	return a;
 }
@@ -79,6 +94,11 @@ void fragment() {
 	noiseUV = noiseUV - vec2(float(uInt), float(vInt)); 
 	
 	vec4 noise = texture(tex_noise, noiseUV);
+	//if (invert_world)
+	//{
+		//noise = -noise;
+	//}
+	
 	vec2 uv = UV * vec2(640, 360);
 	float distResult = 9999999.0;
 	for(int i = 0; i< value_count; i++)
@@ -123,13 +143,16 @@ void fragment() {
 		distResult = differenceSDF(union, intersection);
 	}
 	
-	distResult -= ((noise.x + 1.0)/ 2.0)  * 30.0;
-    float a = calcAlpha(distResult);
-		
+	//distResult += noise.x * 100.0;
+	float rawNoiseInput = noise.x;
 	if (invert_world)
 	{
-		a = 1.0 - a;
+		rawNoiseInput = - rawNoiseInput;
 	}
+	//float noiseVal = ((rawNoiseInput + 1.0) / 2.0);
+    float a = calcAlpha(distResult, noise.x * 5.0);
+
+	
 	
 	COLOR = vec4(a, a, a, 1);
 }

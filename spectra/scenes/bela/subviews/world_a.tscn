@@ -8,8 +8,8 @@
 shader = ExtResource("1_c8xer")
 shader_parameter/posValues = PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
 shader_parameter/value_count = 0
-shader_parameter/corona = 5.0
-shader_parameter/invert_world = false
+shader_parameter/corona = 10.0
+shader_parameter/invert_world = true
 shader_parameter/time_millis = 0.0
 
 [sub_resource type="QuadMesh" id="QuadMesh_ltjy5"]
@@ -28,6 +28,6 @@ mesh = SubResource("QuadMesh_ltjy5")
 script = ExtResource("2_mtvx8")
 
 [node name="SubViewport" type="SubViewport" parent="MeshInstance2D" unique_id=54492146]
-size = Vector2i(640, 320)
+size = Vector2i(640, 360)
 
 [node name="NoiseTest" parent="MeshInstance2D/SubViewport" unique_id=1102631375 instance=ExtResource("3_ltjy5")]

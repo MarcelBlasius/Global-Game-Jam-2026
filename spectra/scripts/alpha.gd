@@ -1,10 +1,13 @@
 class_name Alpha
 extends MeshInstance2D
 
+#@export var noise_tex1 : NoiseTexture2D
+
 class MaskPos:
 	var pos: Vector2
 	var radius: float
 	var worldBit : float
+	var endRadius : float
 
 var mat : ShaderMaterial
 var posList : Array[MaskPos]
